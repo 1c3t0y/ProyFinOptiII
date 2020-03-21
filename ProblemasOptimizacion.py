@@ -2,12 +2,12 @@ import numpy as np
 
 class ProblemaOptimizacion(object):
 	def __init__(self, n, m, costos, recursos, restricciones):
-		self._n = n
-		self._m = m
-		self._costos = costos.copy() ###numpy array
-		self._recursos = recursos.copy() ###numpy array
-		self._restricciones = restricciones.copy() ###numpy matrix
-		self._variablesDecision = np.zeros(self._n*self._m) ###numpy array
+		self.n = n
+		self.m = m
+		self.costos = costos.copy() ###numpy array
+		self.recursos = recursos.copy() ###numpy array
+		self.restricciones = restricciones.copy() ###numpy matrix
+		self.variablesDecision = np.zeros(self._n*self._m) ###numpy array
 
 
 	### Properties ###
@@ -75,13 +75,13 @@ class ProblemaOptimizacion(object):
 class ProblemaTransporte(ProblemaOptimizacion):
 	"""docstring for matrizTransporte"matrizOptimizacion"""
 	
-	def __init__(self, origenes, destinos, costos, recursos):
+	def __init__(self, origenes, destinos, costos, oferta, demanda):
 		matrizRestricciones = genMatRestriccionesTransporte(origenes,destinos)
-		super(ProblemaTransporte, self).__init__(origenes, destinos, costos, recursos, matrizRestricciones)
-		self._oferta = recursos
-		self._demanda = recursos
-		self._matrizCostos = costos
-		self._matrizVariablesDecision = self.variablesDecision
+		super(ProblemaTransporte, self).__init__(origenes, destinos, costos.flatten(), np.concatenate((oferta, demanda), axis=None), matrizRestricciones)
+		self.oferta = oferta
+		self.demanda = demanda
+		self.matrizCostos = costos
+		self.matrizVariablesDecision = self.variablesDecision
 
 
 	### Properties ###
@@ -128,14 +128,14 @@ class ProblemaTransporte(ProblemaOptimizacion):
 		elif((self.n,self.m) == vector.shape):
 			self._matrizCostos = vector
 		else:
-			raise ValueError("Error en la asignacion del vector demanda, dimensiones incorrectas")
+			raise ValueError("Error en la asignacion de la matriz costos, dimensiones incorrectas")
 
 	@matrizVariablesDecision.setter
 	def matrizVariablesDecision (self, vector):
 		if(len(vector) == self.n*self.m):
 			self._matrizVariablesDecision = vector.reshape((self.n,self.m))
 		else:
-			raise ValueError("Error en la asignacion del vector demanda, dimensiones incorrectas")
+			raise ValueError("Error en la asignacion de la matriz variablesDecision, dimensiones incorrectas")
 
 
 	### Metodos ###
@@ -147,8 +147,9 @@ class ProblemaTransporte(ProblemaOptimizacion):
 class ProblemaAsignacion(ProblemaTransporte):
 	"""docstring for ProblemaAsignacion"ProblemaTransporte"""
 	def __init__(self, costos):
-		tempRecursos = np.ones(costos.shape[0]+costos.shape[1])
-		super(ProblemaAsignacion,self).__init__(costos.shape[0], costos.shape[1], costos, tempRecursos)
+		oferta = np.ones(costos.shape[0])
+		demanda = np.ones(costos.shape[1])
+		super(ProblemaAsignacion,self).__init__(costos.shape[0], costos.shape[1], costos, oferta, demanda)
 
 
 	### properties ###
