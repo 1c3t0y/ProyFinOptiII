@@ -36,7 +36,6 @@ def metodoEsquinaNE(probTransporte):
 		numTachesRen = fvm.contarValorEnVector(tachesRen,False)
 		numTachesCol = fvm.contarValorEnVector(tachesCol,False)
 
-	print(probTransporte.matrizVariablesDecision)
 	print(matVariablesBasicas)
 
 	spo.solucionProblemaTransporte(probTransporte, matVariablesBasicas)
