@@ -33,10 +33,11 @@ def metodoEsquinaNE(probTransporte):
 			j += 1
 
 		### Paso 3
-		numTachesRen = fvm.contarValorEnVector(tachesRen,False)
-		numTachesCol = fvm.contarValorEnVector(tachesCol,False)
+		numTachesRen = (tachesRen == False).sum()
+		numTachesCol = (tachesCol == False).sum()
 
 	print(matVariablesBasicas)
+	print(probTransporte.matrizVariablesDecision)
 
 	spo.solucionProblemaTransporte(probTransporte, matVariablesBasicas)
 

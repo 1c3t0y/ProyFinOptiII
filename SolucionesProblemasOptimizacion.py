@@ -46,8 +46,8 @@ def solucionProblemaTransporte(probTransporte, matVariablesBasicas):
 		for j,elemento in enumerate(renglon):
 			if(elemento > varEntrada[0] and (not matVariablesBasicas[i][j])):
 				varEntrada = (elemento, i, j)
-
+	
 	matVariablesBasicas[varEntrada[1]][varEntrada[2]] = True
-	cicloMinimo(matVariablesBasicas,(varEntrada[1],varEntrada[2]))
+	##cicloMinimo(matVariablesBasicas,(varEntrada[1],varEntrada[2]))
 
 	###if(varEntrada[0] > 0):

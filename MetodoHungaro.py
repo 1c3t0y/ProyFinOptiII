@@ -31,7 +31,7 @@ def metodoHungaro(probAsignacion):
 	matrizCostosOpti = probAsignacion.matrizCostos
 	### Paso 1
 	for renglon in matrizCostosOpti:
-		menor = fvm.menorElementoRenglon(renglon)
+		menor = np.amin(renglon)
 		for index,elemento in enumerate(renglon):
 			renglon[index] = elemento - menor
 
@@ -39,8 +39,8 @@ def metodoHungaro(probAsignacion):
 	matrizTransAux = matrizCostosOpti.transpose()
 
 	for renglon in matrizTransAux:
-		if(not fvm.hayNumeroEnRenglon(renglon,0)):
-			menor = fvm.menorElementoRenglon(renglon)
+		if(not np.any(renglon == 0)):
+			menor = np.amin(renglon)
 			for index,elemento in enumerate(renglon):
 				renglon[index] = elemento - menor
 
