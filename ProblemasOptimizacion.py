@@ -1,4 +1,5 @@
 import numpy as np
+import FuncionesVecMat as fvm 
 
 class ProblemaOptimizacion(object):
 	def __init__(self, n, m, costos, recursos, restricciones):
@@ -76,7 +77,7 @@ class ProblemaTransporte(ProblemaOptimizacion):
 	"""docstring for matrizTransporte"matrizOptimizacion"""
 	
 	def __init__(self, origenes, destinos, costos, oferta, demanda):
-		matrizRestricciones = genMatRestriccionesTransporte(origenes,destinos)
+		matrizRestricciones = fvm.genMatRestriccionesTransporte(origenes,destinos)
 		super(ProblemaTransporte, self).__init__(origenes, destinos, costos.flatten(), np.concatenate((oferta, demanda), axis=None), matrizRestricciones)
 		self.oferta = oferta
 		self.demanda = demanda
@@ -142,8 +143,6 @@ class ProblemaTransporte(ProblemaOptimizacion):
 
 
 
-
-
 class ProblemaAsignacion(ProblemaTransporte):
 	"""docstring for ProblemaAsignacion"ProblemaTransporte"""
 	def __init__(self, costos):
@@ -159,18 +158,3 @@ class ProblemaAsignacion(ProblemaTransporte):
 
 
 	### Métodos ###
-	
-
-
-def genMatRestriccionesTransporte(n, m):
-	matrizRestricciones = np.zeros((n+m,n*m))
-
-	for i in range(n) :
-		for j in range(m):
-			matrizRestricciones[i,(i*m)+j] = 1
-	
-	for j in range(m):
-		for i in range(n):
-			matrizRestricciones[j+n,(i*m)+(j)] = 1
-
-	return matrizRestricciones
