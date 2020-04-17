@@ -14,7 +14,7 @@ def metodo_esquina_NE(prob_transporte):
     taches_ren = np.tile(False, prob_transporte.n)
     taches_col = np.tile(False, prob_transporte.m)
     num_taches_ren = 0
-    num_taches_ol = 0
+    num_taches_col = 0
     i = 0
     j = 0
 
@@ -44,7 +44,7 @@ def metodo_esquina_NE(prob_transporte):
     print(mat_variables_basicas)
     print(prob_transporte.matriz_variables_decision)
 
-    spo.solucionProblemaTransporte(prob_transporte, mat_variables_basicas)
+    spo.solucion_problema_transporte(prob_transporte, mat_variables_basicas)
 
 
 costos = np.array([[10, 2, 20, 11], [12, 7, 9, 20], [4, 14, 16, 18]])
