@@ -11,6 +11,7 @@ class ProblemaOptimizacion(object):
         self.recursos = recursos.copy()  ###numpy array
         self.restricciones = restricciones.copy()  ###numpy matrix
         self.variables_decision = np.zeros(self._n * self._m)  ###numpy array
+        self.variables_basicas = np.tile(False, self._n * self._m)
 
     ### Properties ###
     @property
@@ -36,6 +37,11 @@ class ProblemaOptimizacion(object):
     @property
     def variables_decision(self):
         return self._variables_decision
+
+    @property
+    def variables_basicas(self):
+        return self._variables_basicas
+    
 
     ### seters ###
     @n.setter
@@ -71,6 +77,10 @@ class ProblemaOptimizacion(object):
     @variables_decision.setter
     def variables_decision(self, matriz):
         self._variables_decision = matriz
+
+    @variables_basicas.setter
+    def variables_basicas(self, arreglo):
+        self._variables_basicas = arreglo
 
     ### Metodos ###
 

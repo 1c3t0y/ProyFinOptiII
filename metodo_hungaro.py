@@ -58,10 +58,9 @@ def metodo_hungaro(prob_asignacion):
                     matriz_costos_opti[i][j] = matriz_costos_opti[i][j] + menor
                 elif elemento == 0:
                     matriz_costos_opti[i][j] = matriz_costos_opti[i][j] - menor
-        print(matriz_costos_opti)
         matriz_lineas, num_lineas, menor = fvm.numero_taches_matriz(matriz_costos_opti)
 
-    
+    return prob_asignacion
 
     #TO DO: Método de asignación de la matriz optima
 

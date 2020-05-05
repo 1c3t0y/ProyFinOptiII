@@ -41,14 +41,11 @@ def metodo_esquina_NE(prob_transporte):
         num_taches_ren = (taches_ren == False).sum()
         num_taches_col = (taches_col == False).sum()
 
-    print(mat_variables_basicas)
-    print(prob_transporte.matriz_variables_decision)
-
-    spo.solucion_problema_transporte(prob_transporte, mat_variables_basicas)
+    return spo.solucion_problema_transporte(prob_transporte, mat_variables_basicas)
 
 
-costos = np.array([[10, 2, 20, 11], [12, 7, 9, 20], [4, 14, 16, 18]])
-oferta = np.array([15, 25, 10])
-demanda = np.array([5, 15, 15, 15])
-probTransporte = po.ProblemaTransporte(3, 4, costos, oferta, demanda)
-metodo_esquina_NE(probTransporte)
+#costos = np.array([[10, 2, 20, 11], [12, 7, 9, 20], [4, 14, 16, 18]])
+#oferta = np.array([15, 25, 10])
+#demanda = np.array([5, 15, 15, 15])
+#probTransporte = po.ProblemaTransporte(3, 4, costos, oferta, demanda)
+#print(metodo_esquina_NE(probTransporte).matriz_variables_decision)
