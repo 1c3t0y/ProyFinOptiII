@@ -2,7 +2,7 @@ import numpy as np
 
 ### Algoritmo de Optimizacion para problemas de transporte ###
 
-def solucion_problema_transporte(prob_transporte, mat_variables_basicas):
+def solucion_problema_transporte(prob_transporte):
     u = []
     v = []
     var_entrada = (0, -1, -1)
@@ -22,12 +22,12 @@ def solucion_problema_transporte(prob_transporte, mat_variables_basicas):
 
         for i in range(0, prob_transporte.n, 1):
             for j in range(0, prob_transporte.m, 1):
-                if mat_variables_basicas[i][j] and u[i] != "*" and v[j] == "*":
+                if prob_transporte.matriz_variables_basicas[i][j] and u[i] != "*" and v[j] == "*":
                     v[j] = prob_transporte.matriz_costos[i][j] - u[i]
 
         for j in range(prob_transporte.m):
             for i in range(prob_transporte.n):
-                if mat_variables_basicas[i][j] and v[j] != "*" and u[i] == "*":
+                if prob_transporte.matriz_variables_basicas[i][j] and v[j] != "*" and u[i] == "*":
                     u[i] = prob_transporte.matriz_costos[i][j] - v[j]
 
         if u_aux == u and v_aux == v:
@@ -39,22 +39,23 @@ def solucion_problema_transporte(prob_transporte, mat_variables_basicas):
     ### Calculo de variables no básicas
     for i, renglon in enumerate(prob_transporte.matriz_variables_decision):
         for j, elemento in enumerate(renglon):
-            if not mat_variables_basicas[i][j]:
+            if not prob_transporte.matriz_variables_basicas[i][j]:
                 prob_transporte.matriz_variables_decision[i][j] = (
                     u[i] + v[j] - prob_transporte.matriz_costos[i][j]
                 )
     
-    if verificar_minimo_encontrado(mat_variables_basicas, prob_transporte.matriz_variables_decision):
+    ### Condicion de salida ###
+    if verificar_minimo_encontrado(prob_transporte.matriz_variables_basicas, prob_transporte.matriz_variables_decision):
         return prob_transporte
 
     ### Identificando variable de entrada
     for i, renglon in enumerate(prob_transporte.matriz_variables_decision):
         for j, elemento in enumerate(renglon):
-            if elemento >= var_entrada[0] and (not mat_variables_basicas[i][j]):
+            if elemento >= var_entrada[0] and (not prob_transporte.matriz_variables_basicas[i][j]):
                 var_entrada = (elemento, i, j)
 
-    mat_ciclo_min = ciclo_minimo(mat_variables_basicas, var_entrada)
-    mat_variables_basicas[var_entrada[1], var_entrada[2]] = True ## Se mete la variable a la base
+    mat_ciclo_min = ciclo_minimo(prob_transporte.matriz_variables_basicas, var_entrada)
+    prob_transporte.matriz_variables_basicas[var_entrada[1], var_entrada[2]] = True ## Se mete la variable a la base
     mat_flujos = asignar_flujos(mat_ciclo_min, var_entrada)
     var_salida = (np.amax(prob_transporte.matriz_variables_decision), -1, -1)
 
@@ -72,10 +73,9 @@ def solucion_problema_transporte(prob_transporte, mat_variables_basicas):
                     prob_transporte.matriz_variables_decision[i][j] -= var_salida[0]
 
     prob_transporte.matriz_variables_decision[var_entrada[1], var_entrada[2]] = var_salida[0]
-    mat_variables_basicas[var_salida[1], var_salida[2]] = False ## Se saca la variable de la base
+    prob_transporte.matriz_variables_basicas[var_salida[1], var_salida[2]] = False ## Se saca la variable de la base
 
-    return solucion_problema_transporte(prob_transporte, mat_variables_basicas)
-
+    return solucion_problema_transporte(prob_transporte)
 
 
 

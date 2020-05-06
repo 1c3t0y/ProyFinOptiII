@@ -7,10 +7,8 @@ import fun_vec_mat as fvm
 import sol_problemas_opti as spo
 
 def metodo_MAV(prob_transporte):
-	mat_variables_basicas = np.tile(False, (prob_transporte.n, prob_transporte.m))
-
-	oferta_aux = prob_transporte.oferta
-	demanda_aux = prob_transporte.demanda
+	oferta_aux = prob_transporte.oferta.copy()
+	demanda_aux = prob_transporte.demanda.copy()
 
 
 	penalizacion_ren = np.tile(0., prob_transporte.n)
@@ -83,7 +81,7 @@ def metodo_MAV(prob_transporte):
 		prob_transporte.matriz_variables_decision[costo_menor[1]][costo_menor[2]] = menor
 		oferta_aux[costo_menor[1]] = oferta_aux[costo_menor[1]] - menor
 		demanda_aux[costo_menor[2]] = demanda_aux[costo_menor[2]] - menor
-		mat_variables_basicas[costo_menor[1]][costo_menor[2]] = True
+		prob_transporte.matriz_variables_basicas[costo_menor[1]][costo_menor[2]] = True
 
 
 		if demanda_aux[costo_menor[2]] == 0:
@@ -108,7 +106,7 @@ def metodo_MAV(prob_transporte):
 
 
 			prob_transporte.matriz_variables_decision[costo_menor[1]][costo_menor[2]] = oferta_aux[costo_menor[1]]
-			mat_variables_basicas[costo_menor[1]][costo_menor[2]] = True
+			prob_transporte.matriz_variables_basicas[costo_menor[1]][costo_menor[2]] = True
 			demanda_aux[costo_menor[2]] = demanda_aux[costo_menor[2]] - oferta_aux[costo_menor[1]] 			
 			oferta_aux[costo_menor[1]] = 0
 			taches_ren[costo_menor[1]] = True
@@ -126,7 +124,7 @@ def metodo_MAV(prob_transporte):
 					costo_menor = (elemento, i, col_faltante)
 
 			prob_transporte.matriz_variables_decision[costo_menor[1]][costo_menor[2]] = oferta_aux[costo_menor[1]]
-			mat_variables_basicas[costo_menor[1]][costo_menor[2]] = True
+			prob_transporte.matriz_variables_basicas[costo_menor[1]][costo_menor[2]] = True
 			oferta_aux[costo_menor[1]] = oferta_aux[costo_menor[1]] - demanda_aux[costo_menor[2]]  
 			demanda_aux[costo_menor[2]] = 0
 			taches_col[costo_menor[2]] = True
@@ -157,14 +155,36 @@ def metodo_MAV(prob_transporte):
 						oferta_aux[i] = True
 				num_taches_col = (taches_col == False).sum()
 		
-	return spo.solucion_problema_transporte(prob_transporte, mat_variables_basicas)
+	return spo.solucion_problema_transporte(prob_transporte)
 
 
 
+'''
+costos = np.array([[10, 2, 20, 11], [12, 7, 9, 20], [4, 14, 16, 18]])
+oferta = np.array([15, 25, 10])
+demanda = np.array([5, 15, 15, 15])
+prob_transporte = po.ProblemaTransporte(3, 4, costos, oferta, demanda)
+print(metodo_MAV(prob_transporte).matriz_variables_decision)
 
-#costos = np.array([[10, 2, 20, 11], [12, 7, 9, 20], [4, 14, 16, 18]])
-#oferta = np.array([15, 25, 10])
-#demanda = np.array([5, 15, 15, 15])
-#probTransporte = po.ProblemaTransporte(3, 4, costos, oferta, demanda)
+print("Clase ProblemaOptimizacion")
 
-#print(metodo_MAV(probTransporte).matriz_variables_decision)
+print(prob_transporte.n)
+print(prob_transporte.m)
+print(prob_transporte.costos)
+print(prob_transporte.recursos)
+print(prob_transporte.restricciones)
+print(prob_transporte.variables_decision)
+print(prob_transporte.variables_basicas)
+
+
+print("Clase ProblemaTransporte")
+
+print(prob_transporte.oferta)
+print(prob_transporte.demanda)
+print(prob_transporte.matriz_costos)
+print(prob_transporte.matriz_variables_decision)
+print(prob_transporte.matriz_variables_basicas)
+
+print("funcion objetivo")
+print(prob_transporte.z)
+'''
