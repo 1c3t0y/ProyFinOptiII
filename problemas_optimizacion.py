@@ -12,7 +12,7 @@ class ProblemaOptimizacion(object):
         self.restricciones = restricciones.copy()  ###numpy matrix
         self.variables_decision = np.zeros(self._n * self._m)  ###numpy array
         self.variables_basicas = np.tile(False, self._n * self._m)
-        self.z ## funcion objetivo ##
+        self.z  ## funcion objetivo ##
 
     ### Properties ###
     @property
@@ -48,10 +48,8 @@ class ProblemaOptimizacion(object):
         self._z = 0
         for i in enumerate(self.variables_basicas):
             if self.variables_basicas[i]:
-                self._z += self.costos[i]*self.variables_decision[i]
+                self._z += self.costos[i] * self.variables_decision[i]
         return self._z
-    
-    
 
     ### seters ###
     @n.setter
@@ -133,8 +131,6 @@ class ProblemaTransporte(ProblemaOptimizacion):
     @property
     def matriz_variables_basicas(self):
         return self._matriz_variables_basicas
-    
-    
 
     ### Setters ###
     @oferta.setter
@@ -206,5 +202,3 @@ class ProblemaAsignacion(ProblemaTransporte):
     ### Setters ###
 
     ### Métodos ###
-
-

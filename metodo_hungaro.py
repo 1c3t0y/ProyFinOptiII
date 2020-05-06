@@ -62,9 +62,9 @@ def metodo_hungaro(prob_asignacion):
 
     return prob_asignacion
 
-    #TO DO: Método de asignación de la matriz optima
+    # TO DO: Método de asignación de la matriz optima
 
 
-#costos = np.array([[1,4,6,3],[9,7,10,9],[4,5,11,7],[8,7,8,5]])
-#prob_asignacion = po.ProblemaAsignacion(costos)
-#metodo_hungaro(prob_asignacion)
+# costos = np.array([[1,4,6,3],[9,7,10,9],[4,5,11,7],[8,7,8,5]])
+# prob_asignacion = po.ProblemaAsignacion(costos)
+# metodo_hungaro(prob_asignacion)
