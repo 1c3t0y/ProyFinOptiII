@@ -1,11 +1,11 @@
 ### main ###
-import menus
+import classes.menus as menus
 import os
 import sys
 
+
 def main():
 	opcion = 'z'
-	matriz_costos = []
 	print("******************************************************")
 	print("*			Proyecto final optimizacion II		 	*")
 	print("******************************************************")
@@ -19,9 +19,7 @@ def main():
 
 	input("Presione Enter para continuar...")
 
-
-
-	while( opcion != 'q'):
+	while opcion != 'q':
 	
 		if sys.platform[:3] == 'win':
 			os.system('cls')
@@ -34,10 +32,11 @@ def main():
 		if opcion == '1':
 			matriz_costos = menus.menu_ingresar_matriz_costos()
 			menus.menu_metodos_transporte(matriz_costos)
+		if opcion == '2':
+			menus.menu_redes()
 
 		elif opcion == 'q':
 			exit()
-
 
 
 if __name__ == "__main__":

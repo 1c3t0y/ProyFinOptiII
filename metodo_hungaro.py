@@ -1,9 +1,7 @@
 ###### metodoHungaro ######
 
 import numpy as np
-
-import problemas_optimizacion as po
-import fun_vec_mat as fvm
+import utils.fun_vec_mat as fvm
 
 
 def metodo_hungaro(prob_asignacion):
