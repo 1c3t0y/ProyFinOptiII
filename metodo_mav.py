@@ -1,10 +1,8 @@
 ### Metodo de aproximacion de Voguel ###
 
 import numpy as np
-
-import problemas_optimizacion as po
-import fun_vec_mat as fvm
 import sol_problemas_opti as spo
+
 
 def metodo_MAV(prob_transporte):
 	mat_variables_basicas = np.tile(False, (prob_transporte.n, prob_transporte.m))

@@ -1,9 +1,6 @@
 ### Metodo Esquina Noroeste ###
 
 import numpy as np
-
-import problemas_optimizacion as po
-import fun_vec_mat as fvm
 import sol_problemas_opti as spo
 
 

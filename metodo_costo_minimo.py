@@ -1,9 +1,7 @@
 ### Método del costo minimo ###
 import numpy as np
-
-import problemas_optimizacion as po
-import fun_vec_mat as fvm
 import sol_problemas_opti as spo
+
 
 def metodo_costo_minimo(prob_transporte):
 	oferta_aux = prob_transporte.oferta

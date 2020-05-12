@@ -2,6 +2,7 @@ import numpy as np
 
 ### Algoritmo de Optimizacion para problemas de transporte ###
 
+
 def solucion_problema_transporte(prob_transporte, mat_variables_basicas):
     u = []
     v = []
@@ -77,8 +78,6 @@ def solucion_problema_transporte(prob_transporte, mat_variables_basicas):
     return solucion_problema_transporte(prob_transporte, mat_variables_basicas)
 
 
-
-
 def asignar_flujos(mat_ciclo_min, var_entrada):
     mat_flujos = np.tile('.', mat_ciclo_min.shape)
     lista_elementos_ciclo = []
@@ -102,7 +101,6 @@ def asignar_flujos(mat_ciclo_min, var_entrada):
         mat_flujos[i[0]][i[1]] = i[2]
 
     return mat_flujos
-
 
 
 def ciclo_minimo(mat_variables_basicas, var_entrada):
@@ -136,6 +134,7 @@ def ciclo_minimo(mat_variables_basicas, var_entrada):
             ciclo_minimo_encontrado = True
 
     return mat_ciclo_min
+
 
 def verificar_minimo_encontrado(mat_variables_basicas, matriz_variables_decision):
     for i, renglon in enumerate(matriz_variables_decision):

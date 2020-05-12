@@ -1,10 +1,11 @@
 ### solucionar problemas transporte ###
-import ingresar_datos as datos
-import problemas_optimizacion as po
+import utils.ingresar_datos as datos
+import classes.problemas_optimizacion as po
 import metodo_esquina_ne as men
 import metodo_costo_minimo as mcm
 import metodo_mav as mav
 import metodo_hungaro as mh
+
 
 def sol_problema_transporte(matriz_costos, opcion):
 	if opcion == '1':
