@@ -1,9 +1,12 @@
 ### ingresar_datos ###
 import numpy as np
+import sys_fun
 
 
 def ingresar_matriz_manualmente():
     opcion = "N"
+
+    sys_fun.clear()
 
     while opcion[0] == "N" or opcion[0] == "n":
         n = int(input("Ingrese la cantidad de renglones de la matriz: "))
@@ -28,6 +31,8 @@ def ingresar_matriz_manualmente():
 
 
 def ingresar_matriz_csv():
+    sys_fun.clear()
+
     ruta_archivo = input("ingrese la ruta del archivo con extension .csv: ")
     delimitador = input("Ingrese el delimitador: ")
 
@@ -38,6 +43,8 @@ def ingresar_oferta_demanda(dimensiones):
     opcion = "S"
     oferta = np.zeros(dimensiones[0])
     demanda = np.zeros(dimensiones[1])
+
+    sys_fun.clear()
 
     while opcion[0] == "s" or opcion[0] == "S":
         print("Ingrese los valores de la oferta:")

@@ -196,9 +196,16 @@ class ProblemaAsignacion(ProblemaTransporte):
         super(ProblemaAsignacion, self).__init__(
             costos.shape[0], costos.shape[1], costos, oferta, demanda
         )
+        self.matriz_asignacion = np.zeros(costos.shape)
 
     ### properties ###
+    @property
+    def matriz_asignacion(self):
+        return self._matriz_asignacion
 
     ### Setters ###
+    @matriz_asignacion.setter
+    def matriz_asignacion(self, matriz):
+        self._matriz_asignacion = matriz
 
     ### Métodos ###

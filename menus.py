@@ -1,6 +1,5 @@
 ### menus ###
-import os
-import sys
+import sys_fun
 import ingresar_datos as datos
 import sol_problema_transporte as spt
 
@@ -13,8 +12,10 @@ def menu_principal():
 
 def menu_ingresar_matriz_costos():
     matriz = 0
-
     opcion = "z"
+
+    sys_fun.clear()
+
     print("PROBLEMAS DE TRANSPORTE")
     print("Opciones para ingresar datos:")
     print("1) Ingresar una matriz manualmente")
@@ -35,6 +36,8 @@ def menu_ingresar_matriz_costos():
 
 def menu_metodos_transporte(matriz_costos):
     opcion = "z"
+
+    sys_fun.clear()
 
     print("METODOS PARA PROBLEMAS DE TRANSPORTE")
     print("¿Qué método desea utilizar?:")

@@ -1,7 +1,6 @@
 ### main ###
 import menus
-import os
-import sys
+from sys_fun import clear
 
 
 def main():
@@ -22,17 +21,15 @@ def main():
 
     while opcion != "q":
 
-        if sys.platform[:3] == "win":
-            os.system("cls")
-        if sys.platform[:5] == "linux" or sys.platform[:6] == "darwin":
-            os.system("clear")
+        clear()
 
         menus.menu_principal()
         opcion = input("¿Que desea hacer?: ")
 
         if opcion == "1":
             matriz_costos = menus.menu_ingresar_matriz_costos()
-            menus.menu_metodos_transporte(matriz_costos)
+            if type(matriz_costos) != type(0):
+                menus.menu_metodos_transporte(matriz_costos)
 
         elif opcion == "q":
             exit()

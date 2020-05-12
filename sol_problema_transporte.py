@@ -18,8 +18,10 @@ def sol_problema_transporte(matriz_costos, opcion):
             demanda,
         )
         problema_transporte = men.metodo_esquina_NE(problema_transporte)
-        print(problema_transporte.matriz_variables_decision)
+        print("El mínimo de la función objetivo es:")
+        print("Z = {0}".format(problema_transporte.z))
         input("Presione Enter para continuar...")
+
     elif opcion == "2":
         oferta, demanda = datos.ingresar_oferta_demanda(matriz_costos.shape)
         problema_transporte = po.ProblemaTransporte(
@@ -30,8 +32,10 @@ def sol_problema_transporte(matriz_costos, opcion):
             demanda,
         )
         prob_transporte = mcm.metodo_costo_minimo(problema_transporte)
-        print(prob_transporte.matriz_variables_decision)
+        print("El mínimo de la función objetivo es:")
+        print("Z = {0}".format(problema_transporte.z))
         input("Presione Enter para continuar...")
+
     elif opcion == "3":
         oferta, demanda = datos.ingresar_oferta_demanda(matriz_costos.shape)
         problema_transporte = po.ProblemaTransporte(
@@ -42,10 +46,13 @@ def sol_problema_transporte(matriz_costos, opcion):
             demanda,
         )
         prob_transporte = mav.metodo_MAV(problema_transporte)
-        print(prob_transporte.matriz_variables_decision)
+        print("El mínimo de la función objetivo es:")
+        print("Z = {0}".format(problema_transporte.z))
         input("Presione Enter para continuar...")
+
     elif opcion == "4":
         problema_transporte = po.ProblemaAsignacion(matriz_costos)
         prob_transporte = mh.metodo_hungaro(problema_transporte)
-        print(prob_transporte.matriz_variables_decision)
+        print("El mínimo de la función objetivo es:")
+        print("Z = {0}".format(problema_transporte.z))
         input("Presione Enter para continuar...")

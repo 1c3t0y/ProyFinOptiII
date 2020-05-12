@@ -1,8 +1,7 @@
 import numpy as np
 
+
 ### Algoritmo de Optimizacion para problemas de transporte ###
-
-
 def solucion_problema_transporte(prob_transporte):
     u = []
     v = []
@@ -170,3 +169,86 @@ def verificar_minimo_encontrado(mat_variables_basicas, matriz_variables_decision
             if elemento > 0 and mat_variables_basicas[i][j] == False:
                 return False
     return True
+
+
+### Algoritmo de solucion para problemas de asignacion ###
+
+
+def solucion_problema_asignacion(prob_asignacion, matriz_asignacion):
+    tache_renglon = np.tile(False, matriz_asignacion.shape[0])
+    tache_columna = np.tile(False, matriz_asignacion.shape[1])
+
+    while not (
+        (tache_renglon == False).sum() == 0 and (tache_columna == False).sum() == 0
+    ):
+        cambio = False
+        ceros_renglon = np.zeros(matriz_asignacion.shape[0])
+        ceros_columna = np.zeros(matriz_asignacion.shape[1])
+
+        for i, renglon in enumerate(matriz_asignacion):
+            for j, elemento in enumerate(renglon):
+                if elemento == 0 and not (tache_renglon[i] or tache_columna[j]):
+                    ceros_renglon[i] += 1
+
+        for j, columna in enumerate(matriz_asignacion.transpose()):
+            for i, elemento in enumerate(columna):
+                if elemento == 0 and not (tache_renglon[i] or tache_columna[j]):
+                    ceros_columna[j] += 1
+
+        for i, renglon in enumerate(matriz_asignacion):
+            for j, elemento in enumerate(renglon):
+                if (
+                    ceros_renglon[i] == 1
+                    and elemento == 0
+                    and not (tache_renglon[i] or tache_columna[j])
+                ):
+                    matriz_asignacion[i][j] = 999
+                    prob_asignacion.matriz_variables_basicas[i][j] = True
+                    prob_asignacion.matriz_variables_decision[i][j] = 1
+                    tache_renglon[i] = True
+                    ceros_renglon[i] -= 1
+                    tache_columna[j] = True
+                    ceros_columna[j] -= 1
+                    cambio = True
+
+        for j, columna in enumerate(matriz_asignacion.transpose()):
+            for i, elemento in enumerate(columna):
+                if (
+                    ceros_columna[j] == 1
+                    and elemento == 0
+                    and not (tache_renglon[i] or tache_columna[j])
+                ):
+                    matriz_asignacion[i][j] = 999
+                    prob_asignacion.matriz_variables_basicas[i][j] = True
+                    prob_asignacion.matriz_variables_decision[i][j] = 1
+                    tache_renglon[i] = True
+                    ceros_renglon[i] -= 1
+                    tache_columna[j] = True
+                    ceros_columna[j] -= 1
+                    cambio = True
+
+        if not cambio:
+
+            min_ren = int(np.amin(ceros_renglon[ceros_renglon > 1]))
+            min_col = int(np.amin(ceros_columna[ceros_columna > 1]))
+
+            if min_ren <= min_col:
+                i = np.where(ceros_renglon == min_ren)[0]
+                for j, elemento in enumerate(ceros_renglon[i]):
+                    if elemento == 0 and not (tache_renglon[i] or tache_columna[j]):
+                        matriz_asignacion[i][j] = 999
+                        prob_asignacion.matriz_variables_basicas[i][j] = True
+                        prob_asignacion.matriz_variables_decision[i][j] = 1
+                        tache_renglon[i] = True
+                        tache_columna[j] = True
+            else:
+                j = np.where(ceros_columna == min_columna)[0]
+                for i, elemento in enumerate(ceros_columna[j]):
+                    if elemento == 0 and not (tache_renglon[i] or tache_columna[j]):
+                        matriz_asignacion[i][j] = 999
+                        prob_asignacion.matriz_variables_basicas[i][j] = True
+                        prob_asignacion.matriz_variables_decision[i][j] = 1
+                        tache_renglon[i] = True
+                        tache_columna[j] = True
+
+    return prob_asignacion
