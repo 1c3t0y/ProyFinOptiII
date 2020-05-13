@@ -1,6 +1,6 @@
 ### Método del costo minimo ###
 import numpy as np
-import sol_problemas_opti as spo
+import Transporte.sol_problemas_opti as spo
 
 
 def metodo_costo_minimo(prob_transporte):

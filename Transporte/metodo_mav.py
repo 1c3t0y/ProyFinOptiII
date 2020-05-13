@@ -1,7 +1,7 @@
 ### Metodo de aproximacion de Voguel ###
 
 import numpy as np
-import sol_problemas_opti as spo
+import Transporte.sol_problemas_opti as spo
 
 
 def metodo_MAV(prob_transporte):

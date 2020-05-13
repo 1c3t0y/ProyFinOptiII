@@ -1,7 +1,7 @@
 ### Metodo Esquina Noroeste ###
 
 import numpy as np
-import sol_problemas_opti as spo
+import Transporte.sol_problemas_opti as spo
 
 
 def metodo_esquina_NE(prob_transporte):

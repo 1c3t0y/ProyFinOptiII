@@ -12,6 +12,7 @@ class ProblemaOptimizacion(object):
         self.restricciones = restricciones.copy()  ###numpy matrix
         self.variables_decision = np.zeros(self._n * self._m)  ###numpy array
         self.variables_basicas = np.tile(False, self._n * self._m)
+        self.z  ## funcion objetivo ##
 
     ### Properties ###
     @property
@@ -41,7 +42,14 @@ class ProblemaOptimizacion(object):
     @property
     def variables_basicas(self):
         return self._variables_basicas
-    
+
+    @property
+    def z(self):
+        self._z = 0
+        for i in enumerate(self.variables_basicas):
+            if self.variables_basicas[i]:
+                self._z += self.costos[i] * self.variables_decision[i]
+        return self._z
 
     ### seters ###
     @n.setter
@@ -79,8 +87,8 @@ class ProblemaOptimizacion(object):
         self._variables_decision = matriz
 
     @variables_basicas.setter
-    def variables_basicas(self, arreglo):
-        self._variables_basicas = arreglo
+    def variables_basicas(self, matriz):
+        self._variables_basicas = matriz
 
     ### Metodos ###
 
@@ -101,6 +109,7 @@ class ProblemaTransporte(ProblemaOptimizacion):
         self.demanda = demanda
         self.matriz_costos = costos
         self.matriz_variables_decision = self.variables_decision
+        self.matriz_variables_basicas = self.variables_basicas
 
     ### Properties ###
     @property
@@ -118,6 +127,10 @@ class ProblemaTransporte(ProblemaOptimizacion):
     @property
     def matriz_variables_decision(self):
         return self._matriz_variables_decision
+
+    @property
+    def matriz_variables_basicas(self):
+        return self._matriz_variables_basicas
 
     ### Setters ###
     @oferta.setter
@@ -162,6 +175,15 @@ class ProblemaTransporte(ProblemaOptimizacion):
                 "Error en la asignacion de la matriz variables_decision, dimensiones incorrectas"
             )
 
+    @matriz_variables_basicas.setter
+    def matriz_variables_basicas(self, vector):
+        if len(vector) == self.n * self.m:
+            self._matriz_variables_basicas = vector.reshape((self.n, self.m))
+        else:
+            raise ValueError(
+                "Error en la asignacion de la matriz variables_basicas, dimensiones incorrectas"
+            )
+
     ### Metodos ###
 
 
@@ -174,9 +196,16 @@ class ProblemaAsignacion(ProblemaTransporte):
         super(ProblemaAsignacion, self).__init__(
             costos.shape[0], costos.shape[1], costos, oferta, demanda
         )
+        self.matriz_asignacion = np.zeros(costos.shape)
 
     ### properties ###
+    @property
+    def matriz_asignacion(self):
+        return self._matriz_asignacion
 
     ### Setters ###
+    @matriz_asignacion.setter
+    def matriz_asignacion(self, matriz):
+        self._matriz_asignacion = matriz
 
     ### Métodos ###
