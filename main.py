@@ -1,5 +1,5 @@
 ### main ###
-import classes.menus as menus
+import menus 
 import os
 import sys
 
@@ -30,8 +30,7 @@ def main():
 		opcion = input("¿Que desea hacer?: ")
 
 		if opcion == '1':
-			matriz_costos = menus.menu_ingresar_matriz_costos()
-			menus.menu_metodos_transporte(matriz_costos)
+			menus.menu_metodos_transporte()
 		if opcion == '2':
 			menus.menu_redes()
 
