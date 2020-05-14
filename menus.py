@@ -2,21 +2,24 @@ import utils.ingresar_datos as datos
 from Transporte.sol_problema_transporte import sol_problema_transporte
 from utils.Functions import check_int
 from utils.switcher_métodos import switcher_metodos_redes
+from classes.PPL import PPL
 
 
 def menu_principal():
 	print("Menu de opciones:")
 	print("1) Resolver un problema de transporte")
 	print("2) Resolver un problema de redes")
+	print("3) Resolver un problema de programación entera")
 	print("q) Salir")
 
 
-def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE"):
+def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
 	matriz = None
+	objeto = 'un PPL' if ppl else 'una matriz'
 	print(f'PROBLEMAS DE {msg}')
 	print("Opciones para ingresar datos:")
-	print("1) Ingresar una matriz manualmente")
-	print("2) Ingresar una matriz desde un archivo csv")
+	print(f"1) Ingresar {objeto} manualmente")
+	print(f"2) Ingresar {objeto} desde un archivo csv")
 	print("q) regresar al menú principal.")
 
 	while True:
@@ -26,7 +29,7 @@ def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE"):
 		else:
 			print('Ingrese una opción válida...')
 	if opcion == '1':
-		matriz = datos.ingresar_matriz_manualmente()
+		matriz = datos.ingresar_ppl_manualmente() if ppl else datos.ingresar_matriz_manualmente()
 	elif opcion == '2':
 		matriz = datos.ingresar_matriz_csv()
 	elif opcion == 'q':
@@ -78,3 +81,29 @@ def menu_redes():
 		num = check_int(opc)
 		if num is not None and num < 2:
 			switcher_metodos_redes[opc](matriz).menu()
+
+
+def menu_programacion_entera():
+	ppl_ingresado = menu_ingresar_matriz_costos('PROGRAMACIÓN ENTERA', True)
+	if ppl_ingresado is 0:
+		return
+	while True:
+		print("METODOS PARA PROBLEMAS DE PROGRAMACIÓN ENTERA")
+		print("¿Qué método desea utilizar?:")
+		print("1) Utilizar otra matriz")
+		print("m) Utilizar otra matriz")
+		print("q) Regresar al menu anterior")
+
+		opc = input('¿Qué desea hacer?: ')
+		if opc == 'q':
+			break
+		elif opc == 'm':
+			ppl_ingresado = menu_ingresar_matriz_costos('PROGRAMACIÓN ENTERA', True)
+			continue
+		num = check_int(opc)
+		if num is not None and num < 2:
+			print('Coming soon! :D')
+			z, restricciones, lado_derecho = ppl_ingresado
+			ppl = PPL(z, restricciones, lado_derecho)
+			sol = ppl.solve()
+			print(sol)
