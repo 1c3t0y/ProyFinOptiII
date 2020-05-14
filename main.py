@@ -33,6 +33,8 @@ def main():
 			menus.menu_metodos_transporte()
 		if opcion == '2':
 			menus.menu_redes()
+		if opcion == '3':
+			menus.menu_programacion_entera()
 
 		elif opcion == 'q':
 			exit()

@@ -1,5 +1,7 @@
 ### ingresar_datos ###
+from typing import Tuple
 import numpy as np
+from utils.Functions import check_int, get_param, get_z_ppl, get_restricciones_ppl
 
 def ingresar_matriz_manualmente():
 	opcion = "N"
@@ -9,7 +11,7 @@ def ingresar_matriz_manualmente():
 		m = int(input('Ingrese la cantidad de columnas de la matriz: '))
 		opcion = input('¿Está seguro de las dimensiones de la matriz?(S/n): ')
 
-	matriz_costos = np.zeros((n,m))
+	matriz_costos = np.zeros((n, m))
 
 	opcion = "S"
 	while opcion[0] == 'S' or opcion[0] == 's':
@@ -58,4 +60,15 @@ def ingresar_oferta_demanda(dimensiones):
 	return oferta, demanda
 
 
-
+def ingresar_ppl_manualmente() -> Tuple:
+	while True:
+		num_var = check_int(input('Ingrese el número de variables: '))
+		if num_var is not None and num_var > 0:
+			break
+		else:
+			print('Ingrese un número entero mayor a 0...')
+	z = get_z_ppl(num_var)
+	print('Sea n el número de restricciones...')
+	n = get_param('n', 1)
+	restricciones, lado_derecho = get_restricciones_ppl(n, num_var)
+	return z, restricciones, lado_derecho
