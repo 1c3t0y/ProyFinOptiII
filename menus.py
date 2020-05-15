@@ -1,8 +1,7 @@
 import utils.ingresar_datos as datos
 from Transporte.sol_problema_transporte import sol_problema_transporte
 from utils.Functions import check_int
-from utils.switcher_métodos import switcher_metodos_redes
-from classes.PPL import PPL
+from utils.switcher_métodos import switcher_metodos_redes, switcher_metodos_entera
 
 
 def menu_principal():
@@ -90,8 +89,8 @@ def menu_programacion_entera():
 	while True:
 		print("METODOS PARA PROBLEMAS DE PROGRAMACIÓN ENTERA")
 		print("¿Qué método desea utilizar?:")
-		print("1) Utilizar otra matriz")
-		print("m) Utilizar otra matriz")
+		print("1) Resolver ppl por Branch and Bound")
+		print("m) Utilizar otro ppl")
 		print("q) Regresar al menu anterior")
 
 		opc = input('¿Qué desea hacer?: ')
@@ -102,8 +101,5 @@ def menu_programacion_entera():
 			continue
 		num = check_int(opc)
 		if num is not None and num < 2:
-			print('Coming soon! :D')
-			z, restricciones, lado_derecho = ppl_ingresado
-			ppl = PPL(z, restricciones, lado_derecho)
-			sol = ppl.solve()
-			print(sol)
+			z, tipo_ppl, restricciones, lado_derecho = ppl_ingresado
+			switcher_metodos_entera[opc](z, tipo_ppl, restricciones, lado_derecho).menu()

@@ -3,6 +3,7 @@ from typing import Tuple
 import numpy as np
 from utils.Functions import check_int, get_param, get_z_ppl, get_restricciones_ppl
 
+
 def ingresar_matriz_manualmente():
 	opcion = "N"
 
@@ -67,8 +68,8 @@ def ingresar_ppl_manualmente() -> Tuple:
 			break
 		else:
 			print('Ingrese un número entero mayor a 0...')
-	z = get_z_ppl(num_var)
+	z, tipo_ppl = get_z_ppl(num_var)
 	print('Sea n el número de restricciones...')
 	n = get_param('n', 1)
 	restricciones, lado_derecho = get_restricciones_ppl(n, num_var)
-	return z, restricciones, lado_derecho
+	return z, tipo_ppl, restricciones, lado_derecho
