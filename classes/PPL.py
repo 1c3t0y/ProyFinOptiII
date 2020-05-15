@@ -4,8 +4,9 @@ from scipy.optimize import minimize
 
 
 class PPL:
-    def __init__(self, costos: List, coeficientes: List[List], lado_derecho: List[Dict]):
+    def __init__(self, costos: List, tipo_ppl: str, coeficientes: List[List], lado_derecho: List[Dict]):
         self.costos = costos
+        self.tipo_ppl = tipo_ppl
         self.coeficientes = coeficientes
         self.lado_derecho = lado_derecho
         self.n = len(costos)
@@ -40,4 +41,5 @@ class PPL:
         self.generate_constraints()
         sol = minimize(self.objective, self.x0, args=self.costos,
                        method='SLSQP', bounds=self.bounds, constraints=self.constraints)
+        sol.fun = sol.fun if not self.tipo_ppl == 'max' else -1 * sol.fun
         return sol
