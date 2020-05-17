@@ -1,5 +1,5 @@
 import numpy as np
-
+from utils.fun_vec_mat import verificar_prob_minimizado
 
 ### Algoritmo de Optimizacion para problemas de transporte ###
 def solucion_problema_transporte(prob_transporte):
@@ -53,7 +53,7 @@ def solucion_problema_transporte(prob_transporte):
                 )
 
     ### Condicion de salida ###
-    if verificar_minimo_encontrado(
+    if verificar_prob_minimizado(
         prob_transporte.matriz_variables_basicas,
         prob_transporte.matriz_variables_decision,
     ):
@@ -161,14 +161,6 @@ def ciclo_minimo(mat_variables_basicas, var_entrada):
             ciclo_minimo_encontrado = True
 
     return mat_ciclo_min
-
-
-def verificar_minimo_encontrado(mat_variables_basicas, matriz_variables_decision):
-    for i, renglon in enumerate(matriz_variables_decision):
-        for j, elemento in enumerate(renglon):
-            if elemento > 0 and mat_variables_basicas[i][j] == False:
-                return False
-    return True
 
 
 ### Algoritmo de solucion para problemas de asignacion ###
