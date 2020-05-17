@@ -30,7 +30,7 @@ def main():
 		opcion = input("¿Que desea hacer?: ")
 
 		if opcion == '1':
-			menus.menu_metodos_transporte()
+			menus.menu_transporte()
 		if opcion == '2':
 			menus.menu_redes()
 		if opcion == '3':
