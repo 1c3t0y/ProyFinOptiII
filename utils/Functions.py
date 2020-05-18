@@ -48,7 +48,8 @@ def get_z_ppl(num_var: int) -> Tuple:
         else:
             print('Ingrese una opción válida... max para maximizar y min para minimizar')
     signo = -1 if opc == 'max' else 1
-    return np.multiply(np.array(z), signo), opc
+    binario = confirmacion('¿Se trata de un problema binario?')
+    return np.multiply(np.array(z), signo), opc, binario
 
 
 def get_restricciones_ppl(n: int, num_vars: int) -> Tuple:

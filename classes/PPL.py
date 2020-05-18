@@ -4,14 +4,17 @@ from scipy.optimize import minimize
 
 
 class PPL:
-    def __init__(self, costos: List, tipo_ppl: str, coeficientes: List[List], lado_derecho: List[Dict]):
+    def __init__(self, costos: List, tipo_ppl: str, coeficientes: List[List], lado_derecho: List[Dict], binario: bool = False):
         self.costos = costos
         self.tipo_ppl = tipo_ppl
         self.coeficientes = coeficientes
         self.lado_derecho = lado_derecho
         self.n = len(costos)
         self.constraints = []
-        self.bounds = [(0, np.inf) for x in range(0, self.n)]
+        if binario:
+            self.bounds = [(0, 1) for x in range(0, self.n)]
+        else:
+            self.bounds = [(0, np.inf) for x in range(0, self.n)]
         self.x0 = np.zeros(self.n)
 
     @classmethod
