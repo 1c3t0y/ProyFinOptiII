@@ -161,5 +161,5 @@ def menu_programacion_entera():
 			continue
 		num = check_int(opc)
 		if num is not None and num < 2:
-			z, tipo_ppl, restricciones, lado_derecho = ppl_ingresado
-			switcher_metodos_entera[opc](z, tipo_ppl, restricciones, lado_derecho).menu()
+			z, tipo_ppl, restricciones, lado_derecho, binario = ppl_ingresado
+			switcher_metodos_entera[opc](z, tipo_ppl, restricciones, lado_derecho, binario).menu()

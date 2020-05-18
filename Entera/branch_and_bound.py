@@ -5,12 +5,13 @@ import numpy as np
 
 
 class BranchAndBound:
-    def __init__(self, z: List, tipo_ppl: str, restricciones: List[List], lado_derecho: List[Dict]):
+    def __init__(self, z: List, tipo_ppl: str, restricciones: List[List], lado_derecho: List[Dict], binario: bool = False):
         self.z = z
         self.tipo_ppl = tipo_ppl
         self.restricciones = restricciones
         self.lado_derecho = lado_derecho
-        self.solucion = PPL(z, tipo_ppl, restricciones, lado_derecho).solve()
+        self.binario = binario
+        self.solucion = PPL(z, tipo_ppl, restricciones, lado_derecho, binario).solve()
         self.lower_bound = self.get_lower_bound()
         self.solucion_entera = None
 
@@ -56,13 +57,14 @@ class BranchAndBound:
         nuevas_restricciones.append([0 if i is not var else 1 for i in range(0, len(self.z))])
         nuevo_lado_derecho = [item for item in lado_derecho]
         nuevo_lado_derecho.append({'operador': operador, 'valor': val_lado_derecho})
-        sol = PPL(self.z, self.tipo_ppl, nuevas_restricciones, nuevo_lado_derecho).solve()
+        sol = PPL(self.z, self.tipo_ppl, nuevas_restricciones, nuevo_lado_derecho, self.binario).solve()
         if not sol.success or self.better_than_lower(sol.fun):
             return False
         if all([compare_floor(x) for x in sol.x]):
-            self.solucion_entera = sol
-            z = self.z if self.tipo_ppl == 'min' else -1 * self.z
-            self.redondear_solucion(z, self.solucion_entera)
+            if not self.solucion_entera or sol.fun > self.solucion_entera.fun:
+                self.solucion_entera = sol
+                z = self.z if self.tipo_ppl == 'min' else -1 * self.z
+                self.redondear_solucion(z, self.solucion_entera)
             return True
         else:
             val, var = self.get_max_non_int(sol.x)
