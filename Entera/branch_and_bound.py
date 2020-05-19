@@ -1,16 +1,15 @@
 from classes.PPL import PPL
 from typing import List, Dict, Tuple
 from utils.Functions import check_int, compare_floor, round_num
+from classes.problema_entera import ProblemaEntera
 import numpy as np
 
 
-class BranchAndBound:
-    def __init__(self, z: List, tipo_ppl: str, restricciones: List[List], lado_derecho: List[Dict]):
-        self.z = z
-        self.tipo_ppl = tipo_ppl
+class BranchAndBound(ProblemaEntera):
+    def __init__(self, z: List, tipo_ppl: str, restricciones: List[List], lado_derecho: List[Dict], binario: bool = False):
+        super().__init__(z, tipo_ppl, lado_derecho, binario)
         self.restricciones = restricciones
-        self.lado_derecho = lado_derecho
-        self.solucion = PPL(z, tipo_ppl, restricciones, lado_derecho).solve()
+        self.solucion = PPL(z, tipo_ppl, restricciones, lado_derecho, binario).solve()
         self.lower_bound = self.get_lower_bound()
         self.solucion_entera = None
 
@@ -30,8 +29,9 @@ class BranchAndBound:
             result = {'variables': [], 'val': None}
             for x in self.solucion.x:
                 result['variables'].append(np.floor(x))
-            result['val'] = np.dot(result['variables'], z)
-            return result
+            if not self.get_infactibles(z=result['variables']):
+                result['val'] = np.dot(result['variables'], z)
+                return result
         return None
 
     def get_max_non_int(self, lista: List = None) -> Tuple:
@@ -44,11 +44,14 @@ class BranchAndBound:
             index = lista.index(max_x)
         return max_x, index
 
-    def better_than_lower(self, z: float):
+    def better_than_lower(self, sol):
+        if self.lower_bound is None:
+            self.lower_bound = {'val': sol.fun, 'variables': sol.x}
+            return True
         if self.tipo_ppl == 'max':
-            return z < self.lower_bound['val']
+            return sol.fun < self.lower_bound['val']
         else:
-            return z > self.lower_bound['val']
+            return sol.fun > self.lower_bound['val']
 
     def try_new_restriction(self, var: int, val_lado_derecho: int, operador: str, restricciones: List[List],
                             lado_derecho: List[Dict]) -> bool:
@@ -56,13 +59,14 @@ class BranchAndBound:
         nuevas_restricciones.append([0 if i is not var else 1 for i in range(0, len(self.z))])
         nuevo_lado_derecho = [item for item in lado_derecho]
         nuevo_lado_derecho.append({'operador': operador, 'valor': val_lado_derecho})
-        sol = PPL(self.z, self.tipo_ppl, nuevas_restricciones, nuevo_lado_derecho).solve()
-        if not sol.success or self.better_than_lower(sol.fun):
+        sol = PPL(self.z, self.tipo_ppl, nuevas_restricciones, nuevo_lado_derecho, self.binario).solve()
+        if not (sol.success or self.better_than_lower(sol)):
             return False
         if all([compare_floor(x) for x in sol.x]):
-            self.solucion_entera = sol
-            z = self.z if self.tipo_ppl == 'min' else -1 * self.z
-            self.redondear_solucion(z, self.solucion_entera)
+            if not self.solucion_entera or sol.fun > self.solucion_entera.fun:
+                self.solucion_entera = sol
+                z = self.z if self.tipo_ppl == 'min' else -1 * self.z
+                self.redondear_solucion(z, self.solucion_entera)
             return True
         else:
             val, var = self.get_max_non_int(sol.x)

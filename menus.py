@@ -1,6 +1,6 @@
 import utils.ingresar_datos as datos
 from Transporte.sol_problema_transporte import sol_problema_transporte
-from utils.Functions import check_int
+from utils.Functions import check_int, confirmacion
 from utils.switcher_métodos import switcher_metodos_redes, switcher_metodos_entera
 
 from classes.problemas_optimizacion import ProblemaRedes ### Borrar esta linea a futuro
@@ -69,8 +69,8 @@ def menu_sol_bas_fact_inicial_mcfp():
 	print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
 	print(f"1) Método de la M grande")
 	print(f"2) Dos fases")
-	pritn(f"3) Dar una solución básica factible")
-	printf(f"o) Dar otro MCFP")
+	print(f"3) Dar una solución básica factible")
+	print(f"o) Dar otro MCFP")
 	print("q) regresar al menú anterior.")
 
 	while True:
@@ -81,8 +81,10 @@ def menu_sol_bas_fact_inicial_mcfp():
 			print('Ingrese una opción válida...')
 		if opcion == '1':
 			### TO DO
+			continue
 		elif opcion == '2':
 			### TO DO
+			continue
 		elif opcion == '3':
 			###TO DO
 			prob_redes = ProblemaRedes(adyacencia,costos,capacidades)
@@ -92,6 +94,7 @@ def menu_sol_bas_fact_inicial_mcfp():
 			input("Presiona enter...")
 		elif opcion == 'o':
 			### TO DO
+			continue
 		elif opcion == 'q':
 			matriz = 0
 
@@ -134,7 +137,8 @@ def menu_redes():
 		if opc == 'q':
 			break
 		elif opc == '1':
-			### FloydWarshall
+			matriz = menu_ingresar_matriz_costos('REDES')
+			switcher_metodos_redes[opc](matriz).menu()
 			continue
 		elif opc == '4':
 			menu_sol_bas_fact_inicial_mcfp()
@@ -149,7 +153,8 @@ def menu_programacion_entera():
 	while True:
 		print("METODOS PARA PROBLEMAS DE PROGRAMACIÓN ENTERA")
 		print("¿Qué método desea utilizar?:")
-		print("1) Resolver ppl por Branch and Bound")
+		print("1) Resolver por Branch and Bound")
+		print("2) Resolver por enumeración implícita (sólo binario)")
 		print("m) Utilizar otro ppl")
 		print("q) Regresar al menu anterior")
 
@@ -160,6 +165,14 @@ def menu_programacion_entera():
 			ppl_ingresado = menu_ingresar_matriz_costos('PROGRAMACIÓN ENTERA', True)
 			continue
 		num = check_int(opc)
-		if num is not None and num < 2:
-			z, tipo_ppl, restricciones, lado_derecho = ppl_ingresado
-			switcher_metodos_entera[opc](z, tipo_ppl, restricciones, lado_derecho).menu()
+		if num is not None and num < 3:
+			z, tipo_ppl, restricciones, lado_derecho, binario = ppl_ingresado
+			if num == 2 and not binario:
+				print('** Escogió enumeración implícita, pero el problema no es binario... **')
+				print('** Si continua se resolverá como un problema binario. **')
+				print('** Si desea otro metodo, escoja no continuar. **')
+				if confirmacion('¿Desea resolver como problema binario?'):
+					binario = True
+				else:
+					continue
+			switcher_metodos_entera[opc](z, tipo_ppl, restricciones, lado_derecho, binario).menu()
