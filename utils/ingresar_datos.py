@@ -72,8 +72,7 @@ def ingresar_ppl_manualmente() -> Tuple:
 	print('Sea n el número de restricciones...')
 	n = get_param('n', 1)
 	restricciones, lado_derecho = get_restricciones_ppl(n, num_var)
-<<<<<<< HEAD
-	return z, tipo_ppl, restricciones, lado_derecho
+	return z, tipo_ppl, restricciones, lado_derecho, binario
 
 
 def ingresar_mcfp_manualmente():
@@ -141,6 +140,3 @@ def ingresar_mcfp_csv():
 		opcion = input('¿Desea cambiar la matriz de costos? (S/n): ')
 
 	return matriz_adyacencia, matriz_costos, capacidades
-=======
-	return z, tipo_ppl, restricciones, lado_derecho, binario
->>>>>>> Cambios_Eliseo

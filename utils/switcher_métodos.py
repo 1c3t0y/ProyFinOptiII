@@ -1,5 +1,5 @@
 from Redes import FloydWarshal
-from Entera import branch_and_bound
+from Entera import branch_and_bound, enumeracion_implicita
 
 
 switcher_metodos_redes = {
@@ -7,5 +7,6 @@ switcher_metodos_redes = {
 }
 
 switcher_metodos_entera = {
-    '1': branch_and_bound.BranchAndBound
+    '1': branch_and_bound.BranchAndBound,
+    '2': enumeracion_implicita.EnumeracionImplicita
 }
