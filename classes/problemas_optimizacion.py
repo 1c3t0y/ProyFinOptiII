@@ -225,6 +225,7 @@ class ProblemaRedes(ProblemaOptimizacion):
         self.matriz_costos = costos
         self.matriz_variables_decision = self.variables_decision
         self.matriz_variables_basicas = self.variables_basicas
+        self.raiz = -1
 
 
     ### Properties ###
@@ -244,6 +245,9 @@ class ProblemaRedes(ProblemaOptimizacion):
     def matriz_variables_basicas(self):
         return self._matriz_variables_basicas
 
+    @property
+    def raiz(self):
+        return self._raiz
 
     ### Setters ###
     @matriz_adyacencia.setter
@@ -280,6 +284,9 @@ class ProblemaRedes(ProblemaOptimizacion):
             raise ValueError(
                 "Error en la asignacion de la matriz variables_basicas, dimensiones incorrectas"
             )
-
+    
+    @raiz.setter
+    def raiz(self, valor):
+        self._raiz = valor
 
     ### Métodos ###

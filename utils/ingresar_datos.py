@@ -75,6 +75,7 @@ def ingresar_ppl_manualmente() -> Tuple:
 	return z, tipo_ppl, restricciones, lado_derecho, binario
 
 
+<<<<<<< HEAD
 def ingresar_ppl_json() -> Tuple or None:
 	while True:
 		print('\t -> Si desea regresar al menú anterior, ingrese "q" <-')
@@ -98,45 +99,50 @@ def ingresar_ppl_json() -> Tuple or None:
 
 
 def ingresar_mcfp_manualmente():
+=======
+def ingresar_red_manualmente():
+>>>>>>> 7525516dafd3c7e81c373d6945fff5999e2b3f64
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
-		num_nodos = input('Ingrese la cantidad de nodos del problema: ')
+		num_nodos = int(input('Ingrese la cantidad de nodos del problema: '))
 		opcion = input('¿Desea cambiar la cantidad de nodos? (S/n): ')
 
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		matriz_adyacencia = np.tile(False, (num_nodos, num_nodos))
 		for i, nodo in enumerate(matriz_adyacencia):
-			adyacencia = input("Ingrese los nodos a los que el nodo {0} manda flujo (separados por comas): ".format(i))
+			adyacencia = input("Ingrese los nodos a los que el nodo {0} manda flujo (separados por comas): ".format(i+1))
+			if adyacencia == "":
+				continue
 			for j in list(map(int,adyacencia.split(','))):
-				matriz_adyacencia[i][j] = True
+				matriz_adyacencia[i][j-1] = True
 		print("La matriz de adyacencia ingresada es:")
 		print(matriz_adyacencia)
 		opcion = input('¿Desea cambiar la matriz de adyacencia? (S/n): ')
 
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
-		matriz_costos = np.tile(np.inf, (num_nodos, num_nodos))
+		matriz_costos = np.tile(99999, (num_nodos, num_nodos))
 		for i, nodo in enumerate(matriz_adyacencia):
 			for j, arista in enumerate(nodo):
 				if arista:
-					matriz_costos[i][j] = input("Ingrese el costo de flujo del nodo {0} al nodo {1}".format(i,j))
+					matriz_costos[i][j] = input("Ingrese el costo de flujo del nodo {0} al nodo {1}: ".format(i+1,j+1))
 		print("La matriz de costos ingresada es:")
-		print(matriz_adyacencia)
+		print(matriz_costos)
 		opcion = input('¿Desea cambiar la matriz de costos? (S/n): ')
 
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		capacidades = np.zeros(num_nodos)
 		for i in range(0,num_nodos,1):
-			capacidades[i] = input('Ingrese la capacidad del nodo {0}'.format(i,j))
+			capacidades[i] = input('Ingrese la capacidad del nodo {0}: '.format(i+1,j+1))
 		print("Las capacidades ingresados son:")
 		print(capacidades)
 		opcion = input('¿Desea cambiar las capacidades de los nodos? (S/n): ')
 
 	return matriz_adyacencia, matriz_costos, capacidades
 
-def ingresar_mcfp_csv():
+def ingresar_red_csv():
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		print("Ingresando la matriz de adyacencia: ")
