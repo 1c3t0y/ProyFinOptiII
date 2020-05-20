@@ -91,6 +91,7 @@ def menu_sol_bas_fact_inicial_red():
 			print(solucion_mcfp(prob_redes.z))
 			input("Presiona enter...")
 			'''
+			continue
 		elif opcion == 'o':
 			adyacencia_aux, costos_aux, capacidades_aux = menu_ingresar_red()
 			if not (adyacencia_aux is 0):
