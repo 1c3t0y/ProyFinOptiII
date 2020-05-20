@@ -129,14 +129,15 @@ def menu_redes():
 	while True:
 		print("METODOS PARA PROBLEMAS DE REDES")
 		print("¿Qué método desea utilizar?:")
-		print("1) Floyd-Warshal")
+		print("1) Camino más corto, Dijkstra")
+		print("2) Floyd-Warshal")
 		print("4) Flujo de Redes a costo mínimo(simple)")
 		print("q) Regresar al menu anterior")
 
 		opc = input('¿Qué desea hacer?: ')
 		if opc == 'q':
 			break
-		elif opc == '1':
+		elif opc == '1' or opc == '2':
 			matriz = menu_ingresar_matriz_costos('REDES')
 			switcher_metodos_redes[opc](matriz).menu()
 			continue

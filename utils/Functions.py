@@ -39,16 +39,21 @@ def confirmacion(msg: str = '¿Desea continuar?') -> bool:
 
 
 def get_z_ppl(num_var: int) -> Tuple:
-    print('Para la función objetivo Z...')
-    z = get_coeficientes_ppl(num_var)
     while True:
-        opc = input('¿Desea maximizar o minimizar z? (max/min): ')
-        if opc.lower() == 'max' or opc == 'min':
+        print('Para la función objetivo Z...')
+        z = get_coeficientes_ppl(num_var)
+        while True:
+            opc = input('¿Desea maximizar o minimizar z? (max/min): ')
+            if opc.lower() == 'max' or opc == 'min':
+                break
+            else:
+                print('Ingrese una opción válida... max para maximizar y min para minimizar')
+        signo = -1 if opc == 'max' else 1
+        binario = confirmacion('¿Se trata de un problema binario?')
+        objetivo = ' + '.join([f"{f'{x}*' if x is not 1 else ''}x{idx + 1}" for idx, x in enumerate(z) if x is not 0])
+        print(f'La función objetivo queda: \n\t{opc} Z = {objetivo}')
+        if confirmacion():
             break
-        else:
-            print('Ingrese una opción válida... max para maximizar y min para minimizar')
-    signo = -1 if opc == 'max' else 1
-    binario = confirmacion('¿Se trata de un problema binario?')
     return np.multiply(np.array(z), signo), opc, binario
 
 

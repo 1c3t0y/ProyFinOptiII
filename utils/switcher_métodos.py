@@ -1,9 +1,10 @@
-from Redes import FloydWarshal
+from Redes import FloydWarshal, Dijkstra
 from Entera import branch_and_bound, enumeracion_implicita
 
 
 switcher_metodos_redes = {
-    '1': FloydWarshal.MetodoFloyd
+    '1': Dijkstra.MetodoDijkstra,
+    '2': FloydWarshal.MetodoFloyd
 }
 
 switcher_metodos_entera = {
