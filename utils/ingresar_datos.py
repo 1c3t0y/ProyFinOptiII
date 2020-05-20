@@ -74,8 +74,6 @@ def ingresar_ppl_manualmente() -> Tuple:
 	restricciones, lado_derecho = get_restricciones_ppl(n, num_var)
 	return z, tipo_ppl, restricciones, lado_derecho, binario
 
-
-<<<<<<< HEAD
 def ingresar_ppl_json() -> Tuple or None:
 	while True:
 		print('\t -> Si desea regresar al menú anterior, ingrese "q" <-')
@@ -98,10 +96,7 @@ def ingresar_ppl_json() -> Tuple or None:
 	return z, tipo_ppl, restricciones, lado_derecho, binario
 
 
-def ingresar_mcfp_manualmente():
-=======
 def ingresar_red_manualmente():
->>>>>>> 7525516dafd3c7e81c373d6945fff5999e2b3f64
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		num_nodos = int(input('Ingrese la cantidad de nodos del problema: '))

@@ -203,5 +203,3 @@ def check_keys_of(obj: Dict, keys: List) -> bool:
         except KeyError:
             return False
     return True
-
-# read_from_JSON('../tests/redes_test.csv')
