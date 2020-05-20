@@ -113,3 +113,4 @@ class MetodoDijkstra:
                 print('Saliendo del método...')
                 break
             self.switcher(opc)
+            input('\nPulse enter para continuar...')

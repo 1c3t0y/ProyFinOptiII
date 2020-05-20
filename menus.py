@@ -27,7 +27,7 @@ def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
 	print("Opciones para ingresar datos:")
 	print(f"1) Ingresar {objeto} manualmente")
 	print(f"2) Ingresar {objeto} desde un archivo {extension}")
-	print("q) regresar al menú principal.")
+	print("q) Regresar al menú anterior.")
 
 	while True:
 		opcion = input('¿Qué desea hacer?: ')
@@ -164,6 +164,7 @@ def menu_programacion_entera():
 		else:
 			break
 	while True:
+		clear_screen()
 		print("METODOS PARA PROBLEMAS DE PROGRAMACIÓN ENTERA")
 		print("¿Qué método desea utilizar?:")
 		print("1) Resolver por Branch and Bound")

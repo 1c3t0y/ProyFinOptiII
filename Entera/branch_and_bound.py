@@ -6,13 +6,15 @@ import numpy as np
 
 
 class BranchAndBound(ProblemaEntera):
-    def __init__(self, z: List, tipo_ppl: str, restricciones: List[List], lado_derecho: List[Dict], binario: bool = False):
+    def __init__(self, z: List, tipo_ppl: str, restricciones: List[List],
+                 lado_derecho: List[Dict], binario: bool = False):
         super().__init__(z, tipo_ppl, lado_derecho, binario)
         self.restricciones = restricciones
         self.solucion = PPL(z, tipo_ppl, restricciones, lado_derecho, binario).solve()
         self.lower_bound = self.get_lower_bound()
         self.solucion_entera = None
 
+    # Algorithm Methods
     @classmethod
     def redondear_solucion(cls, z: List, solucion) -> None:
         rounded_vars = []
@@ -83,16 +85,16 @@ class BranchAndBound(ProblemaEntera):
         down_branch = self.try_new_restriction(var, np.floor(val), '<', self.restricciones, self.lado_derecho)
         return up_branch or down_branch
 
+    # Menu Methods
     @classmethod
     def get_opc(cls) -> int:
         while True:
             print('\nOpciones:')
             print('\t1) Ver solución relajada')
             print('\t2) Ver solución entera')
-            print('\t3) Ver ramas')
-            print('\t4) Salir del método')
+            print('\t3) Salir del método')
             opc = check_int(input('¿Qué desea hacer a continuación?: '))
-            if opc is not None and opc < 5:
+            if opc is not None and opc <= 3:
                 break
             else:
                 print('Por favor ingrese un número entero válido...')
@@ -121,8 +123,6 @@ class BranchAndBound(ProblemaEntera):
             else:
                 print('No se pudo encontrar una solución entera al problema mejor a la cota inferior inicial...')
                 self.print_solucion()
-        elif opc is 3:
-            print('Aquí saldrán las ramas así bien chido')
 
     def menu(self):
         if not self.solucion.success:
@@ -133,7 +133,8 @@ class BranchAndBound(ProblemaEntera):
         while True:
             clear_screen()
             opc = self.get_opc()
-            if opc == 4:
+            if opc == 3:
                 print('Saliendo del método...')
                 break
             self.switcher(opc)
+            input('\nPulse enter para continuar...')

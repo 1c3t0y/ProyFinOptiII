@@ -5,7 +5,8 @@ import numpy as np
 
 
 class EnumeracionImplicita(ProblemaEntera):
-    def __init__(self, z: List, tipo_ppl: str, restricciones: List[List], lado_derecho: List[Dict], binario: bool = False):
+    def __init__(self, z: List, tipo_ppl: str, restricciones: List[List],
+                 lado_derecho: List[Dict], binario: bool = False):
         super().__init__(z, tipo_ppl, lado_derecho, binario)
         self.conveniente_z = self.conveniente_para(z)
         self.restricciones = [
@@ -56,7 +57,8 @@ class EnumeracionImplicita(ProblemaEntera):
             if len(infactibles_z):
                 vars_rama1 = [v for v in vars_forzadas]
                 rama1 = self.enumeracion_implicita(vars_rama1)
-                vars_rama2 = [v if not v['variable'] == num_var else {'variable': num_var, 'valor': 0} for v in vars_forzadas]
+                vars_rama2 = [v if not v['variable'] == num_var else
+                              {'variable': num_var, 'valor': 0} for v in vars_forzadas]
                 rama2 = self.enumeracion_implicita(vars_rama2)
                 return rama1 or rama2
             elif self.lower_bound is None or valor_z < self.lower_bound:
@@ -98,7 +100,7 @@ class EnumeracionImplicita(ProblemaEntera):
             print('\nLa solución encontrada es: ')
             for i, x in enumerate(self.solucion):
                 print(f'\tx{i + 1} = {x}')
-            print(f'Z = {self.lower_bound if self.tipo_ppl == "min" else -self.lower_bound}')
+            print(f'\n\tZ = {self.lower_bound if self.tipo_ppl == "min" else -self.lower_bound}')
         else:
             print('\nNo se pudo encontrar solución al problema :c')
 
@@ -132,4 +134,5 @@ class EnumeracionImplicita(ProblemaEntera):
                 print('Saliendo del método...')
                 break
             self.switcher(opc)
+            input('\nPulse enter para continuar...')
             clear_screen()
