@@ -1,7 +1,6 @@
 ### main ###
-import menus 
-import os
-import sys
+import menus
+from utils.Functions import confirmacion
 
 
 def main():
@@ -20,23 +19,20 @@ def main():
 	input("Presione Enter para continuar...")
 
 	while opcion != 'q':
-	
-		if sys.platform[:3] == 'win':
-			os.system('cls')
-		if sys.platform[:5] == 'linux' or sys.platform[:6] == 'darwin':
-			os.system('clear')
 
 		menus.menu_principal()
 		opcion = input("¿Que desea hacer?: ")
 
 		if opcion == '1':
-			menus.menu_metodos_transporte()
+			menus.menu_transporte()
 		if opcion == '2':
 			menus.menu_redes()
 		if opcion == '3':
 			menus.menu_programacion_entera()
 
 		elif opcion == 'q':
+			if not confirmacion('Está saliendo del programa. ¿Está seguro?'):
+				continue
 			exit()
 
 
