@@ -1,5 +1,4 @@
 import numpy as np
-
 import utils.fun_vec_mat as fvm
 
 
@@ -8,8 +7,8 @@ class ProblemaOptimizacion(object):
         self.n = n
         self.m = m
         self.costos = costos.copy()  ###numpy array
-        self.recursos = recursos.copy()  ###numpy array
         self.restricciones = restricciones.copy()  ###numpy matrix
+        self.recursos = recursos.copy()  ###numpy array
         self.variables_decision = np.zeros(self._n * self._m)  ###numpy array
         self.variables_basicas = np.tile(False, self._n * self._m)
         self.z  ## funcion objetivo ##
@@ -71,7 +70,7 @@ class ProblemaOptimizacion(object):
 
     @recursos.setter
     def recursos(self, vector):
-        if len(vector) == self.n + self.m:
+        if len(vector) == self.restricciones.shape[0]:
             self._recursos = vector
         else:
             raise ValueError(
@@ -207,5 +206,80 @@ class ProblemaAsignacion(ProblemaTransporte):
     @matriz_asignacion.setter
     def matriz_asignacion(self, matriz):
         self._matriz_asignacion = matriz
+
+    ### Métodos ###
+
+
+class ProblemaRedes(ProblemaOptimizacion):
+    def __init__(self, matriz_adyacencia, costos, capacidades):
+        matriz_restricciones = fvm.gen_mat_restricciones_redes(matriz_adyacencia)
+        super(ProblemaRedes, self).__init__(
+            matriz_adyacencia.shape[0],
+            matriz_adyacencia.shape[1],
+            costos.flatten(),
+            capacidades,
+            matriz_restricciones,
+        )
+
+        self.matriz_adyacencia = matriz_adyacencia
+        self.matriz_costos = costos
+        self.matriz_variables_decision = self.variables_decision
+        self.matriz_variables_basicas = self.variables_basicas
+
+
+    ### Properties ###
+    @property
+    def matriz_adyacencia(self):
+        return self._matriz_adyacencia
+
+    @property
+    def matriz_costos(self):
+        return self._matriz_costos
+
+    @property
+    def matriz_variables_decision(self):
+        return self._matriz_variables_decision
+
+    @property
+    def matriz_variables_basicas(self):
+        return self._matriz_variables_basicas
+
+
+    ### Setters ###
+    @matriz_adyacencia.setter
+    def matriz_adyacencia(self, matriz):
+        self._matriz_adyacencia = matriz
+
+    @matriz_costos.setter
+    def matriz_costos(self, vector):
+        if len(vector) == self.n * self.m:
+            self._matriz_costos = vector.reshape((self.n, self.m))
+        elif (self.n, self.m) == vector.shape:
+            self._matriz_costos = vector
+        else:
+            raise ValueError(
+                "Error en la asignacion de la matriz costos, dimensiones incorrectas"
+            )
+
+    @matriz_variables_decision.setter
+    def matriz_variables_decision(self, vector):
+        if len(vector) == self.n * self.m:
+            self._variables_decision = vector
+            self._matriz_variables_decision = self.variables_decision.reshape((self.n, self.m))
+        else:
+            raise ValueError(
+                "Error en la asignacion de la matriz variables_decision, dimensiones incorrectas"
+            )
+
+    @matriz_variables_basicas.setter
+    def matriz_variables_basicas(self, vector):
+        if len(vector) == self.n * self.m:
+            self._variables_basicas = vector
+            self._matriz_variables_basicas = self._variables_basicas.reshape((self.n, self.m))
+        else:
+            raise ValueError(
+                "Error en la asignacion de la matriz variables_basicas, dimensiones incorrectas"
+            )
+
 
     ### Métodos ###

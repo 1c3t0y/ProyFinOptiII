@@ -21,6 +21,39 @@ def gen_mat_restricciones_transporte(n, m):
     return matriz_restricciones
 
 
+def gen_mat_restricciones_redes(matriz_adyacencia):
+    n = matriz_adyacencia.shape[0]
+
+    matriz_restricciones = np.zeros((n, n*n))
+
+    for i, renglon in enumerate(matriz_adyacencia):
+        for j, variable in enumerate(renglon):
+            if variable :
+                matriz_restricciones[i][i*n+j] = 1
+                matriz_restricciones[j][i*n+j] = -1
+
+    return matriz_restricciones
+
+def verificar_prob_minimizado(mat_variables_basicas, matriz_variables_decision, matriz_adyacencia = []):
+    if matriz_adyacencia == []:
+        matriz_adyacencia = np.tile(True, mat_variables_basicas.shape)
+
+    for i, renglon in enumerate(matriz_variables_decision):
+        for j, elemento in enumerate(renglon):
+            if elemento > 0 and not mat_variables_basicas[i][j] and matriz_adyacencia[i][j]:
+                return False
+    return True
+
+def convertir_graf_dir_a_noDir(matriz_adyacencia):
+    matriz_no_dirigida = np.tile(False, matriz_adyacencia.shape)
+    for i,renglon in enumerate(matriz_adyacencia):
+        for j, elemento in enumerate(renglon):
+            if elemento:
+                matriz_no_dirigida[i][j] = True
+                matriz_no_dirigida[j][i] = True
+    return matriz_no_dirigida
+
+
 def tachar_matriz(matriz, indice, ren_o_col):
     if ren_o_col == 0:
         for i, elemento in enumerate(matriz[indice, :]):
