@@ -1,13 +1,12 @@
 import utils.ingresar_datos as datos
 from Transporte.sol_problema_transporte import sol_problema_transporte
+from utils.Functions import check_int, confirmacion, clear_screen
 from Redes.solucion_inicial_simplex import m_grande
-from utils.Functions import check_int, confirmacion
 from utils.switcher_métodos import switcher_metodos_redes, switcher_metodos_entera
-
-import numpy as np
 
 
 def menu_principal():
+	clear_screen()
 	print("Menu de opciones:")
 	print("1) Resolver un problema de transporte")
 	print("2) Resolver un problema de redes")
@@ -16,13 +15,16 @@ def menu_principal():
 
 
 def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
+	clear_screen()
+
 	matriz = None
 	objeto = 'un PPL' if ppl else 'una matriz'
+	extension = 'JSON' if ppl else 'csv'
 	print(f'PROBLEMAS DE {msg}')
 	print("Opciones para ingresar datos:")
 	print(f"1) Ingresar {objeto} manualmente")
-	print(f"2) Ingresar {objeto} desde un archivo csv")
-	print("q) regresar al menú principal.")
+	print(f"2) Ingresar {objeto} desde un archivo {extension}")
+	print("q) Regresar al menú anterior.")
 
 	while True:
 		opcion = input('¿Qué desea hacer?: ')
@@ -33,7 +35,7 @@ def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
 	if opcion == '1':
 		matriz = datos.ingresar_ppl_manualmente() if ppl else datos.ingresar_matriz_manualmente()
 	elif opcion == '2':
-		matriz = datos.ingresar_matriz_csv()
+		matriz = datos.ingresar_ppl_json() if ppl else datos.ingresar_matriz_csv()
 	elif opcion == 'q':
 		matriz = 0
 
@@ -67,48 +69,46 @@ def menu_sol_bas_fact_inicial_red():
 		return
 	while True:
 			print(f'SOLUCIONAR RED POR SIMPLEX')
-		print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
-		print(f"1) Método de la M grande")
-		print(f"2) Dos fases")
-		print(f"3) Dar una solución básica factible")
-		print(f"o) Dar otro MCFP")
-		print("q) regresar al menú anterior.")
-		opcion = input('¿Qué desea hacer?: ')
-		if opcion == 'q':
-			break
-		elif opcion == '1':
-			m_grande(adyacencia, costos, capacidades)
-			continue
-		elif opcion == '2':
-			### TO DO
-			continue
-		elif opcion == '3':
-			###TO DO
-			'''
-			prob_redes = ProblemaRedes(adyacencia,costos,capacidades)
-			prob_redes.matriz_variables_decision = np.array([0,6,0,0,0,0,0,0,6,0,0,0,0,4,0,0,0,0,0,5,0,0,0,0,0])
-			prob_redes.matriz_variables_basicas = np.array([False,True,False,False,False,False,False,False,True,False,False,False,False,True,False,	False,False,False,False,True,False,False,False,False,False])
-			print(solucion_mcfp(prob_redes.z))
-			input("Presiona enter...")
-			'''
-			continue
-		elif opcion == 'o':
-			adyacencia_aux, costos_aux, capacidades_aux = menu_ingresar_red()
-			if not (adyacencia_aux is 0):
-				matriz_adyacencia = adyacencia_aux
-				matriz_costos = costos_aux
-				capacidades = capacidades_aux
-			continue
-		elif opcion == 'q':
-			break
-		else:
-			print('Ingrese una opción válida...')
-
-	return 
-
-
+			print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
+			print(f"1) Método de la M grande")
+			print(f"2) Dos fases")
+			print(f"3) Dar una solución básica factible")
+			print(f"o) Dar otro MCFP")
+			print("q) regresar al menú anterior.")
+			opcion = input('¿Qué desea hacer?: ')
+			if opcion == 'q':
+				break
+			elif opcion == '1':
+				m_grande(adyacencia, costos, capacidades)
+				continue
+			elif opcion == '2':
+				### TO DO
+				continue
+			elif opcion == '3':
+				###TO DO
+				'''
+				prob_redes = ProblemaRedes(adyacencia,costos,capacidades)
+				prob_redes.matriz_variables_decision = np.array([0,6,0,0,0,0,0,0,6,0,0,0,0,4,0,0,0,0,0,5,0,0,0,0,0])
+				prob_redes.matriz_variables_basicas = np.array([False,True,False,False,False,False,False,False,True,False,False,False,False,True,False,	False,False,False,False,True,False,False,False,False,False])
+				print(solucion_mcfp(prob_redes.z))
+				input("Presiona enter...")
+				'''
+				continue
+			elif opcion == 'o':
+				adyacencia_aux, costos_aux, capacidades_aux = menu_ingresar_red()
+				if not (adyacencia_aux is 0):
+					matriz_adyacencia = adyacencia_aux
+					matriz_costos = costos_aux
+					capacidades = capacidades_aux
+				continue
+			elif opcion == 'q':
+				break
+			else:
+				print('Ingrese una opción válida...')
+	return
 
 def menu_transporte():
+	clear_screen()
 	matriz = menu_ingresar_matriz_costos('TRANSPORTE')
 	if matriz is 0:
 		return
@@ -133,6 +133,8 @@ def menu_transporte():
 
 def menu_redes():
 	while True:
+		clear_screen()
+
 		print("METODOS PARA PROBLEMAS DE REDES")
 		print("¿Qué método desea utilizar?:")
 		print("1) Camino más corto, Dijkstra")
@@ -150,14 +152,19 @@ def menu_redes():
 		elif opc == '4':
 			menu_sol_bas_fact_inicial_red()
 			continue
-		
 
 
 def menu_programacion_entera():
-	ppl_ingresado = menu_ingresar_matriz_costos('PROGRAMACIÓN ENTERA', True)
-	if ppl_ingresado is 0:
-		return
 	while True:
+		ppl_ingresado = menu_ingresar_matriz_costos('PROGRAMACIÓN ENTERA', True)
+		if ppl_ingresado is None:
+			continue
+		if ppl_ingresado is 0:
+			return
+		else:
+			break
+	while True:
+		clear_screen()
 		print("METODOS PARA PROBLEMAS DE PROGRAMACIÓN ENTERA")
 		print("¿Qué método desea utilizar?:")
 		print("1) Resolver por Branch and Bound")

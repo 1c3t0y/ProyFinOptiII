@@ -1,7 +1,7 @@
 from typing import List
 import numpy as np
 from queue import PriorityQueue
-from utils.Functions import check_int, get_param, confirmacion
+from utils.Functions import check_int, get_param, confirmacion, clear_screen
 
 
 class MetodoDijkstra:
@@ -107,8 +107,10 @@ class MetodoDijkstra:
         self.nodo_inicial = get_param('el nodo inicial', 1, self.dim) - 1
         self.iniciar_algoritmo()
         while True:
+            clear_screen()
             opc = self.get_opc()
             if opc == 4:
                 print('Saliendo del método...')
                 break
             self.switcher(opc)
+            input('\nPulse enter para continuar...')
