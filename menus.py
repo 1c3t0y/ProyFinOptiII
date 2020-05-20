@@ -1,10 +1,9 @@
 import utils.ingresar_datos as datos
 from Transporte.sol_problema_transporte import sol_problema_transporte
+from Redes.solucion_inicial_simplex import m_grande
 from utils.Functions import check_int, confirmacion
 from utils.switcher_métodos import switcher_metodos_redes, switcher_metodos_entera
 
-from classes.problemas_optimizacion import ProblemaRedes ### Borrar esta linea a futuro
-from Redes.solucion_MCFP import solucion_mcfp ### Borrar esta linea a futuro
 import numpy as np
 
 
@@ -40,9 +39,8 @@ def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
 
 	return matriz
 
-def menu_ingresar_mcfp():
-	objeto = 'un problema redes'
-	print(f'PROBLEMA DE FLUJO DE REDES A COSTO MÍNIMO')
+def menu_ingresar_red():
+	print(f'PROBLEMA DE REDES POR SIMPLEX')
 	print("Opciones para ingresar datos:")
 	print(f"1) Ingresar red manualmente")
 	print(f"2) Ingresar red desde archivos csv")
@@ -55,32 +53,31 @@ def menu_ingresar_mcfp():
 		else:
 			print('Ingrese una opción válida...')
 	if opcion == '1':
-		matriz_adyacencia, matriz_costos, capacidades = datos.ingresar_mcfp_manualmente()
+		matriz_adyacencia, matriz_costos, capacidades = datos.ingresar_red_manualmente()
 	elif opcion == '2':
-		matriz_adyacencia, matriz_costos, capacidades = datos.ingresar_mcfp_csv()
+		matriz_adyacencia, matriz_costos, capacidades = datos.ingresar_red_csv()
 	elif opcion == 'q':
-		matriz = 0
+		return 0,0,0
 
 	return matriz_adyacencia, matriz_costos, capacidades
 
-def menu_sol_bas_fact_inicial_mcfp():
-	adyacencia, costos, capacidades = menu_ingresar_mcfp()
-	print(f'SOLUCIONAR MCFP')
-	print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
-	print(f"1) Método de la M grande")
-	print(f"2) Dos fases")
-	print(f"3) Dar una solución básica factible")
-	print(f"o) Dar otro MCFP")
-	print("q) regresar al menú anterior.")
-
+def menu_sol_bas_fact_inicial_red():
+	adyacencia, costos, capacidades = menu_ingresar_red()
+	if adyacencia is 0:
+		return
 	while True:
+			print(f'SOLUCIONAR RED POR SIMPLEX')
+		print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
+		print(f"1) Método de la M grande")
+		print(f"2) Dos fases")
+		print(f"3) Dar una solución básica factible")
+		print(f"o) Dar otro MCFP")
+		print("q) regresar al menú anterior.")
 		opcion = input('¿Qué desea hacer?: ')
 		if opcion == 'q':
 			break
-		else:
-			print('Ingrese una opción válida...')
-		if opcion == '1':
-			### TO DO
+		elif opcion == '1':
+			m_grande(adyacencia, costos, capacidades)
 			continue
 		elif opcion == '2':
 			### TO DO
@@ -93,12 +90,18 @@ def menu_sol_bas_fact_inicial_mcfp():
 			print(solucion_mcfp(prob_redes.z))
 			input("Presiona enter...")
 		elif opcion == 'o':
-			### TO DO
+			adyacencia_aux, costos_aux, capacidades_aux = menu_ingresar_red()
+			if not (adyacencia_aux is 0):
+				matriz_adyacencia = adyacencia_aux
+				matriz_costos = costos_aux
+				capacidades = capacidades_aux
 			continue
 		elif opcion == 'q':
-			matriz = 0
+			break
+		else:
+			print('Ingrese una opción válida...')
 
-	return matriz
+	return 
 
 
 
@@ -131,7 +134,7 @@ def menu_redes():
 		print("¿Qué método desea utilizar?:")
 		print("1) Camino más corto, Dijkstra")
 		print("2) Floyd-Warshal")
-		print("4) Flujo de Redes a costo mínimo(simple)")
+		print("4) Método simplex para redes")
 		print("q) Regresar al menu anterior")
 
 		opc = input('¿Qué desea hacer?: ')
@@ -142,7 +145,7 @@ def menu_redes():
 			switcher_metodos_redes[opc](matriz).menu()
 			continue
 		elif opc == '4':
-			menu_sol_bas_fact_inicial_mcfp()
+			menu_sol_bas_fact_inicial_red()
 			continue
 		
 
