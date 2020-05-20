@@ -84,11 +84,13 @@ def menu_sol_bas_fact_inicial_red():
 			continue
 		elif opcion == '3':
 			###TO DO
+			'''
 			prob_redes = ProblemaRedes(adyacencia,costos,capacidades)
 			prob_redes.matriz_variables_decision = np.array([0,6,0,0,0,0,0,0,6,0,0,0,0,4,0,0,0,0,0,5,0,0,0,0,0])
 			prob_redes.matriz_variables_basicas = np.array([False,True,False,False,False,False,False,False,True,False,False,False,False,True,False,	False,False,False,False,True,False,False,False,False,False])
 			print(solucion_mcfp(prob_redes.z))
 			input("Presiona enter...")
+			'''
 		elif opcion == 'o':
 			adyacencia_aux, costos_aux, capacidades_aux = menu_ingresar_red()
 			if not (adyacencia_aux is 0):
