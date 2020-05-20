@@ -1,7 +1,7 @@
 ### ingresar_datos ###
 from typing import Tuple
 import numpy as np
-from utils.Functions import check_int, get_param, get_z_ppl, get_restricciones_ppl
+from utils.Functions import check_int, get_param, get_z_ppl, get_restricciones_ppl, read_from_JSON, check_ppl_JSON
 
 
 def ingresar_matriz_manualmente():
@@ -72,6 +72,28 @@ def ingresar_ppl_manualmente() -> Tuple:
 	print('Sea n el número de restricciones...')
 	n = get_param('n', 1)
 	restricciones, lado_derecho = get_restricciones_ppl(n, num_var)
+	return z, tipo_ppl, restricciones, lado_derecho, binario
+
+
+def ingresar_ppl_json() -> Tuple or None:
+	while True:
+		print('\t -> Si desea regresar al menú anterior, ingrese "q" <-')
+		ruta = input('Ingrese la ruta del archivo tipo json: ')
+		if ruta.lower() == 'q':
+			return None
+		ppl_from_json = read_from_JSON(ruta)
+		if ppl_from_json is None:
+			continue
+		if not check_ppl_JSON(ppl_from_json):
+			continue
+		break
+
+	tipo_ppl = ppl_from_json['tipo_ppl']
+	signo = -1 if tipo_ppl == 'max' else 1
+	z = np.multiply(np.array(ppl_from_json['z']), signo)
+	restricciones = ppl_from_json['restricciones']
+	lado_derecho = ppl_from_json['lado_derecho']
+	binario = ppl_from_json['binario']
 	return z, tipo_ppl, restricciones, lado_derecho, binario
 
 

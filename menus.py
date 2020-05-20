@@ -1,6 +1,6 @@
 import utils.ingresar_datos as datos
 from Transporte.sol_problema_transporte import sol_problema_transporte
-from utils.Functions import check_int, confirmacion
+from utils.Functions import check_int, confirmacion, clear_screen
 from utils.switcher_métodos import switcher_metodos_redes, switcher_metodos_entera
 
 from classes.problemas_optimizacion import ProblemaRedes ### Borrar esta linea a futuro
@@ -9,6 +9,7 @@ import numpy as np
 
 
 def menu_principal():
+	clear_screen()
 	print("Menu de opciones:")
 	print("1) Resolver un problema de transporte")
 	print("2) Resolver un problema de redes")
@@ -17,12 +18,15 @@ def menu_principal():
 
 
 def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
+	clear_screen()
+
 	matriz = None
 	objeto = 'un PPL' if ppl else 'una matriz'
+	extension = 'JSON' if ppl else 'csv'
 	print(f'PROBLEMAS DE {msg}')
 	print("Opciones para ingresar datos:")
 	print(f"1) Ingresar {objeto} manualmente")
-	print(f"2) Ingresar {objeto} desde un archivo csv")
+	print(f"2) Ingresar {objeto} desde un archivo {extension}")
 	print("q) regresar al menú principal.")
 
 	while True:
@@ -34,13 +38,14 @@ def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
 	if opcion == '1':
 		matriz = datos.ingresar_ppl_manualmente() if ppl else datos.ingresar_matriz_manualmente()
 	elif opcion == '2':
-		matriz = datos.ingresar_matriz_csv()
+		matriz = datos.ingresar_ppl_json() if ppl else datos.ingresar_matriz_csv()
 	elif opcion == 'q':
 		matriz = 0
 
 	return matriz
 
 def menu_ingresar_mcfp():
+	clear_screen()
 	objeto = 'un problema redes'
 	print(f'PROBLEMA DE FLUJO DE REDES A COSTO MÍNIMO')
 	print("Opciones para ingresar datos:")
@@ -64,6 +69,7 @@ def menu_ingresar_mcfp():
 	return matriz_adyacencia, matriz_costos, capacidades
 
 def menu_sol_bas_fact_inicial_mcfp():
+	clear_screen()
 	adyacencia, costos, capacidades = menu_ingresar_mcfp()
 	print(f'SOLUCIONAR MCFP')
 	print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
@@ -87,7 +93,7 @@ def menu_sol_bas_fact_inicial_mcfp():
 			continue
 		elif opcion == '3':
 			###TO DO
-			prob_redes = ProblemaRedes(adyacencia,costos,capacidades)
+			prob_redes = ProblemaRedes(adyacencia, costos, capacidades)
 			prob_redes.matriz_variables_decision = np.array([0,6,0,0,0,0,0,0,6,0,0,0,0,4,0,0,0,0,0,5,0,0,0,0,0])
 			prob_redes.matriz_variables_basicas = np.array([False,True,False,False,False,False,False,False,True,False,False,False,False,True,False,	False,False,False,False,True,False,False,False,False,False])
 			print(solucion_mcfp(prob_redes.z))
@@ -101,8 +107,8 @@ def menu_sol_bas_fact_inicial_mcfp():
 	return matriz
 
 
-
 def menu_transporte():
+	clear_screen()
 	matriz = menu_ingresar_matriz_costos('TRANSPORTE')
 	if matriz is 0:
 		return
@@ -127,6 +133,8 @@ def menu_transporte():
 
 def menu_redes():
 	while True:
+		clear_screen()
+
 		print("METODOS PARA PROBLEMAS DE REDES")
 		print("¿Qué método desea utilizar?:")
 		print("1) Camino más corto, Dijkstra")
@@ -144,13 +152,17 @@ def menu_redes():
 		elif opc == '4':
 			menu_sol_bas_fact_inicial_mcfp()
 			continue
-		
 
 
 def menu_programacion_entera():
-	ppl_ingresado = menu_ingresar_matriz_costos('PROGRAMACIÓN ENTERA', True)
-	if ppl_ingresado is 0:
-		return
+	while True:
+		ppl_ingresado = menu_ingresar_matriz_costos('PROGRAMACIÓN ENTERA', True)
+		if ppl_ingresado is None:
+			continue
+		if ppl_ingresado is 0:
+			return
+		else:
+			break
 	while True:
 		print("METODOS PARA PROBLEMAS DE PROGRAMACIÓN ENTERA")
 		print("¿Qué método desea utilizar?:")

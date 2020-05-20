@@ -1,6 +1,6 @@
 from classes.PPL import PPL
 from typing import List, Dict, Tuple
-from utils.Functions import check_int, compare_floor, round_num
+from utils.Functions import check_int, compare_floor, round_num, clear_screen
 from classes.problema_entera import ProblemaEntera
 import numpy as np
 
@@ -127,9 +127,11 @@ class BranchAndBound(ProblemaEntera):
     def menu(self):
         if not self.solucion.success:
             print('No se pudo encontrar una solución factible al problema relajado...')
+            input('Volviendo al menu anterior, presione enter para continuar...')
             return None
         self.start_branch_bound()
         while True:
+            clear_screen()
             opc = self.get_opc()
             if opc == 4:
                 print('Saliendo del método...')

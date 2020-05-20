@@ -1,5 +1,5 @@
 from typing import List, Dict
-from utils.Functions import check_int
+from utils.Functions import check_int, clear_screen
 from classes.problema_entera import ProblemaEntera
 import numpy as np
 
@@ -7,7 +7,7 @@ import numpy as np
 class EnumeracionImplicita(ProblemaEntera):
     def __init__(self, z: List, tipo_ppl: str, restricciones: List[List], lado_derecho: List[Dict], binario: bool = False):
         super().__init__(z, tipo_ppl, lado_derecho, binario)
-        self.conveniente_z = self.conveniente_para(z)   # evaluar primero el conveniente de z, a ver si cumple las restricciones
+        self.conveniente_z = self.conveniente_para(z)
         self.restricciones = [
             {
                 'restriccion': restriccion,
@@ -46,9 +46,7 @@ class EnumeracionImplicita(ProblemaEntera):
         vars_forzadas.append({'variable': num_var, 'valor': 1})
         infactibles = self.get_infactibles(vars_forzadas)
         if len(infactibles):
-            for inf in infactibles:
-                print(f'Fue infactible para la restriccion{inf}')
-                return False
+            return False
         else:
             sol = [0] * len(self.z)
             for variable in vars_forzadas:
@@ -125,6 +123,7 @@ class EnumeracionImplicita(ProblemaEntera):
             self.print_solucion()
 
     def menu(self):
+        clear_screen()
         if not self.start_metodo():
             print('\nNo se pudo encontrar solución al problema')
         while True:
@@ -133,3 +132,4 @@ class EnumeracionImplicita(ProblemaEntera):
                 print('Saliendo del método...')
                 break
             self.switcher(opc)
+            clear_screen()

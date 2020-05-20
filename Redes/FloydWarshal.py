@@ -1,5 +1,5 @@
 from typing import List
-from utils.Functions import print_m, check_int, get_param, confirmacion
+from utils.Functions import print_m, check_int, get_param, confirmacion, clear_screen
 
 
 class MetodoFloyd:
@@ -70,6 +70,7 @@ class MetodoFloyd:
     def menu(self):
         self.resolver()
         while True:
+            clear_screen()
             opc = self.get_opc()
             if opc == 4:
                 print('Saliendo del método...')
