@@ -1,6 +1,7 @@
 ### mostrar simplex ###
 from tabulate import tabulate
 
+
 def imprimir_solucion(prob_redes):
     print("Los flujos que minimizan el costo son:")
     for i,renglon in enumerate(prob_redes.matriz_variables_basicas):

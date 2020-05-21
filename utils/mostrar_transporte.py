@@ -10,6 +10,7 @@ def imprimir_solucion(prob_transporte):
     print("Con un costo de: {0}".format(prob_transporte.z))
     input("\n\nPresione Enter para continuar...")
 
+
 def imprimir_costos(prob_transporte):
     cabecera = prob_transporte.nombres_demanda.copy()
     cabecera.insert(0, " ")
@@ -28,6 +29,7 @@ def imprimir_costos(prob_transporte):
     input("\n\nPresione Enter para continuar...")
     return
 
+
 def imprimir_oferta_demanda(prob_transporte):
     print("La oferta es: ")
     cabecera = prob_transporte.nombres_oferta.copy()
@@ -43,6 +45,7 @@ def imprimir_oferta_demanda(prob_transporte):
     print(tabulate(tabla, cabecera, tablefmt = "fancy_grid"))
     input("\n\nPresione Enter para continuar...")
     return
+
 
 def mostrar_problema(prob_transporte):
     while True:
