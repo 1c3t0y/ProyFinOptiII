@@ -91,11 +91,104 @@ class ProblemaOptimizacion(object):
 
     ### Metodos ###
 
+class ProblemaRedes(ProblemaOptimizacion):
+    def __init__(self, matriz_adyacencia, costos, capacidades, nombres):
+        matriz_restricciones = fvm.gen_mat_restricciones_redes(matriz_adyacencia)
+        super(ProblemaRedes, self).__init__(
+            matriz_adyacencia.shape[0],
+            matriz_adyacencia.shape[1],
+            costos.flatten(),
+            capacidades,
+            matriz_restricciones,
+        )
+
+        self.matriz_adyacencia = matriz_adyacencia
+        self.matriz_costos = costos
+        self.matriz_variables_decision = self.variables_decision
+        self.matriz_variables_basicas = self.variables_basicas
+        self.nombres = nombres
+        self.raiz = -1
+
+
+    ### Properties ###
+    @property
+    def matriz_adyacencia(self):
+        return self._matriz_adyacencia
+
+    @property
+    def matriz_costos(self):
+        return self._matriz_costos
+
+    @property
+    def matriz_variables_decision(self):
+        return self._matriz_variables_decision
+
+    @property
+    def matriz_variables_basicas(self):
+        return self._matriz_variables_basicas
+    @property
+    def nombres(self):
+        return self._nombres    
+
+    @property
+    def raiz(self):
+        return self._raiz
+
+
+    ### Setters ###
+    @matriz_adyacencia.setter
+    def matriz_adyacencia(self, matriz):
+        self._matriz_adyacencia = matriz
+
+    @matriz_costos.setter
+    def matriz_costos(self, vector):
+        if len(vector) == self.n * self.m:
+            self._matriz_costos = vector.reshape((self.n, self.m))
+        elif (self.n, self.m) == vector.shape:
+            self._matriz_costos = vector
+        else:
+            raise ValueError(
+                "Error en la asignacion de la matriz costos, dimensiones incorrectas"
+            )
+
+    @matriz_variables_decision.setter
+    def matriz_variables_decision(self, vector):
+        if len(vector) == self.n * self.m:
+            self._variables_decision = vector
+            self._matriz_variables_decision = self.variables_decision.reshape((self.n, self.m))
+        else:
+            raise ValueError(
+                "Error en la asignacion de la matriz variables_decision, dimensiones incorrectas"
+            )
+
+    @matriz_variables_basicas.setter
+    def matriz_variables_basicas(self, vector):
+        if len(vector) == self.n * self.m:
+            self._variables_basicas = vector
+            self._matriz_variables_basicas = self._variables_basicas.reshape((self.n, self.m))
+        else:
+            raise ValueError(
+                "Error en la asignacion de la matriz variables_basicas, dimensiones incorrectas"
+            )
+
+    @nombres.setter
+    def nombres(self, vector_str):
+        self._nombres = vector_str
+
+    @raiz.setter
+    def raiz(self, valor):
+        self._raiz = valor
+
+
+    ### Métodos ###
+
 
 class ProblemaTransporte(ProblemaOptimizacion):
     """docstring for matrizTransporte"matrizOptimizacion"""
 
-    def __init__(self, origenes, destinos, costos, oferta, demanda):
+    def __init__(self, costos, oferta, demanda, nombres_origen, nombres_destino):
+        origenes = costos.shape[0]
+        destinos = costos.shape[1]
         matriz_restricciones = fvm.gen_mat_restricciones_transporte(origenes, destinos)
         super(ProblemaTransporte, self).__init__(
             origenes,
@@ -107,6 +200,8 @@ class ProblemaTransporte(ProblemaOptimizacion):
         self.oferta = oferta
         self.demanda = demanda
         self.matriz_costos = costos
+        self.nombres_oferta = nombres_origen
+        self.nombres_demanda = nombres_destino
         self.matriz_variables_decision = self.variables_decision
         self.matriz_variables_basicas = self.variables_basicas
 
@@ -130,6 +225,15 @@ class ProblemaTransporte(ProblemaOptimizacion):
     @property
     def matriz_variables_basicas(self):
         return self._matriz_variables_basicas
+
+    @property
+    def nombres_oferta(self):
+        return self._nombres_oferta
+    @property
+    def nombres_demanda(self):
+        return self._nombres_demanda
+    
+    
 
     ### Setters ###
     @oferta.setter
@@ -168,7 +272,8 @@ class ProblemaTransporte(ProblemaOptimizacion):
     @matriz_variables_decision.setter
     def matriz_variables_decision(self, vector):
         if len(vector) == self.n * self.m:
-            self._matriz_variables_decision = vector.reshape((self.n, self.m))
+            self.variables_decision = vector
+            self._matriz_variables_decision = self.variables_decision.reshape((self.n, self.m))
         else:
             raise ValueError(
                 "Error en la asignacion de la matriz variables_decision, dimensiones incorrectas"
@@ -177,11 +282,21 @@ class ProblemaTransporte(ProblemaOptimizacion):
     @matriz_variables_basicas.setter
     def matriz_variables_basicas(self, vector):
         if len(vector) == self.n * self.m:
-            self._matriz_variables_basicas = vector.reshape((self.n, self.m))
+            self.variables_basicas = vector
+            self._matriz_variables_basicas = self.variables_basicas.reshape((self.n, self.m))
         else:
             raise ValueError(
                 "Error en la asignacion de la matriz variables_basicas, dimensiones incorrectas"
             )
+
+    @nombres_oferta.setter
+    def nombres_oferta(self, nombres):
+        self._nombres_oferta = nombres
+
+    @nombres_demanda.setter
+    def nombres_demanda(self, vector):
+        self._nombres_demanda = vector
+
 
     ### Metodos ###
 
@@ -189,11 +304,11 @@ class ProblemaTransporte(ProblemaOptimizacion):
 class ProblemaAsignacion(ProblemaTransporte):
     """docstring for ProblemaAsignacion"ProblemaTransporte"""
 
-    def __init__(self, costos):
+    def __init__(self, costos, nombres, actividades):
         oferta = np.ones(costos.shape[0])
         demanda = np.ones(costos.shape[1])
         super(ProblemaAsignacion, self).__init__(
-            costos.shape[0], costos.shape[1], costos, oferta, demanda
+            costos, oferta, demanda, nombres, actividades
         )
         self.matriz_asignacion = np.zeros(costos.shape)
 
@@ -206,87 +321,5 @@ class ProblemaAsignacion(ProblemaTransporte):
     @matriz_asignacion.setter
     def matriz_asignacion(self, matriz):
         self._matriz_asignacion = matriz
-
-    ### Métodos ###
-
-
-class ProblemaRedes(ProblemaOptimizacion):
-    def __init__(self, matriz_adyacencia, costos, capacidades):
-        matriz_restricciones = fvm.gen_mat_restricciones_redes(matriz_adyacencia)
-        super(ProblemaRedes, self).__init__(
-            matriz_adyacencia.shape[0],
-            matriz_adyacencia.shape[1],
-            costos.flatten(),
-            capacidades,
-            matriz_restricciones,
-        )
-
-        self.matriz_adyacencia = matriz_adyacencia
-        self.matriz_costos = costos
-        self.matriz_variables_decision = self.variables_decision
-        self.matriz_variables_basicas = self.variables_basicas
-        self.raiz = -1
-
-
-    ### Properties ###
-    @property
-    def matriz_adyacencia(self):
-        return self._matriz_adyacencia
-
-    @property
-    def matriz_costos(self):
-        return self._matriz_costos
-
-    @property
-    def matriz_variables_decision(self):
-        return self._matriz_variables_decision
-
-    @property
-    def matriz_variables_basicas(self):
-        return self._matriz_variables_basicas
-
-    @property
-    def raiz(self):
-        return self._raiz
-
-    ### Setters ###
-    @matriz_adyacencia.setter
-    def matriz_adyacencia(self, matriz):
-        self._matriz_adyacencia = matriz
-
-    @matriz_costos.setter
-    def matriz_costos(self, vector):
-        if len(vector) == self.n * self.m:
-            self._matriz_costos = vector.reshape((self.n, self.m))
-        elif (self.n, self.m) == vector.shape:
-            self._matriz_costos = vector
-        else:
-            raise ValueError(
-                "Error en la asignacion de la matriz costos, dimensiones incorrectas"
-            )
-
-    @matriz_variables_decision.setter
-    def matriz_variables_decision(self, vector):
-        if len(vector) == self.n * self.m:
-            self._variables_decision = vector
-            self._matriz_variables_decision = self.variables_decision.reshape((self.n, self.m))
-        else:
-            raise ValueError(
-                "Error en la asignacion de la matriz variables_decision, dimensiones incorrectas"
-            )
-
-    @matriz_variables_basicas.setter
-    def matriz_variables_basicas(self, vector):
-        if len(vector) == self.n * self.m:
-            self._variables_basicas = vector
-            self._matriz_variables_basicas = self._variables_basicas.reshape((self.n, self.m))
-        else:
-            raise ValueError(
-                "Error en la asignacion de la matriz variables_basicas, dimensiones incorrectas"
-            )
-    
-    @raiz.setter
-    def raiz(self, valor):
-        self._raiz = valor
 
     ### Métodos ###

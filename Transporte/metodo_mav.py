@@ -2,13 +2,15 @@
 
 import numpy as np
 import Transporte.sol_problemas_opti as spo
+from classes.problemas_optimizacion import ProblemaTransporte
 
 
-def metodo_MAV(prob_transporte):
+def metodo_MAV(matriz_costos, oferta, demanda, nombres_origen, nombres_destino):
+	prob_transporte = ProblemaTransporte(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
 	mat_variables_basicas = np.tile(False, (prob_transporte.n, prob_transporte.m))
 
-	oferta_aux = prob_transporte.oferta
-	demanda_aux = prob_transporte.demanda
+	oferta_aux = prob_transporte.oferta.copy()
+	demanda_aux = prob_transporte.demanda.copy()
 
 
 	penalizacion_ren = np.tile(0., prob_transporte.n)
@@ -29,18 +31,19 @@ def metodo_MAV(prob_transporte):
 
 		
 		### paso 1
-		for i, renglon in enumerate(prob_transporte.matriz_costos):
-			costo_menor = np.amax(renglon)
-			seg_costo_menor = np.amax(renglon)
+		for i, renglon in enumerate(prob_transporte.matriz_costos): ### se Recorre la matriz de costos
+			costo_menor = np.amax(renglon)  ### SE inicializan variables auxiliares para guardar costos menor
+			seg_costo_menor = np.amax(renglon) ###  y segundo costo menor con el costo más alto del renglon
 			for j, elemento in enumerate(renglon):
-				if not taches_ren[i] and not taches_col[j] and elemento <= costo_menor:
-					seg_costo_menor = costo_menor
-					costo_menor = elemento
-				elif not taches_ren[i] and not taches_col[j] and elemento <= seg_costo_menor:
-					seg_costo_menor = elemento
-			penalizacion_ren[i] = seg_costo_menor - costo_menor
+				if not taches_ren[i] and not taches_col[j] and elemento <= costo_menor:#Si el costo que se está recoriiendo es menor que el auxiliar y no está tachado ni su renglón ni su matriz
+					seg_costo_menor = costo_menor ### el que se creía costo menor se pasa a ser el segundo costo menor
+					costo_menor = elemento ### el costo que se esta recorriendo se convierte en el nuevo costo menor
+				elif not taches_ren[i] and not taches_col[j] and elemento <= seg_costo_menor: ### en caso de que el costo actual no sea menor que costo menor, pero si que segundo costo menor
+					seg_costo_menor = elemento ## se le asigna ese valor al segundo costo menor
+			penalizacion_ren[i] = seg_costo_menor - costo_menor ### por cada iteracion se almacena la penalizacion
 
 
+		### se hace exactamente lo mismo, pero con las columnas
 		for j, columna in enumerate(prob_transporte.matriz_costos.transpose()):
 			costo_menor = np.amax(columna)
 			seg_costo_menor = np.amax(columna)
@@ -57,11 +60,11 @@ def metodo_MAV(prob_transporte):
 		penalizacion_mayor = (penalizacion_ren[0], False, 0)
 		for i, elemento in enumerate(penalizacion_ren):
 			if elemento > penalizacion_mayor[0]:
-				penalizacion_mayor = (elemento, False, i)
+				penalizacion_mayor = (elemento, False, i) ## Aqui se decide cual es la penalizacion menor y en qué renglon esta
 		
 		for j, elemento in enumerate(penalizacion_col):
-			if elemento > penalizacion_mayor[0]:
-				penalizacion_mayor = (elemento, True, j)
+			if elemento > penalizacion_mayor[0]:## Si en las columnas hay una penalizacion menor a la que hay en los renglones
+				penalizacion_mayor = (elemento, True, j) ## se decide cual es la penalizacion menor y en qué columna esta
 		
 
 		costo_menor = (np.amax(prob_transporte.matriz_costos), -1, -1)
@@ -154,8 +157,10 @@ def metodo_MAV(prob_transporte):
 						prob_transporte.matriz_costos[costo_menor[1]][costo_menor[2]] = 0
 						oferta_aux[i] = True
 				num_taches_col = (taches_col == False).sum()
+
+	prob_transporte.matriz_variables_basicas = mat_variables_basicas.flatten()
 		
-	return spo.solucion_problema_transporte(prob_transporte, mat_variables_basicas)
+	return spo.solucion_problema_transporte(prob_transporte)
 
 
 

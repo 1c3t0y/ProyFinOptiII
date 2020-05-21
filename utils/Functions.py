@@ -4,11 +4,19 @@ import sys
 import numpy as np
 import math
 import json
+from tabulate import tabulate
 
 
-def print_m(matriz: List[List]):
-    for row in matriz:
-        print(f'\t{row}')
+def print_m(matriz: List[List] or np.ndarray, m: int = 9999):
+    cabecera = [f'nodo {i}' if i is not 0 else '' for i in range(0, len(matriz) + 1)]
+    tabla = []
+    for i, row in enumerate(matriz):
+        new_row = [cabecera[i + 1]]
+        for val in row:
+            dist = val if val < m else '-'
+            new_row.append(dist)
+        tabla.append(new_row)
+    print(tabulate(tabla, cabecera, tablefmt="fancy_grid"))
 
 
 def check_int(num: str) -> int or None:
@@ -152,7 +160,7 @@ def read_from_JSON(ruta: str) -> Dict or None:
         contenidos = json.load(file)
         file.close()
         return contenidos
-    except FileNotFoundError:
+    except OSError:
         print('No se pudo encontrar el archivo')
         return None
     except json.JSONDecodeError:
@@ -202,4 +210,21 @@ def check_keys_of(obj: Dict, keys: List) -> bool:
             obj[key]
         except KeyError:
             return False
+    return True
+
+
+def check_csv(matriz: np.ndarray, only_numbers: bool) -> bool:
+    if [val for val in matriz if type(val) is float]:
+        print('\t***Error: Ocurrió un error en la lectura de los datos***')
+        print('\tRegresando al menú anterior...')
+        input('\tPresione enter para continuar')
+        return False
+    if only_numbers:
+        for row in matriz:
+            if [val for val in row if check_float(val) is None]:
+                print('\t***Error: Estructura de las restricciones. '
+                      'Todos los elementos deben ser números***')
+                print('\tRegresando al menú anterior...')
+                input('\tPresione enter para continuar')
+                return False
     return True

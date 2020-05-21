@@ -48,12 +48,11 @@ class BranchAndBound(ProblemaEntera):
 
     def better_than_lower(self, sol):
         if self.lower_bound is None:
-            self.lower_bound = {'val': sol.fun, 'variables': sol.x}
             return True
         if self.tipo_ppl == 'max':
-            return sol.fun < self.lower_bound['val']
-        else:
             return sol.fun > self.lower_bound['val']
+        else:
+            return sol.fun < self.lower_bound['val']
 
     def try_new_restriction(self, var: int, val_lado_derecho: int, operador: str, restricciones: List[List],
                             lado_derecho: List[Dict]) -> bool:
@@ -62,9 +61,11 @@ class BranchAndBound(ProblemaEntera):
         nuevo_lado_derecho = [item for item in lado_derecho]
         nuevo_lado_derecho.append({'operador': operador, 'valor': val_lado_derecho})
         sol = PPL(self.z, self.tipo_ppl, nuevas_restricciones, nuevo_lado_derecho, self.binario).solve()
-        if not (sol.success or self.better_than_lower(sol)):
+        if not (sol.success and self.better_than_lower(sol)):
             return False
         if all([compare_floor(x) for x in sol.x]):
+            if self.lower_bound is None:
+                self.lower_bound = {'val': sol.fun, 'variables': sol.x}
             if not self.solucion_entera or sol.fun > self.solucion_entera.fun:
                 self.solucion_entera = sol
                 z = self.z if self.tipo_ppl == 'min' else -1 * self.z

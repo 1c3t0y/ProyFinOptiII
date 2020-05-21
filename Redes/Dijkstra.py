@@ -69,23 +69,27 @@ class MetodoDijkstra:
             self.reiniciar_algoritmo()
 
     def print_distancias(self):
-        print('Las distancias desde el nodo incial a los demás son:')
         for i, distancia in enumerate(self.distancias):
             if i is not self.nodo_inicial:
-                print(f'Distancia del nodo {self.nodo_inicial + 1} al nodo {i + 1}: {distancia}')
+                print(f'--> Distancia del nodo {self.nodo_inicial + 1} al nodo {i + 1}: {distancia}')
 
     def print_ruta(self):
         while True:
             j = get_param('j', 1, self.dim) - 1
-            print(f'La ruta más corta entre {self.nodo_inicial + 1} y {j + 1} pesa {self.distancias[j]} y es: ')
-            print(self.get_ruta(j))
+            if j == self.nodo_inicial:
+                print('*** No es necesario calcular la ruta más corta al nodo inicial. ***')
+            else:
+                print(f'La ruta más corta entre {self.nodo_inicial + 1} y {j + 1} pesa {self.distancias[j]} y es: ')
+                print(self.get_ruta(j))
             if not confirmacion('¿Desea calcular otra ruta?'):
                 break
 
     def get_ruta(self, destination: int) -> List or str:
         ruta = []
         anterior = self.anterior[destination]
-        if anterior == self.nodo_inicial or self.from_to(anterior, ruta):
+        if anterior == self.nodo_inicial:
+            return [anterior + 1, destination + 1]
+        if self.from_to(anterior, ruta):
             ruta.append(destination + 1)
             return ruta
         else:
@@ -104,6 +108,7 @@ class MetodoDijkstra:
         return False
 
     def menu(self):
+        clear_screen()
         self.nodo_inicial = get_param('el nodo inicial', 1, self.dim) - 1
         self.iniciar_algoritmo()
         while True:

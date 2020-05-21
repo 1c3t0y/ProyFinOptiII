@@ -1,7 +1,9 @@
 ### ingresar_datos ###
 from typing import Tuple
 import numpy as np
-from utils.Functions import check_int, get_param, get_z_ppl, get_restricciones_ppl, read_from_JSON, check_ppl_JSON
+import math
+from utils.Functions import check_int, check_csv, get_param, get_z_ppl, get_restricciones_ppl, \
+	read_from_JSON, check_ppl_JSON
 
 
 def ingresar_matriz_manualmente():
@@ -29,11 +31,31 @@ def ingresar_matriz_manualmente():
 	return matriz_costos
 
 
-def ingresar_matriz_csv():
+def ingresar_matriz_csv(only_numbers: bool = True):
 	ruta_archivo = input('ingrese la ruta del archivo con extension .csv: ')
 	delimitador = input('Ingrese el delimitador: ')
 
-	return np.genfromtxt(ruta_archivo, delimiter=delimitador)
+	try:
+		if only_numbers:
+			result = np.genfromtxt(ruta_archivo, delimiter=delimitador)
+		else:
+			result = np.genfromtxt(ruta_archivo, delimiter=delimitador, dtype = None, encoding = None)
+			
+		if not check_csv(result, only_numbers):
+			return None
+		print('--> ¡Lectura del archivo exitosa!')
+		input('\tPresione enter para continuar')
+		return result
+	except IOError or OSError:
+		print('\t***Error: No se encontró el archivo...')
+		print('\tRegresando al menú anterior...')
+		input('\tPresione enter para continuar')
+		return None
+	except ValueError:
+		print('\t***Error: Todas las filas del archivo deben de tener la misma dimensión...')
+		print('\tRegresando al menú anterior...')
+		input('\tPresione enter para continuar')
+		return None
 
 
 def ingresar_oferta_demanda(dimensiones):
@@ -74,6 +96,7 @@ def ingresar_ppl_manualmente() -> Tuple:
 	restricciones, lado_derecho = get_restricciones_ppl(n, num_var)
 	return z, tipo_ppl, restricciones, lado_derecho, binario
 
+
 def ingresar_ppl_json() -> Tuple or None:
 	while True:
 		print('\t -> Si desea regresar al menú anterior, ingrese "q" <-')
@@ -97,6 +120,7 @@ def ingresar_ppl_json() -> Tuple or None:
 
 
 def ingresar_red_manualmente():
+	nombres = []
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		num_nodos = int(input('Ingrese la cantidad de nodos del problema: '))
@@ -115,13 +139,25 @@ def ingresar_red_manualmente():
 		print(matriz_adyacencia)
 		opcion = input('¿Desea cambiar la matriz de adyacencia? (S/n): ')
 
+	for i in range(0, num_nodos, 1):
+		nombres.append("Nodo "+str(i+1))
+
+	opcion = input('¿Desea darle un nombre a los nodos? (S/n): ')
+	while opcion == 'S' or opcion == 's':
+		for i in range(0, num_nodos, 1):
+			string = input("Ingrese el nombre del nodo {0}: ".format(i+1))
+			nombres[i] = string		
+		print("Los nombres son:")
+		print(nombres)
+		opcion = input('¿Desea darle otro nombre a los nodos? (S/n): ')
+
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		matriz_costos = np.tile(99999, (num_nodos, num_nodos))
 		for i, nodo in enumerate(matriz_adyacencia):
 			for j, arista in enumerate(nodo):
 				if arista:
-					matriz_costos[i][j] = input("Ingrese el costo de flujo del nodo {0} al nodo {1}: ".format(i+1,j+1))
+					matriz_costos[i][j] = input("Ingrese el costo de flujo del nodo {0} al nodo {1}: ".format(nombres[i],nombres[j]))
 		print("La matriz de costos ingresada es:")
 		print(matriz_costos)
 		opcion = input('¿Desea cambiar la matriz de costos? (S/n): ')
@@ -130,21 +166,40 @@ def ingresar_red_manualmente():
 	while opcion == 'S' or opcion == 's':
 		capacidades = np.zeros(num_nodos)
 		for i in range(0,num_nodos,1):
-			capacidades[i] = input('Ingrese la capacidad del nodo {0}: '.format(i+1,j+1))
+			capacidades[i] = input('Ingrese la capacidad del nodo {0}: '.format(nombres[i]))
 		print("Las capacidades ingresados son:")
 		print(capacidades)
 		opcion = input('¿Desea cambiar las capacidades de los nodos? (S/n): ')
 
-	return matriz_adyacencia, matriz_costos, capacidades
+	return matriz_adyacencia, matriz_costos, capacidades, nombres
+
 
 def ingresar_red_csv():
 	opcion = 'S'
+	nombres = []
+
+	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		print("Ingresando la matriz de adyacencia: ")
-		matriz_adyacencia = np.array(ingresar_matriz_csv(),dtype=bool)
+		matriz_adyacencia = np.array(ingresar_matriz_csv(), dtype=bool)
 		print("La matriz de adyacencia ingresada es:")
 		print(matriz_adyacencia)
 		opcion = input('¿Desea cambiar la matriz de adyacencia? (S/n): ')
+
+	num_nodos = matriz_costos.shape[0]
+
+	for i in range(0, num_nodos, 1):
+		nombres.append("Nodo "+str(i+1))
+
+	opcion = input('¿Desea darle un nombre a los nodos? (S/n): ')
+	while opcion == 'S' or opcion == 's':
+		print("Ingresando el vector de nombres:")
+		nombres = ingresar_matriz_csv(False)
+
+		print("Los nombres son: ")
+		print(nombres)
+
+		opcion = input('¿Desea darle otro nombre a los nodos? (S/n): ')
 
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
@@ -162,4 +217,225 @@ def ingresar_red_csv():
 		print(capacidades)
 		opcion = input('¿Desea cambiar la matriz de costos? (S/n): ')
 
-	return matriz_adyacencia, matriz_costos, capacidades
+	return matriz_adyacencia, matriz_costos, capacidades, nombres
+
+def ingresar_transporte_manualmente():
+	nombres_origen = []
+	nombres_destino = []
+	opcion = 'S'
+	while opcion == 'S' or opcion == 's':
+		n = int(input("Ingrese la cantidad de nodos de origen: "))
+		m = int(input("Ingrese la cantidad de nodos de destino: "))
+		opcion = input('¿Desea cambiar la cantidad de nodos? (S/n): ')
+
+	
+	for i in range(0, n, 1):
+		nombres_origen.append("Origen "+str(i+1))
+
+	for i in range(0, m, 1):
+		nombres_destino.append("Destino "+str(i+1))
+
+	opcion = input('¿Desea darle un nombre a los origenes y destinos? (S/n): ')
+	while opcion == 'S' or opcion == 's':
+		for i in range(0, n, 1):
+			string = input("Ingrese el nombre del origen {0}: ".format(i+1))
+			nombres_origen[i] = string
+
+		for i in range(0, m, 1):
+			string = input("Ingrese el nombre del destino {0}: ".format(i+1))
+			nombres_destino[i] = string
+
+		print("Los origenes son: ")
+		print(nombres_origen)
+		print("Los destinos son: ")
+		print(nombres_destino)
+
+		opcion = input('¿Desea darle otro nombre a los origenes y destinos? (S/n): ')
+
+	matriz_costos = np.zeros((n, m))
+
+	opcion = "S"
+	while opcion == 'S' or opcion == 's':
+		print("Ingrese los valores de la matriz de costos:")
+		for i in range(0, n, 1):
+			for j in range(0, m, 1):
+				matriz_costos[i][j] = input('Costo de {0} a {1} = '.format(nombres_origen[i],nombres_destino[j]))
+		print("\n La matriz ingresada es: ")
+		print(matriz_costos)
+
+		opcion = input('¿Desea modificar la matriz?(S/n): ')
+
+	oferta = np.zeros(n)
+	demanda = np.zeros(m)
+
+	opcion = 'S'
+	while opcion == 's' or opcion == 'S':
+		print("Ingrese los valores de la oferta:")
+		for i in range(0, n, 1):
+			oferta[i] = input('{0} = '.format(nombres_origen[i]))
+
+		print("Ingrese los valores de la demanda:")
+		for j in range(0, m, 1):
+			demanda[j] = input('{0} = '.format(nombres_destino[j]))
+		
+		print("\n Los valores ingresados son: ")
+		print("Oferta:")
+		print(oferta)
+		print("Demanda:")
+		print(demanda)
+
+		opcion = input('¿Desea modificar la oferta o la demanda?(S/n): ')
+
+
+	return matriz_costos, oferta, demanda, nombres_origen, nombres_destino	
+
+
+def ingresar_transporte_csv():
+	opcion = 'S'
+	nombres_origen = []
+	nombres_destino = []
+
+	opcion = "S"
+	while opcion[0] == 'S' or opcion[0] == 's':
+		print("Ingrese el archivo de la matriz de costos:")
+		matriz_costos = ingresar_matriz_csv()
+		print("\n La matriz ingresada es: ")
+		print(matriz_costos)
+
+		opcion = input('¿Desea modificar la matriz?(S/n): ')
+
+	n = matriz_costos.shape[0]
+	m = matriz_costos.shape[1]
+
+	for i in range(0, n, 1):
+		nombres_origen.append("Origen "+str(i+1))
+
+	for i in range(0, m, 1):
+		nombres_destino.append("Destino "+str(i+1))
+
+	opcion = input('¿Desea darle un nombre a los origenes y destinos? (S/n): ')
+	while opcion == 'S' or opcion == 's':
+		print("Ingresando la matriz de nombres:")
+		nombres = ingresar_matriz_csv(False)
+
+		nombres_origen = nombres[0]
+		nombres_destino = nombres[1]
+
+		print("Los origenes son: ")
+		print(nombres_origen)
+		print("Los destinos son: ")
+		print(nombres_destino)
+
+		opcion = input('¿Desea darle otro nombre a los origenes y destinos? (S/n): ')
+
+	opcion = 'S'
+	while opcion == 's' or opcion == 'S':
+		print("Ingrese el archivo donde está la oferta y la demanda")
+		capacidades = ingresar_matriz_csv()
+
+		oferta = capacidades[0][:n]
+		demanda = capacidades[1][:m]
+
+		print("\n Los valores ingresados son: ")
+		print("Oferta:")
+		print(oferta)
+		print("Demanda:")
+		print(demanda)
+
+		opcion = input('¿Desea modificar la oferta o la demanda?(S/n): ')
+
+
+	return matriz_costos, oferta, demanda, nombres_origen, nombres_destino	
+
+
+def ingresar_asignacion_manualmente():
+	nombres_origen = []
+	nombres_destino = []
+	opcion = 'S'
+	while opcion == 'S' or opcion == 's':
+		n = int(input("Ingrese la cantidad de nodos de Nombres: "))
+		m = int(input("Ingrese la cantidad de nodos de Actividades: "))
+		opcion = input('¿Desea cambiar la cantidad de nodos? (S/n): ')
+
+	
+	for i in range(0, n, 1):
+		nombres_origen.append("Nombre "+str(i+1))
+
+	for i in range(0, m, 1):
+		nombres_destino.append("Actividad "+str(i+1))
+
+	opcion = input('¿Desea darle un nombre a los Nombres y actividades? (S/n): ')
+	while opcion == 'S' or opcion == 's':
+		for i in range(0, n, 1):
+			string = input("Ingrese el Nombre {0}: ".format(i+1))
+			nombres_origen[i] = string
+
+		for i in range(0, m, 1):
+			string = input("Ingrese la actividad {0}: ".format(i+1))
+			nombres_destino[i] = string
+
+		print("Los nombres son: ")
+		print(nombres_origen)
+		print("Las actividades son: ")
+		print(nombres_destino)
+
+		opcion = input('¿Desea darle otro nombre a los Nombres y Actividades? (S/n): ')
+
+	matriz_costos = np.zeros((n, m))
+
+	opcion = "S"
+	while opcion == 'S' or opcion == 's':
+		print("Ingrese los valores de la matriz de costos:")
+		for i in range(0, n, 1):
+			for j in range(0, m, 1):
+				matriz_costos[i][j] = input('Costo de {0} a {1} = '.format(nombres_origen[i],nombres_destino[j]))
+		print("\n La matriz ingresada es: ")
+		print(matriz_costos)
+
+		opcion = input('¿Desea modificar la matriz?(S/n): ')
+
+
+	return matriz_costos, nombres_origen, nombres_destino	
+
+
+def ingresar_asignacion_csv():
+	opcion = 'S'
+	nombres_origen = []
+	nombres_destino = []
+
+
+	opcion = "S"
+	while opcion[0] == 'S' or opcion[0] == 's':
+		print("Ingrese el archivo de la matriz de costos:")
+		matriz_costos = ingresar_matriz_csv()
+		print("\n La matriz ingresada es: ")
+		print(matriz_costos)
+
+		opcion = input('¿Desea modificar la matriz?(S/n): ')
+
+	n = matriz_costos.shape[0]
+	m = matriz_costos.shape[1]
+
+	for i in range(0, n, 1):
+		nombres_origen.append("Nombre "+str(i+1))
+
+	for i in range(0, m, 1):
+		nombres_destino.append("Actividad "+str(i+1))
+
+	opcion = input('¿Desea darle un nombre a los Nombres y Actividades? (S/n): ')
+	while opcion == 'S' or opcion == 's':
+		print("Ingresando la matriz de Nombres y actividades:")
+		nombres = ingresar_matriz_csv(only_numbers = False)
+
+		nombres_origen = nombres[0]
+		nombres_destino = nombres[1]
+
+		print("Los nombres son: ")
+		print(nombres_origen)
+		print("Las actividades son: ")
+		print(nombres_destino)
+
+		opcion = input('¿Desea darle otro nombre a los Nombres y Actividades? (S/n): ')
+
+
+	return matriz_costos, nombres_origen, nombres_destino
