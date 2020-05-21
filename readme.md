@@ -41,7 +41,9 @@ Para poder correr éste proyecto desde el código fuente, será necesario contar
 Instrucciones de instalación para calquier sistema en:
 
 *Python - [Descargar](https://www.python.org/downloads/)
+
 *SciPy y Numpy-[Instrucciones de instalación] (https://scipy.org/install.html)
+
 *Tabulate - [Instrucciones de instalación] (https://pypi.org/project/tabulate/)
 
 ## Contribuciones
@@ -54,11 +56,14 @@ Si está leyendo ésto es porque estamos en la version 1.0
 
 ## Autores
 
-**Fernando Mejía** - [1c3t0y](https://github.com/1c3t0y/)
-**Eliseo Cabrejos**- [Cheoacdc](https://github.com/Cheoacdc)
-**Alfonso Flores**- [alfonso98](https://github.com/alfonso98)
-**Alexis Tenorio**- [alexistenorio](https://github.com/alexistenorio)
-.
+* **Fernando Mejía** - [1c3t0y](https://github.com/1c3t0y/)
+
+* **Eliseo Cabrejos**- [Cheoacdc](https://github.com/Cheoacdc)
+
+* **Alfonso Flores**- [alfonso98](https://github.com/alfonso98)
+
+* **Alexis Tenorio**- [alexistenorio](https://github.com/alexistenorio)
+
 
 ## Agradecimientos
 
