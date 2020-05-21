@@ -1,0 +1,15 @@
+{
+  "z": [300, 168],
+  "tipo_ppl": "max",
+  "restricciones": [
+    [2, 4],
+    [6, 8],
+    [3, 1]
+  ],
+  "lado_derecho": [
+    {"operador": "<", "valor": 40},
+    {"operador": "<", "valor": 92},
+    {"operador": "<", "valor": 32}
+  ],
+  "binario": false
+}

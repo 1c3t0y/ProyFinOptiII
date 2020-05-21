@@ -76,15 +76,20 @@ class MetodoDijkstra:
     def print_ruta(self):
         while True:
             j = get_param('j', 1, self.dim) - 1
-            print(f'La ruta más corta entre {self.nodo_inicial + 1} y {j + 1} pesa {self.distancias[j]} y es: ')
-            print(self.get_ruta(j))
+            if j == self.nodo_inicial:
+                print('*** No es necesario calcular la ruta más corta al nodo inicial. ***')
+            else:
+                print(f'La ruta más corta entre {self.nodo_inicial + 1} y {j + 1} pesa {self.distancias[j]} y es: ')
+                print(self.get_ruta(j))
             if not confirmacion('¿Desea calcular otra ruta?'):
                 break
 
     def get_ruta(self, destination: int) -> List or str:
         ruta = []
         anterior = self.anterior[destination]
-        if anterior == self.nodo_inicial or self.from_to(anterior, ruta):
+        if anterior == self.nodo_inicial:
+            return [anterior + 1, destination + 1]
+        if self.from_to(anterior, ruta):
             ruta.append(destination + 1)
             return ruta
         else:
