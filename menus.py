@@ -3,6 +3,8 @@ from Transporte.sol_problema_transporte import sol_problema_transporte
 from utils.Functions import check_int, confirmacion, clear_screen
 from Redes.solucion_inicial_simplex import m_grande
 from utils.switcher_métodos import switcher_metodos_redes, switcher_metodos_entera
+from Redes.arbolExpMin import inputMatrix, expansionMinima
+from Redes.flujoMax import flujoMaximo
 
 
 def menu_principal():
@@ -143,9 +145,12 @@ def menu_redes():
 		print("1) Camino más corto, Dijkstra")
 		print("2) Floyd-Warshal")
 		print("4) Método simplex para redes")
+		print("5) Árbol de Expansión Mínima")
+		print("6) Flujo Máximo ")
 		print("q) Regresar al menu anterior")
 
 		opc = input('¿Qué desea hacer?: ')
+
 		if opc == 'q':
 			break
 		elif opc == '1' or opc == '2':
@@ -155,6 +160,19 @@ def menu_redes():
 			continue
 		elif opc == '4':
 			menu_sol_bas_fact_inicial_red()
+			continue
+		elif opc == '5':
+			data = inputMatrix()
+			expansionMinima(data)
+			wait = input('\n Presiona cualquier tecla para continuar.')
+			continue
+		elif opc == '6':
+			data = inputMatrix()
+			objectMFS = flujoMaximo(data)
+			objectMFS.solverFlujoMaximo()
+			print('\nFlujo Máximo de la red, F =', objectMFS.FM)
+			print('\nLista de Rutas: ', objectMFS.resultados)
+			wait = input('\n Presiona cualquier tecla para continuar.')
 			continue
 
 
