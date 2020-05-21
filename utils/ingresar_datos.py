@@ -31,13 +31,13 @@ def ingresar_matriz_manualmente():
 	return matriz_costos
 
 
-def ingresar_matriz_csv():
+def ingresar_matriz_csv(only_numbers: bool = True):
 	ruta_archivo = input('ingrese la ruta del archivo con extension .csv: ')
 	delimitador = input('Ingrese el delimitador: ')
 
 	try:
 		result = np.genfromtxt(ruta_archivo, delimiter=delimitador)
-		if not check_csv(result):
+		if not check_csv(result, only_numbers):
 			return None
 		print('--> ¡Lectura del archivo exitosa!')
 		input('\tPresione enter para continuar')
@@ -52,7 +52,6 @@ def ingresar_matriz_csv():
 		print('\tRegresando al menú anterior...')
 		input('\tPresione enter para continuar')
 		return None
-
 
 
 def ingresar_oferta_demanda(dimensiones):
@@ -162,7 +161,7 @@ def ingresar_red_csv():
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		print("Ingresando la matriz de adyacencia: ")
-		matriz_adyacencia = np.array(ingresar_matriz_csv(),dtype=bool)
+		matriz_adyacencia = np.array(ingresar_matriz_csv(), dtype=bool)
 		print("La matriz de adyacencia ingresada es:")
 		print(matriz_adyacencia)
 		opcion = input('¿Desea cambiar la matriz de adyacencia? (S/n): ')
