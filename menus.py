@@ -162,8 +162,10 @@ def menu_transporte():
 	opcion = input("¿Desea ingresar un problema de asignacion?(S/n): ")
 	if opcion == 'S' or opcion == 'S':
 		matriz_costos, nombres_origen, nombres_destino = menu_ingresar_transporte(True)
+		asignacion = True
 	else:
 		matriz_costos, oferta, demanda, nombres_origen, nombres_destino = menu_ingresar_transporte()
+		asignacion = False
 	
 	if matriz_costos is 0:
 		return
@@ -180,16 +182,16 @@ def menu_transporte():
 		opc = input('¿Qué desea hacer?: ')
 		if opc == 'q':
 			break
-		elif opc == '1':
+		elif opc == '1' and not asignacion:
 			prob_transporte = metodo_esquina_NE(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
 			mt.mostrar_problema(prob_transporte)
-		elif opc == '2':
+		elif opc == '2' and not asignacion:
 			prob_transporte = metodo_costo_minimo(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
 			mt.mostrar_problema(prob_transporte)
-		elif opc == '3':
+		elif opc == '3' and not asignacion:
 			prob_transporte = metodo_MAV(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
 			mt.mostrar_problema(prob_transporte)
-		elif opc == '4':
+		elif opc == '4' and asignacion:
 			problema_asignacion = metodo_hungaro(matriz_costos, nombres_origen, nombres_destino)
 			ma.mostrar_problema(problema_asignacion)
 		elif opc == 'm':
@@ -211,6 +213,12 @@ def menu_transporte():
 				nombres_origen = nombres_origen_aux
 				nombres_destino = nombres_destino_aux
 			continue
+		elif opcion in ['1','2','3'] and not asignacion:
+			print("El problema que ingresó es de asignación, por lo que no es válido para éste método")
+			input('Presione enter para continuar...')
+		elif opcion in ['1','2','3'] and asignacion:
+			print("El problema que ingresó es de transporte, por lo que no es válido para éste método")
+			input('Presione enter para continuar...')
 		else:
 			print('Ingrese una opción válida...')
 			input('Presione enter para continuar...')
