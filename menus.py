@@ -15,31 +15,32 @@ def menu_principal():
 
 
 def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
-	clear_screen()
-
-	matriz = None
-	objeto = 'un PPL' if ppl else 'una matriz'
-	extension = 'JSON' if ppl else 'csv'
-	print(f'PROBLEMAS DE {msg}')
-	print("Opciones para ingresar datos:")
-	print(f"1) Ingresar {objeto} manualmente")
-	print(f"2) Ingresar {objeto} desde un archivo {extension}")
-	print("q) Regresar al menú anterior.")
-
 	while True:
-		opcion = input('¿Qué desea hacer?: ')
-		if opcion == 'q' or (check_int(opcion) is not None and 0 < check_int(opcion) <= 2):
-			break
-		else:
-			print('Ingrese una opción válida...')
-	if opcion == '1':
-		matriz = datos.ingresar_ppl_manualmente() if ppl else datos.ingresar_matriz_manualmente()
-	elif opcion == '2':
-		matriz = datos.ingresar_ppl_json() if ppl else datos.ingresar_matriz_csv()
-	elif opcion == 'q':
-		matriz = 0
+		clear_screen()
 
-	return matriz
+		matriz = None
+		objeto = 'un PPL' if ppl else 'una matriz'
+		extension = 'JSON' if ppl else 'csv'
+		print(f'PROBLEMAS DE {msg}')
+		print("Opciones para ingresar datos:")
+		print(f"1) Ingresar {objeto} manualmente")
+		print(f"2) Ingresar {objeto} desde un archivo {extension}")
+		print("q) Regresar al menú anterior.")
+
+		while True:
+			opcion = input('¿Qué desea hacer?: ')
+			if opcion == 'q' or (check_int(opcion) is not None and 0 < check_int(opcion) <= 2):
+				break
+			else:
+				print('Ingrese una opción válida...')
+		if opcion == '1':
+			matriz = datos.ingresar_ppl_manualmente() if ppl else datos.ingresar_matriz_manualmente()
+		elif opcion == '2':
+			matriz = datos.ingresar_ppl_json() if ppl else datos.ingresar_matriz_csv()
+		elif opcion == 'q':
+			matriz = 0
+		if matriz is not None:
+			return matriz
 
 def menu_ingresar_red():
 	print(f'PROBLEMA DE REDES POR SIMPLEX')
@@ -62,6 +63,7 @@ def menu_ingresar_red():
 		return 0,0,0
 
 	return matriz_adyacencia, matriz_costos, capacidades
+
 
 def menu_sol_bas_fact_inicial_red():
 	adyacencia, costos, capacidades = menu_ingresar_red()
@@ -107,10 +109,11 @@ def menu_sol_bas_fact_inicial_red():
 				print('Ingrese una opción válida...')
 	return
 
+
 def menu_transporte():
 	clear_screen()
 	matriz = menu_ingresar_matriz_costos('TRANSPORTE')
-	if matriz is 0:
+	if matriz is 0 or matriz is None:
 		return
 	while True:
 		print("METODOS PARA PROBLEMAS DE TRANSPORTE")
@@ -147,7 +150,8 @@ def menu_redes():
 			break
 		elif opc == '1' or opc == '2':
 			matriz = menu_ingresar_matriz_costos('REDES')
-			switcher_metodos_redes[opc](matriz).menu()
+			if matriz is not None and matriz is not 0:
+				switcher_metodos_redes[opc](matriz).menu()
 			continue
 		elif opc == '4':
 			menu_sol_bas_fact_inicial_red()

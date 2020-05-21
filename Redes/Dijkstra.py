@@ -69,10 +69,9 @@ class MetodoDijkstra:
             self.reiniciar_algoritmo()
 
     def print_distancias(self):
-        print('Las distancias desde el nodo incial a los demás son:')
         for i, distancia in enumerate(self.distancias):
             if i is not self.nodo_inicial:
-                print(f'Distancia del nodo {self.nodo_inicial + 1} al nodo {i + 1}: {distancia}')
+                print(f'--> Distancia del nodo {self.nodo_inicial + 1} al nodo {i + 1}: {distancia}')
 
     def print_ruta(self):
         while True:
@@ -104,6 +103,7 @@ class MetodoDijkstra:
         return False
 
     def menu(self):
+        clear_screen()
         self.nodo_inicial = get_param('el nodo inicial', 1, self.dim) - 1
         self.iniciar_algoritmo()
         while True:

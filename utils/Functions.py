@@ -203,3 +203,20 @@ def check_keys_of(obj: Dict, keys: List) -> bool:
         except KeyError:
             return False
     return True
+
+
+def check_csv(matriz: np.ndarray, only_numbers: bool) -> bool:
+    if [val for val in matriz if type(val) is float]:
+        print('\t***Error: Ocurrió un error en la lectura de los datos***')
+        print('\tRegresando al menú anterior...')
+        input('\tPresione enter para continuar')
+        return False
+    if only_numbers:
+        for row in matriz:
+            if [val for val in row if check_float(val) is None]:
+                print('\t***Error: Estructura de las restricciones. '
+                      'Todos los elementos deben ser números***')
+                print('\tRegresando al menú anterior...')
+                input('\tPresione enter para continuar')
+                return False
+    return True
