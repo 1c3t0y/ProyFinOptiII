@@ -1,5 +1,5 @@
 from typing import List
-from utils.Functions import print_m, check_int, get_param, confirmacion
+from utils.Functions import print_m, check_int, get_param, confirmacion, clear_screen
 
 
 class MetodoFloyd:
@@ -55,7 +55,7 @@ class MetodoFloyd:
                 if not confirmacion('¿Desea calcular otra ruta?'):
                     break
 
-    def calcular_ruta(self, i: int, j: int):
+    def calcular_ruta(self, i: int, j: int) -> List:
         ruta = [i + 1]
         self.from_to(i, j, ruta)
         return ruta
@@ -70,8 +70,10 @@ class MetodoFloyd:
     def menu(self):
         self.resolver()
         while True:
+            clear_screen()
             opc = self.get_opc()
             if opc == 4:
                 print('Saliendo del método...')
                 break
             self.switcher(opc)
+            input('\nPulse enter para continuar...')
