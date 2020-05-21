@@ -46,9 +46,17 @@
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-runtime-l1-1-0.dll',
    'BINARY'),
+  ('python37.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\python37.dll',
+   'BINARY'),
   ('VCRUNTIME140.dll',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'C:\\Users\\Lenovo '
+   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-heap-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-crt-math-l1-1-0.dll',
    'C:\\Users\\Lenovo '
@@ -58,29 +66,25 @@
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-locale-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-crt-heap-l1-1-0.dll',
-   'C:\\Users\\Lenovo '
-   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-heap-l1-1-0.dll',
-   'BINARY'),
   ('api-ms-win-crt-stdio-l1-1-0.dll',
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-stdio-l1-1-0.dll',
-   'BINARY'),
-  ('python37.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\python37.dll',
    'BINARY'),
   ('ucrtbase.dll',
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\ucrtbase.dll',
    'BINARY'),
-  ('api-ms-win-crt-string-l1-1-0.dll',
-   'C:\\Users\\Lenovo '
-   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-string-l1-1-0.dll',
-   'BINARY'),
   ('api-ms-win-crt-convert-l1-1-0.dll',
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-convert-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-process-l1-1-0.dll',
+   'C:\\Users\\Lenovo '
+   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-process-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Users\\Lenovo '
+   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-environment-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-crt-filesystem-l1-1-0.dll',
    'C:\\Users\\Lenovo '
@@ -90,149 +94,145 @@
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-time-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-crt-environment-l1-1-0.dll',
+  ('api-ms-win-crt-string-l1-1-0.dll',
    'C:\\Users\\Lenovo '
-   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-environment-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-process-l1-1-0.dll',
-   'C:\\Users\\Lenovo '
-   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-process-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-file-l1-2-0.dll',
-   'C:\\Users\\Lenovo '
-   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-file-l1-2-0.dll',
+   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-string-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-file-l2-1-0.dll',
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-file-l2-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-localization-l1-2-0.dll',
+  ('api-ms-win-core-file-l1-2-0.dll',
    'C:\\Users\\Lenovo '
-   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-localization-l1-2-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-processthreads-l1-1-1.dll',
-   'C:\\Users\\Lenovo '
-   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-file-l1-2-0.dll',
    'BINARY'),
   ('api-ms-win-core-timezone-l1-1-0.dll',
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-timezone-l1-1-0.dll',
    'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'C:\\Users\\Lenovo '
+   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-localization-l1-2-0.dll',
+   'C:\\Users\\Lenovo '
+   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-localization-l1-2-0.dll',
+   'BINARY'),
   ('api-ms-win-core-synch-l1-2-0.dll',
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-core-synch-l1-2-0.dll',
-   'BINARY'),
-  ('libdop853.ZDB77F5S63EPO7WWG3LICXZSBW2LFM2N.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdop853.ZDB77F5S63EPO7WWG3LICXZSBW2LFM2N.gfortran-win32.dll',
-   'BINARY'),
-  ('libwrap_dum.A5WLRNKFATKKQJGYRZJAOYXVUUE32K6A.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libwrap_dum.A5WLRNKFATKKQJGYRZJAOYXVUUE32K6A.gfortran-win32.dll',
-   'BINARY'),
-  ('libopenblas.SVHFG5YE3RK3Z27NVFUDAPL2O3W6IMXW.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\numpy\\.libs\\libopenblas.SVHFG5YE3RK3Z27NVFUDAPL2O3W6IMXW.gfortran-win32.dll',
-   'BINARY'),
-  ('libbispeu.KX7AQLB2Z5NFTCADW76YV5UMLBQNDALD.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libbispeu.KX7AQLB2Z5NFTCADW76YV5UMLBQNDALD.gfortran-win32.dll',
-   'BINARY'),
-  ('libansari.Q4BAGRNANLWD2YZJOKYPOAUIOLXW2LXK.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libansari.Q4BAGRNANLWD2YZJOKYPOAUIOLXW2LXK.gfortran-win32.dll',
-   'BINARY'),
-  ('libvode.775SE6UAZSXM3Q64QT2MSTG6UNVD7EXQ.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libvode.775SE6UAZSXM3Q64QT2MSTG6UNVD7EXQ.gfortran-win32.dll',
-   'BINARY'),
-  ('libdfitpack.EM6D2ZEFEP35UVNTFVXVVRYRWM22ZXEY.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdfitpack.EM6D2ZEFEP35UVNTFVXVVRYRWM22ZXEY.gfortran-win32.dll',
-   'BINARY'),
-  ('libd_odr.QYPW3KLSS67LCDCMEMJJOEURJ7J2E6E5.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libd_odr.QYPW3KLSS67LCDCMEMJJOEURJ7J2E6E5.gfortran-win32.dll',
-   'BINARY'),
-  ('libdcsrch.CTD6WPTKUW4MYYPI2KYOJ4427ZGGSXEQ.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdcsrch.CTD6WPTKUW4MYYPI2KYOJ4427ZGGSXEQ.gfortran-win32.dll',
-   'BINARY'),
-  ('libslsqp_op.MXR5BOTVQOM7FKAXXDEPBABKIXS3O77A.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libslsqp_op.MXR5BOTVQOM7FKAXXDEPBABKIXS3O77A.gfortran-win32.dll',
-   'BINARY'),
-  ('libnnls.GX3LBH56JRQ7JMAOG7UBTDQJYFS6BPRN.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libnnls.GX3LBH56JRQ7JMAOG7UBTDQJYFS6BPRN.gfortran-win32.dll',
-   'BINARY'),
-  ('libgetbreak.IF7AACEU72KVCL4HI3XGBZ2LYFS5M2R3.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libgetbreak.IF7AACEU72KVCL4HI3XGBZ2LYFS5M2R3.gfortran-win32.dll',
-   'BINARY'),
-  ('libwrap_dum.JIXN5UE6QFHJ4SF5PUHHMG4LTBAQ7ZHG.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libwrap_dum.JIXN5UE6QFHJ4SF5PUHHMG4LTBAQ7ZHG.gfortran-win32.dll',
-   'BINARY'),
-  ('libdqag.5BKO2YUCXZGLZTTZ4WNBZJQZTKOATUJT.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdqag.5BKO2YUCXZGLZTTZ4WNBZJQZTKOATUJT.gfortran-win32.dll',
-   'BINARY'),
-  ('lib_test_fo.6QS7HUU6UWQ3ZZ2H5HU3YC3T72Y24U6T.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\lib_test_fo.6QS7HUU6UWQ3ZZ2H5HU3YC3T72Y24U6T.gfortran-win32.dll',
-   'BINARY'),
-  ('msvcp140.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\msvcp140.dll',
-   'BINARY'),
-  ('libbanded5x.WYYO5OALMMMFRTCR4ST4HTYS3OBVBXX5.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libbanded5x.WYYO5OALMMMFRTCR4ST4HTYS3OBVBXX5.gfortran-win32.dll',
    'BINARY'),
   ('libcobyla2.3BFPWD23GN4DOQSZLNJP2Y3VKAM3SSGW.gfortran-win32.dll',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libcobyla2.3BFPWD23GN4DOQSZLNJP2Y3VKAM3SSGW.gfortran-win32.dll',
    'BINARY'),
-  ('libblkdta00.NHTRA42AHAJBKEOQCH6GY7ZYFDHTBNAJ.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libblkdta00.NHTRA42AHAJBKEOQCH6GY7ZYFDHTBNAJ.gfortran-win32.dll',
-   'BINARY'),
-  ('libmvndst.UEXYY5YZLETRZLLV7GKDGWYVIASLDNJ6.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libmvndst.UEXYY5YZLETRZLLV7GKDGWYVIASLDNJ6.gfortran-win32.dll',
-   'BINARY'),
-  ('lib_blas_su.EV7A2WQW43JPO4ZQ5GIRAQ3HEBKWBDEM.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\lib_blas_su.EV7A2WQW43JPO4ZQ5GIRAQ3HEBKWBDEM.gfortran-win32.dll',
-   'BINARY'),
-  ('lib_arpack-.AEJ5TYEV5ZKWXL2ZFX4YX4AVWTHY6PZP.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\lib_arpack-.AEJ5TYEV5ZKWXL2ZFX4YX4AVWTHY6PZP.gfortran-win32.dll',
-   'BINARY'),
   ('libdet.QGVN62UTE5S5E5T7ZGNYYL5ADKTS7UXS.gfortran-win32.dll',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdet.QGVN62UTE5S5E5T7ZGNYYL5ADKTS7UXS.gfortran-win32.dll',
-   'BINARY'),
-  ('libspecfun.4EOQTMYNA23N5GPNA7SCW33J5YXJI2Q6.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libspecfun.4EOQTMYNA23N5GPNA7SCW33J5YXJI2Q6.gfortran-win32.dll',
-   'BINARY'),
-  ('libdfft_sub.G6XSI4SNRZLIUVYH6AMDYIRQVDUJJRXQ.gfortran-win32.dll',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdfft_sub.G6XSI4SNRZLIUVYH6AMDYIRQVDUJJRXQ.gfortran-win32.dll',
    'BINARY'),
   ('libchkder.23IDUBONJEDQJXE3WT2KTJUEFGPJBH5V.gfortran-win32.dll',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libchkder.23IDUBONJEDQJXE3WT2KTJUEFGPJBH5V.gfortran-win32.dll',
    'BINARY'),
-  ('libdgamln.V7MAAVYVDAJEJATAUUTFLG5HUPUWUH5X.gfortran-win32.dll',
+  ('libwrap_dum.A5WLRNKFATKKQJGYRZJAOYXVUUE32K6A.gfortran-win32.dll',
    'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdgamln.V7MAAVYVDAJEJATAUUTFLG5HUPUWUH5X.gfortran-win32.dll',
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libwrap_dum.A5WLRNKFATKKQJGYRZJAOYXVUUE32K6A.gfortran-win32.dll',
+   'BINARY'),
+  ('libdfitpack.EM6D2ZEFEP35UVNTFVXVVRYRWM22ZXEY.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdfitpack.EM6D2ZEFEP35UVNTFVXVVRYRWM22ZXEY.gfortran-win32.dll',
+   'BINARY'),
+  ('libbanded5x.WYYO5OALMMMFRTCR4ST4HTYS3OBVBXX5.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libbanded5x.WYYO5OALMMMFRTCR4ST4HTYS3OBVBXX5.gfortran-win32.dll',
+   'BINARY'),
+  ('libdcsrch.CTD6WPTKUW4MYYPI2KYOJ4427ZGGSXEQ.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdcsrch.CTD6WPTKUW4MYYPI2KYOJ4427ZGGSXEQ.gfortran-win32.dll',
+   'BINARY'),
+  ('libdfft_sub.G6XSI4SNRZLIUVYH6AMDYIRQVDUJJRXQ.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdfft_sub.G6XSI4SNRZLIUVYH6AMDYIRQVDUJJRXQ.gfortran-win32.dll',
+   'BINARY'),
+  ('libblkdta00.NHTRA42AHAJBKEOQCH6GY7ZYFDHTBNAJ.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libblkdta00.NHTRA42AHAJBKEOQCH6GY7ZYFDHTBNAJ.gfortran-win32.dll',
+   'BINARY'),
+  ('libopenblas.SVHFG5YE3RK3Z27NVFUDAPL2O3W6IMXW.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\numpy\\.libs\\libopenblas.SVHFG5YE3RK3Z27NVFUDAPL2O3W6IMXW.gfortran-win32.dll',
    'BINARY'),
   ('liblbfgsb.UURJMGTRSA4CCKLIMKCO6DYO5UQY2GGJ.gfortran-win32.dll',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\liblbfgsb.UURJMGTRSA4CCKLIMKCO6DYO5UQY2GGJ.gfortran-win32.dll',
+   'BINARY'),
+  ('libbispeu.KX7AQLB2Z5NFTCADW76YV5UMLBQNDALD.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libbispeu.KX7AQLB2Z5NFTCADW76YV5UMLBQNDALD.gfortran-win32.dll',
+   'BINARY'),
+  ('libdqag.5BKO2YUCXZGLZTTZ4WNBZJQZTKOATUJT.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdqag.5BKO2YUCXZGLZTTZ4WNBZJQZTKOATUJT.gfortran-win32.dll',
+   'BINARY'),
+  ('libslsqp_op.MXR5BOTVQOM7FKAXXDEPBABKIXS3O77A.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libslsqp_op.MXR5BOTVQOM7FKAXXDEPBABKIXS3O77A.gfortran-win32.dll',
+   'BINARY'),
+  ('lib_arpack-.AEJ5TYEV5ZKWXL2ZFX4YX4AVWTHY6PZP.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\lib_arpack-.AEJ5TYEV5ZKWXL2ZFX4YX4AVWTHY6PZP.gfortran-win32.dll',
+   'BINARY'),
+  ('lib_blas_su.EV7A2WQW43JPO4ZQ5GIRAQ3HEBKWBDEM.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\lib_blas_su.EV7A2WQW43JPO4ZQ5GIRAQ3HEBKWBDEM.gfortran-win32.dll',
+   'BINARY'),
+  ('libansari.Q4BAGRNANLWD2YZJOKYPOAUIOLXW2LXK.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libansari.Q4BAGRNANLWD2YZJOKYPOAUIOLXW2LXK.gfortran-win32.dll',
+   'BINARY'),
+  ('libdop853.ZDB77F5S63EPO7WWG3LICXZSBW2LFM2N.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdop853.ZDB77F5S63EPO7WWG3LICXZSBW2LFM2N.gfortran-win32.dll',
+   'BINARY'),
+  ('lib_test_fo.6QS7HUU6UWQ3ZZ2H5HU3YC3T72Y24U6T.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\lib_test_fo.6QS7HUU6UWQ3ZZ2H5HU3YC3T72Y24U6T.gfortran-win32.dll',
+   'BINARY'),
+  ('libnnls.GX3LBH56JRQ7JMAOG7UBTDQJYFS6BPRN.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libnnls.GX3LBH56JRQ7JMAOG7UBTDQJYFS6BPRN.gfortran-win32.dll',
+   'BINARY'),
+  ('libwrap_dum.JIXN5UE6QFHJ4SF5PUHHMG4LTBAQ7ZHG.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libwrap_dum.JIXN5UE6QFHJ4SF5PUHHMG4LTBAQ7ZHG.gfortran-win32.dll',
+   'BINARY'),
+  ('msvcp140.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\msvcp140.dll',
+   'BINARY'),
+  ('libd_odr.QYPW3KLSS67LCDCMEMJJOEURJ7J2E6E5.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libd_odr.QYPW3KLSS67LCDCMEMJJOEURJ7J2E6E5.gfortran-win32.dll',
+   'BINARY'),
+  ('libmvndst.UEXYY5YZLETRZLLV7GKDGWYVIASLDNJ6.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libmvndst.UEXYY5YZLETRZLLV7GKDGWYVIASLDNJ6.gfortran-win32.dll',
+   'BINARY'),
+  ('libdgamln.V7MAAVYVDAJEJATAUUTFLG5HUPUWUH5X.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libdgamln.V7MAAVYVDAJEJATAUUTFLG5HUPUWUH5X.gfortran-win32.dll',
+   'BINARY'),
+  ('libspecfun.4EOQTMYNA23N5GPNA7SCW33J5YXJI2Q6.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libspecfun.4EOQTMYNA23N5GPNA7SCW33J5YXJI2Q6.gfortran-win32.dll',
+   'BINARY'),
+  ('libgetbreak.IF7AACEU72KVCL4HI3XGBZ2LYFS5M2R3.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libgetbreak.IF7AACEU72KVCL4HI3XGBZ2LYFS5M2R3.gfortran-win32.dll',
+   'BINARY'),
+  ('libvode.775SE6UAZSXM3Q64QT2MSTG6UNVD7EXQ.gfortran-win32.dll',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\scipy\\.libs\\libvode.775SE6UAZSXM3Q64QT2MSTG6UNVD7EXQ.gfortran-win32.dll',
    'BINARY'),
   ('select',
    'c:\\users\\lenovo '
@@ -566,13 +566,13 @@
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\numpy\\fft\\_pocketfft_internal.cp37-win32.pyd',
    'EXTENSION'),
-  ('api-ms-win-crt-multibyte-l1-1-0.dll',
-   'C:\\Users\\Lenovo '
-   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-multibyte-l1-1-0.dll',
-   'BINARY'),
   ('api-ms-win-crt-utility-l1-1-0.dll',
    'C:\\Users\\Lenovo '
    'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-utility-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-multibyte-l1-1-0.dll',
+   'C:\\Users\\Lenovo '
+   'T450\\AppData\\Roaming\\TinyTeX\\bin\\win32\\api-ms-win-crt-multibyte-l1-1-0.dll',
    'BINARY'),
   ('libssl-1_1.dll',
    'c:\\users\\lenovo '
@@ -586,9 +586,13 @@
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\build\\main\\base_library.zip',
    'DATA'),
-  ('Include\\pyconfig.h',
+  ('lib2to3\\tests\\data\\README',
    'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\Include\\pyconfig.h',
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\lib2to3\\tests\\data\\README',
+   'DATA'),
+  ('lib2to3\\PatternGrammar.txt',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\lib2to3\\PatternGrammar.txt',
    'DATA'),
   ('lib2to3\\PatternGrammar3.7.4.final.0.pickle',
    'c:\\users\\lenovo '
@@ -598,17 +602,13 @@
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\lib2to3\\Grammar3.7.4.final.0.pickle',
    'DATA'),
-  ('lib2to3\\tests\\data\\README',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\lib2to3\\tests\\data\\README',
-   'DATA'),
   ('lib2to3\\Grammar.txt',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\lib2to3\\Grammar.txt',
    'DATA'),
-  ('lib2to3\\PatternGrammar.txt',
+  ('Include\\pyconfig.h',
    'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\lib2to3\\PatternGrammar.txt',
+   't450\\appdata\\local\\programs\\python\\python37-32\\Include\\pyconfig.h',
    'DATA'),
   ('main.exe.manifest',
    'C:\\Users\\Lenovo '

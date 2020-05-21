@@ -652,49 +652,17 @@
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\__init__.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.utils',
+  ('pkg_resources._vendor.packaging.__about__',
    'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.appdirs',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging.requirements',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.markers',
+  ('pkg_resources._vendor',
    'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.version',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.six',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\six.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._compat',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.specifiers',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._structures',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
    'PYMODULE'),
   ('pkg_resources._vendor.pyparsing',
    'c:\\users\\lenovo '
@@ -728,9 +696,41 @@
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\ctypes\\macholib\\framework.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.__about__',
+  ('pkg_resources._vendor.packaging._compat',
    'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.specifiers',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.six',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\six.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.utils',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.markers',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._structures',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.appdirs',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.version',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
    'PYMODULE'),
   ('sysconfig',
    'c:\\users\\lenovo '
@@ -876,27 +876,35 @@
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\imp.py',
    'PYMODULE'),
-  ('_py_abc',
+  ('typing',
    'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\_py_abc.py',
-   'PYMODULE'),
-  ('stringprep',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\stringprep.py',
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\typing.py',
    'PYMODULE'),
   ('tracemalloc',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\tracemalloc.py',
    'PYMODULE'),
-  ('typing',
+  ('stringprep',
    'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\typing.py',
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('_py_abc',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\_py_abc.py',
    'PYMODULE'),
   ('utils.Functions',
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\utils\\Functions.py',
    'PYMODULE'),
   ('utils', '-', 'PYMODULE'),
+  ('tabulate',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\tabulate.py',
+   'PYMODULE'),
+  ('cgi',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\cgi.py',
+   'PYMODULE'),
   ('json',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\json\\__init__.py',
@@ -1105,6 +1113,42 @@
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\__init__.py',
    'PYMODULE'),
+  ('setuptools._vendor.packaging._structures',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.__about__',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.pyparsing',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\pyparsing.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.specifiers',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.requirements',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('setuptools._vendor',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.markers',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\markers.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._compat',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_compat.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.utils',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\utils.py',
+   'PYMODULE'),
   ('setuptools._vendor.six',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\six.py',
@@ -1113,45 +1157,9 @@
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\version.py',
    'PYMODULE'),
-  ('setuptools._vendor',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\__init__.py',
-   'PYMODULE'),
-  ('setuptools._vendor.packaging._structures',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_structures.py',
-   'PYMODULE'),
-  ('setuptools._vendor.packaging.specifiers',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\specifiers.py',
-   'PYMODULE'),
-  ('setuptools._vendor.packaging._compat',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_compat.py',
-   'PYMODULE'),
-  ('setuptools._vendor.packaging.__about__',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__about__.py',
-   'PYMODULE'),
-  ('setuptools._vendor.packaging.requirements',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\requirements.py',
-   'PYMODULE'),
-  ('setuptools._vendor.packaging.utils',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\utils.py',
-   'PYMODULE'),
-  ('setuptools._vendor.packaging.markers',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\markers.py',
-   'PYMODULE'),
   ('setuptools._vendor.packaging',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__init__.py',
-   'PYMODULE'),
-  ('setuptools._vendor.pyparsing',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\setuptools\\_vendor\\pyparsing.py',
    'PYMODULE'),
   ('setuptools.msvc',
    'c:\\users\\lenovo '
@@ -1404,10 +1412,6 @@
   ('distutils.config',
    'c:\\users\\lenovo '
    't450\\appdata\\local\\programs\\python\\python37-32\\lib\\distutils\\config.py',
-   'PYMODULE'),
-  ('cgi',
-   'c:\\users\\lenovo '
-   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\cgi.py',
    'PYMODULE'),
   ('distutils.dist',
    'c:\\users\\lenovo '
@@ -2632,6 +2636,23 @@
   ('menus',
    'C:\\Users\\Lenovo T450\\Documents\\6toSemestre\\Opti2\\proyecto\\menus.py',
    'PYMODULE'),
+  ('Redes.flujoMax',
+   'C:\\Users\\Lenovo '
+   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Redes\\flujoMax.py',
+   'PYMODULE'),
+  ('Redes', '-', 'PYMODULE'),
+  ('Redes.Dijkstra',
+   'C:\\Users\\Lenovo '
+   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Redes\\Dijkstra.py',
+   'PYMODULE'),
+  ('Redes.arbolExpMin',
+   'C:\\Users\\Lenovo '
+   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Redes\\arbolExpMin.py',
+   'PYMODULE'),
+  ('csv',
+   'c:\\users\\lenovo '
+   't450\\appdata\\local\\programs\\python\\python37-32\\lib\\csv.py',
+   'PYMODULE'),
   ('utils.switcher_métodos',
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\utils\\switcher_métodos.py',
@@ -2654,15 +2675,10 @@
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\classes\\PPL.py',
    'PYMODULE'),
   ('Entera', '-', 'PYMODULE'),
-  ('Redes.Dijkstra',
-   'C:\\Users\\Lenovo '
-   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Redes\\Dijkstra.py',
-   'PYMODULE'),
   ('Redes.FloydWarshal',
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Redes\\FloydWarshal.py',
    'PYMODULE'),
-  ('Redes', '-', 'PYMODULE'),
   ('Redes.solucion_inicial_simplex',
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Redes\\solucion_inicial_simplex.py',
@@ -2679,22 +2695,14 @@
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\classes\\problemas_optimizacion.py',
    'PYMODULE'),
-  ('Transporte.sol_problema_transporte',
-   'C:\\Users\\Lenovo '
-   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Transporte\\sol_problema_transporte.py',
-   'PYMODULE'),
-  ('Transporte', '-', 'PYMODULE'),
   ('Transporte.metodo_hungaro',
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Transporte\\metodo_hungaro.py',
    'PYMODULE'),
+  ('Transporte', '-', 'PYMODULE'),
   ('Transporte.sol_problemas_opti',
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Transporte\\sol_problemas_opti.py',
-   'PYMODULE'),
-  ('Transporte.metodo_mav',
-   'C:\\Users\\Lenovo '
-   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Transporte\\metodo_mav.py',
    'PYMODULE'),
   ('Transporte.metodo_costo_minimo',
    'C:\\Users\\Lenovo '
@@ -2703,6 +2711,22 @@
   ('Transporte.metodo_esquina_ne',
    'C:\\Users\\Lenovo '
    'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Transporte\\metodo_esquina_ne.py',
+   'PYMODULE'),
+  ('Transporte.metodo_mav',
+   'C:\\Users\\Lenovo '
+   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\Transporte\\metodo_mav.py',
+   'PYMODULE'),
+  ('utils.mostrar_simplex',
+   'C:\\Users\\Lenovo '
+   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\utils\\mostrar_simplex.py',
+   'PYMODULE'),
+  ('utils.mostrar_transporte',
+   'C:\\Users\\Lenovo '
+   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\utils\\mostrar_transporte.py',
+   'PYMODULE'),
+  ('utils.mostrar_asignacion',
+   'C:\\Users\\Lenovo '
+   'T450\\Documents\\6toSemestre\\Opti2\\proyecto\\utils\\mostrar_asignacion.py',
    'PYMODULE'),
   ('utils.ingresar_datos',
    'C:\\Users\\Lenovo '
