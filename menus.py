@@ -13,6 +13,8 @@ from Transporte.metodo_hungaro import metodo_hungaro
 from Redes.solucion_inicial_simplex import m_grande
 
 from utils.switcher_métodos import switcher_metodos_redes, switcher_metodos_entera
+from Redes.arbolExpMin import inputMatrix, expansionMinima
+from Redes.flujoMax import flujoMaximo
 
 
 def menu_principal():
@@ -160,8 +162,10 @@ def menu_transporte():
 	opcion = input("¿Desea ingresar un problema de asignacion?(S/n): ")
 	if opcion == 'S' or opcion == 'S':
 		matriz_costos, nombres_origen, nombres_destino = menu_ingresar_transporte(True)
+		asignacion = True
 	else:
 		matriz_costos, oferta, demanda, nombres_origen, nombres_destino = menu_ingresar_transporte()
+		asignacion = False
 	
 	if matriz_costos is 0:
 		return
@@ -178,16 +182,16 @@ def menu_transporte():
 		opc = input('¿Qué desea hacer?: ')
 		if opc == 'q':
 			break
-		elif opc == '1':
+		elif opc == '1' and not asignacion:
 			prob_transporte = metodo_esquina_NE(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
 			mt.mostrar_problema(prob_transporte)
-		elif opc == '2':
+		elif opc == '2' and not asignacion:
 			prob_transporte = metodo_costo_minimo(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
 			mt.mostrar_problema(prob_transporte)
-		elif opc == '3':
+		elif opc == '3' and not asignacion:
 			prob_transporte = metodo_MAV(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
 			mt.mostrar_problema(prob_transporte)
-		elif opc == '4':
+		elif opc == '4' and asignacion:
 			problema_asignacion = metodo_hungaro(matriz_costos, nombres_origen, nombres_destino)
 			ma.mostrar_problema(problema_asignacion)
 		elif opc == 'm':
@@ -197,6 +201,7 @@ def menu_transporte():
 				asignacion = True
 			else:
 				costos_aux, oferta_aux, demanda_aux, nombres_origen_aux, nombres_destino_aux = menu_ingresar_transporte()
+				asignacion = False
 			if not (costos_aux is 0) and not asignacion:
 				matriz_costos = costos_aux
 				oferta = oferta_aux
@@ -208,6 +213,12 @@ def menu_transporte():
 				nombres_origen = nombres_origen_aux
 				nombres_destino = nombres_destino_aux
 			continue
+		elif opcion in ['1','2','3'] and not asignacion:
+			print("El problema que ingresó es de asignación, por lo que no es válido para éste método")
+			input('Presione enter para continuar...')
+		elif opcion in ['1','2','3'] and asignacion:
+			print("El problema que ingresó es de transporte, por lo que no es válido para éste método")
+			input('Presione enter para continuar...')
 		else:
 			print('Ingrese una opción válida...')
 			input('Presione enter para continuar...')
@@ -223,9 +234,12 @@ def menu_redes():
 		print("1) Camino más corto, Dijkstra")
 		print("2) Floyd-Warshal")
 		print("4) Método simplex para redes")
+		print("5) Árbol de Expansión Mínima")
+		print("6) Flujo Máximo ")
 		print("q) Regresar al menu anterior")
 
 		opc = input('¿Qué desea hacer?: ')
+
 		if opc == 'q':
 			break
 		elif opc == '1' or opc == '2':
@@ -235,6 +249,19 @@ def menu_redes():
 			continue
 		elif opc == '4':
 			menu_sol_bas_fact_inicial_red()
+			continue
+		elif opc == '5':
+			data = inputMatrix()
+			expansionMinima(data)
+			wait = input('\n Presiona cualquier tecla para continuar.')
+			continue
+		elif opc == '6':
+			data = inputMatrix()
+			objectMFS = flujoMaximo(data)
+			objectMFS.solverFlujoMaximo()
+			print('\nFlujo Máximo de la red, F =', objectMFS.FM)
+			print('\nLista de Rutas: ', objectMFS.resultados)
+			wait = input('\n Presiona cualquier tecla para continuar.')
 			continue
 
 

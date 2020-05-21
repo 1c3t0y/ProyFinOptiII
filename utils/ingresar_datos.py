@@ -36,7 +36,11 @@ def ingresar_matriz_csv(only_numbers: bool = True):
 	delimitador = input('Ingrese el delimitador: ')
 
 	try:
-		result = np.genfromtxt(ruta_archivo, delimiter=delimitador)
+		if only_numbers:
+			result = np.genfromtxt(ruta_archivo, delimiter=delimitador)
+		else:
+			result = np.genfromtxt(ruta_archivo, delimiter=delimitador, dtype = None, encoding = None)
+			
 		if not check_csv(result, only_numbers):
 			return None
 		print('--> ¡Lectura del archivo exitosa!')
@@ -190,7 +194,7 @@ def ingresar_red_csv():
 	opcion = input('¿Desea darle un nombre a los nodos? (S/n): ')
 	while opcion == 'S' or opcion == 's':
 		print("Ingresando el vector de nombres:")
-		nombres = ingresar_matriz_csv()
+		nombres = ingresar_matriz_csv(False)
 
 		print("Los nombres son: ")
 		print(nombres)
@@ -312,7 +316,7 @@ def ingresar_transporte_csv():
 	opcion = input('¿Desea darle un nombre a los origenes y destinos? (S/n): ')
 	while opcion == 'S' or opcion == 's':
 		print("Ingresando la matriz de nombres:")
-		nombres = ingresar_matriz_csv()
+		nombres = ingresar_matriz_csv(False)
 
 		nombres_origen = nombres[0]
 		nombres_destino = nombres[1]
@@ -421,7 +425,7 @@ def ingresar_asignacion_csv():
 	opcion = input('¿Desea darle un nombre a los Nombres y Actividades? (S/n): ')
 	while opcion == 'S' or opcion == 's':
 		print("Ingresando la matriz de Nombres y actividades:")
-		nombres = ingresar_matriz_csv()
+		nombres = ingresar_matriz_csv(only_numbers = False)
 
 		nombres_origen = nombres[0]
 		nombres_destino = nombres[1]
