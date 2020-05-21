@@ -1,4 +1,4 @@
-# Projecto de Optimización II (FEAA)
+# Proyecto de Optimización II (FEAA)
 
 Proyecto final para la materia de optimización II, el cual incluye algoritmos vistos en clase y su implementación en python.
 Para éste proyecto contemplamos los siguientes problemas:
