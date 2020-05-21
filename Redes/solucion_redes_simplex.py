@@ -14,7 +14,6 @@ def simplex_redes(prob_redes):
 	var_entrada = (0, -1, -1)
 	var_salida = (0, -1, -1)
 
-	print("Inició variables duales")
 	variables_duales = calculo_variables_duales(prob_redes.matriz_variables_basicas, prob_redes.matriz_costos, 4)
 
 	### Calculo precios sombra ###
@@ -37,15 +36,12 @@ def simplex_redes(prob_redes):
 			if elemento >= var_entrada[0] and prob_redes.matriz_adyacencia[i][j] and not prob_redes.matriz_variables_basicas[i][j]:
 				var_entrada = (elemento, i, j)
 	
-	print(var_entrada)
 
 	ciclo = ciclo_minimo(prob_redes.matriz_variables_basicas, var_entrada)
 
-	print(ciclo)
 
 	var_salida = obtener_variable_salida(prob_redes.matriz_variables_basicas, prob_redes.matriz_variables_decision, ciclo)
 
-	print(var_salida)
 
 	for nodo in range(0,len(ciclo)-1,1):
 		i = nodo
@@ -59,11 +55,6 @@ def simplex_redes(prob_redes):
 	prob_redes.matriz_variables_decision[var_entrada[1]][var_entrada[2]] = var_salida[0]
 
 	prob_redes.matriz_variables_basicas[var_salida[1]][var_salida[2]] = False
-
-	print(prob_redes.matriz_adyacencia)
-	print(prob_redes.matriz_variables_basicas)
-	print(prob_redes.matriz_variables_decision)
-	print(prob_redes.z)
 
 	return simplex_redes(prob_redes)
 

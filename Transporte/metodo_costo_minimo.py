@@ -1,11 +1,13 @@
 ### Método del costo minimo ###
 import numpy as np
 import Transporte.sol_problemas_opti as spo
+from classes.problemas_optimizacion import ProblemaTransporte
 
 
-def metodo_costo_minimo(prob_transporte):
-	oferta_aux = prob_transporte.oferta
-	demanda_aux = prob_transporte.demanda
+def metodo_costo_minimo(matriz_costos, oferta, demanda, nombres_origen, nombres_destino):
+	prob_transporte = ProblemaTransporte(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
+	oferta_aux = prob_transporte.oferta.copy()
+	demanda_aux = prob_transporte.demanda.copy()
 	mat_variables_basicas = np.tile(False, (prob_transporte.n, prob_transporte.m))
 	taches_ren = np.tile(False, prob_transporte.n)
 	taches_col = np.tile(False, prob_transporte.m)
@@ -45,7 +47,9 @@ def metodo_costo_minimo(prob_transporte):
 		num_taches_ren = (taches_ren == False).sum()
 		num_taches_col = (taches_col == False).sum()
 
-	return spo.solucion_problema_transporte(prob_transporte, mat_variables_basicas)
+	prob_transporte.matrz_variables_basicas = mat_variables_basicas.flatten()
+
+	return spo.solucion_problema_transporte(prob_transporte)
 
 
 #costos = np.array([[10, 2, 20, 11], [12, 7, 9, 20], [4, 14, 16, 18]])

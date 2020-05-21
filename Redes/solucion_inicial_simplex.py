@@ -12,7 +12,7 @@ from Redes.FloydWarshal import MetodoFloyd
 
 import numpy as np
 
-def m_grande(matriz_adyacencia, matriz_costos, capacidades):
+def m_grande(matriz_adyacencia, matriz_costos, capacidades,nombres):
 	if capacidades.sum() != 0:
 		print("Problema no balanceado")
 		return
@@ -58,7 +58,7 @@ def m_grande(matriz_adyacencia, matriz_costos, capacidades):
 	
 	capacidades = np.append(capacidades,0)
 
-	red_inicial = ProblemaRedes(matriz_adyacencia, matriz_costos, capacidades)
+	red_inicial = ProblemaRedes(matriz_adyacencia, matriz_costos, capacidades, nombres)
 	red_inicial.matriz_variables_basicas = matriz_variables_basicas.flatten()
 	red_inicial.matriz_variables_decision = matriz_variables_decision.flatten()
 
@@ -112,8 +112,6 @@ def m_grande(matriz_adyacencia, matriz_costos, capacidades):
 		con_basicas_art_ren = red_inicial.matriz_variables_basicas[nodo_art].sum()
 		con_basicas_art_col = red_inicial.matriz_variables_basicas.transpose()[nodo_art].sum()
 
-		print(red_inicial.matriz_variables_basicas)
-		print(red_inicial.matriz_variables_decision)
 
 	if con_basicas_art_ren == 1:
 		raiz = np.where(red_inicial.matriz_variables_basicas[nodo_art])[0]
@@ -135,10 +133,11 @@ def m_grande(matriz_adyacencia, matriz_costos, capacidades):
 
 	capacidades = np.delete(capacidades, obj = nodo_art, axis = 0)
 
-	prob_redes = ProblemaRedes(matriz_adyacencia, matriz_costos, capacidades)
+	prob_redes = ProblemaRedes(matriz_adyacencia, matriz_costos, capacidades, nombres)
 
 	prob_redes.matriz_variables_basicas = matriz_variables_basicas.flatten()
 	prob_redes.matriz_variables_decision = matriz_variables_decision.flatten()
 	prob_redes.raiz = raiz
+
 
 	return simplex_redes(prob_redes)
