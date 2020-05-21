@@ -80,9 +80,9 @@ def menu_sol_bas_fact_inicial_mcfp():
 		else:
 			print('Ingrese una opción válida...')
 		if opcion == '1':
-			### TO DO
+            print('To Do, Opcion 1: Método de la M grande')
 		elif opcion == '2':
-			### TO DO
+            print('To Do, Opcion 2: Dos fases')
 		elif opcion == '3':
 			###TO DO
 			prob_redes = ProblemaRedes(adyacencia,costos,capacidades)
@@ -91,7 +91,7 @@ def menu_sol_bas_fact_inicial_mcfp():
 			print(solucion_mcfp(prob_redes.z))
 			input("Presiona enter...")
 		elif opcion == 'o':
-			### TO DO
+            print('To Do, Opción o: Dar otro MCFP')
 		elif opcion == 'q':
 			matriz = 0
 
