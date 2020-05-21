@@ -1,7 +1,9 @@
 ### ingresar_datos ###
 from typing import Tuple
 import numpy as np
-from utils.Functions import check_int, get_param, get_z_ppl, get_restricciones_ppl, read_from_JSON, check_ppl_JSON
+import math
+from utils.Functions import check_int, check_csv, get_param, get_z_ppl, get_restricciones_ppl, \
+	read_from_JSON, check_ppl_JSON
 
 
 def ingresar_matriz_manualmente():
@@ -33,7 +35,24 @@ def ingresar_matriz_csv():
 	ruta_archivo = input('ingrese la ruta del archivo con extension .csv: ')
 	delimitador = input('Ingrese el delimitador: ')
 
-	return np.genfromtxt(ruta_archivo, delimiter=delimitador)
+	try:
+		result = np.genfromtxt(ruta_archivo, delimiter=delimitador)
+		if not check_csv(result):
+			return None
+		print('--> ¡Lectura del archivo exitosa!')
+		input('\tPresione enter para continuar')
+		return result
+	except IOError or OSError:
+		print('\t***Error: No se encontró el archivo...')
+		print('\tRegresando al menú anterior...')
+		input('\tPresione enter para continuar')
+		return None
+	except ValueError:
+		print('\t***Error: Todas las filas del archivo deben de tener la misma dimensión...')
+		print('\tRegresando al menú anterior...')
+		input('\tPresione enter para continuar')
+		return None
+
 
 
 def ingresar_oferta_demanda(dimensiones):
@@ -73,6 +92,7 @@ def ingresar_ppl_manualmente() -> Tuple:
 	n = get_param('n', 1)
 	restricciones, lado_derecho = get_restricciones_ppl(n, num_var)
 	return z, tipo_ppl, restricciones, lado_derecho, binario
+
 
 def ingresar_ppl_json() -> Tuple or None:
 	while True:
@@ -136,6 +156,7 @@ def ingresar_red_manualmente():
 		opcion = input('¿Desea cambiar las capacidades de los nodos? (S/n): ')
 
 	return matriz_adyacencia, matriz_costos, capacidades
+
 
 def ingresar_red_csv():
 	opcion = 'S'
