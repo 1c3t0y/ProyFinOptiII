@@ -197,6 +197,7 @@ def menu_transporte():
 				asignacion = True
 			else:
 				costos_aux, oferta_aux, demanda_aux, nombres_origen_aux, nombres_destino_aux = menu_ingresar_transporte()
+				asignacion = False
 			if not (costos_aux is 0) and not asignacion:
 				matriz_costos = costos_aux
 				oferta = oferta_aux

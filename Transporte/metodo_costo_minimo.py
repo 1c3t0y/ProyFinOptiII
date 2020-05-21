@@ -34,20 +34,17 @@ def metodo_costo_minimo(matriz_costos, oferta, demanda, nombres_origen, nombres_
 		mat_variables_basicas[costo_menor[1]][costo_menor[2]] = True
 
 		### Paso 2
-
 		if oferta_aux[costo_menor[1]] == 0:
 			taches_ren[costo_menor[1]] = True
 
 		elif demanda_aux[costo_menor[2]] == 0:
 			taches_col[costo_menor[2]] = True
 		
-		
-
 		### Paso 3
 		num_taches_ren = (taches_ren == False).sum()
 		num_taches_col = (taches_col == False).sum()
 
-	prob_transporte.matrz_variables_basicas = mat_variables_basicas.flatten()
+	prob_transporte.matriz_variables_basicas = mat_variables_basicas.flatten()
 
 	return spo.solucion_problema_transporte(prob_transporte)
 
