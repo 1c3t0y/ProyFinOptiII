@@ -1,7 +1,9 @@
 ### mostrar transporte ###
 from tabulate import tabulate
+from utils.Functions import clear_screen
 
 def imprimir_solucion(prob_transporte):
+    clear_screen()
     print("Los flujos que minimizan el costo son:")
     for i,renglon in enumerate(prob_transporte.matriz_variables_basicas):
         for j, elemento in enumerate(renglon):
@@ -12,6 +14,7 @@ def imprimir_solucion(prob_transporte):
 
 
 def imprimir_costos(prob_transporte):
+    clear_screen()
     cabecera = prob_transporte.nombres_demanda.copy()
     cabecera.insert(0, " ")
     tabla =[]
@@ -31,6 +34,7 @@ def imprimir_costos(prob_transporte):
 
 
 def imprimir_oferta_demanda(prob_transporte):
+    clear_screen()
     print("La oferta es: ")
     cabecera = prob_transporte.nombres_oferta.copy()
     tabla = [[]]
@@ -49,6 +53,7 @@ def imprimir_oferta_demanda(prob_transporte):
 
 def mostrar_problema(prob_transporte):
     while True:
+        clear_screen()
         print("Información del problema de transporte:")
         print("1) Costos del problema")
         print("2) Oferta y demanda")

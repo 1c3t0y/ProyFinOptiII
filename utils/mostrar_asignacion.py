@@ -1,7 +1,9 @@
 #### mostrar informacion asignacion ###
 from tabulate import tabulate
+from utils.Functions import clear_screen
 
 def imprimir_solucion(prob_asignacion):
+    clear_screen()
     print("La asignación que minimiza el costo es: ")
     print("Nombre -> Actividad")
     for i,renglon in enumerate(prob_asignacion.matriz_variables_decision):
@@ -12,6 +14,7 @@ def imprimir_solucion(prob_asignacion):
     input("\n\nPresione Enter para continuar...")
 
 def imprimir_costos(prob_asignacion):
+    clear_screen()
     cabecera = prob_asignacion.nombres_demanda.copy()
     cabecera.insert(0, " ")
     tabla =[]
@@ -32,6 +35,7 @@ def imprimir_costos(prob_asignacion):
     
 def mostrar_problema(prob_asignacion):
     while True:
+        clear_screen()
         print("Información del problema de asignacion:")
         print("1) Costos del problema")
         print("2) Solucion")

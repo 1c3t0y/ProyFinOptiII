@@ -40,9 +40,9 @@ def ingresar_matriz_csv(only_numbers: bool = True):
 			result = np.genfromtxt(ruta_archivo, delimiter=delimitador)
 		else:
 			result = np.genfromtxt(ruta_archivo, delimiter=delimitador, dtype = None, encoding = None)
-			
-		if not check_csv(result, only_numbers):
-			return None
+
+		#if not check_csv(result, only_numbers): Problema con matriz de un renglon
+		#	return None
 		print('--> ¡Lectura del archivo exitosa!')
 		input('\tPresione enter para continuar')
 		return result
@@ -186,21 +186,6 @@ def ingresar_red_csv():
 		print(matriz_adyacencia)
 		opcion = input('¿Desea cambiar la matriz de adyacencia? (S/n): ')
 
-	num_nodos = matriz_costos.shape[0]
-
-	for i in range(0, num_nodos, 1):
-		nombres.append("Nodo "+str(i+1))
-
-	opcion = input('¿Desea darle un nombre a los nodos? (S/n): ')
-	while opcion == 'S' or opcion == 's':
-		print("Ingresando el vector de nombres:")
-		nombres = ingresar_matriz_csv(False)
-
-		print("Los nombres son: ")
-		print(nombres)
-
-		opcion = input('¿Desea darle otro nombre a los nodos? (S/n): ')
-
 	opcion = 'S'
 	while opcion == 'S' or opcion == 's':
 		print("Ingresando la matriz de costos: ")
@@ -216,6 +201,22 @@ def ingresar_red_csv():
 		print("Las capacidades son capacidades:")
 		print(capacidades)
 		opcion = input('¿Desea cambiar la matriz de costos? (S/n): ')
+
+	num_nodos = matriz_costos.shape[0]
+
+	for i in range(0, num_nodos, 1):
+		nombres.append("Nodo "+str(i+1))
+
+	opcion = input('¿Desea darle un nombre a los nodos? (S/n): ')
+	while opcion == 'S' or opcion == 's':
+		print("Ingresando el vector de nombres:")
+		nombres = ingresar_matriz_csv(False)
+
+		print("Los nombres son: ")
+		print(nombres)
+
+		opcion = input('¿Desea darle otro nombre a los nodos? (S/n): ')
+
 
 	return matriz_adyacencia, matriz_costos, capacidades, nombres
 

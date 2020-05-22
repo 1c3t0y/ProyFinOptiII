@@ -5,9 +5,9 @@ from utils.Functions import confirmacion
 
 def main():
 	opcion = 'z'
-	print("******************************************************")
+	print("*************************************************************************")
 	print("*			Proyecto final optimizacion II		 	*")
-	print("******************************************************")
+	print("*************************************************************************")
 	print("Integrantes: ")
 	print("\n")
 	print("\tCabrejos Reyes Eliseo Aldair")
