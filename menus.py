@@ -165,6 +165,7 @@ def menu_transporte():
 		return
 
 	while True:
+		clear_screen()
 		print("METODOS PARA PROBLEMAS DE TRANSPORTE")
 		print("1) Esquina Noroeste")
 		print("2) Costo minimo")
@@ -207,12 +208,6 @@ def menu_transporte():
 				nombres_origen = nombres_origen_aux
 				nombres_destino = nombres_destino_aux
 			continue
-		elif opcion in ['1','2','3'] and asignacion:
-			print("El problema que ingresó es de asignación, por lo que no es válido para éste método")
-			input('Presione enter para continuar...')
-		elif opcion == '4' and not asignacion:
-			print("El problema que ingresó es de transporte, por lo que no es válido para éste método")
-			input('Presione enter para continuar...')
 		else:
 			print('Ingrese una opción válida...')
 			input('Presione enter para continuar...')

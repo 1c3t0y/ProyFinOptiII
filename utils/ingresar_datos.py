@@ -319,8 +319,8 @@ def ingresar_transporte_csv():
 		print("Ingresando la matriz de nombres:")
 		nombres = ingresar_matriz_csv(False)
 
-		nombres_origen = nombres[0]
-		nombres_destino = nombres[1]
+		nombres_origen = nombres[0][:n]
+		nombres_destino = nombres[1][:m]
 
 		print("Los origenes son: ")
 		print(nombres_origen)
@@ -428,8 +428,8 @@ def ingresar_asignacion_csv():
 		print("Ingresando la matriz de Nombres y actividades:")
 		nombres = ingresar_matriz_csv(only_numbers = False)
 
-		nombres_origen = nombres[0]
-		nombres_destino = nombres[1]
+		nombres_origen = nombres[0][:n]
+		nombres_destino = nombres[1][:m]
 
 		print("Los nombres son: ")
 		print(nombres_origen)
