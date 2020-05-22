@@ -1,10 +1,12 @@
 from typing import List
 from utils.Functions import print_m, check_int, get_param, confirmacion, clear_screen
+import numpy as np
 
 
 class MetodoFloyd:
     def __init__(self, matriz: List[List]):
-        self.matriz_pesos = matriz
+        self.matriz_pesos = np.array(matriz)
+        self.matriz_original = matriz
         self.dim = len(matriz)
         self.matriz_rutas = self.crear_matriz_rutas_inicial()
 
@@ -28,12 +30,13 @@ class MetodoFloyd:
     def get_opc(cls) -> int:
         while True:
             print('\nOpciones:')
-            print('\t1) Ver matriz de costos')
-            print('\t2) Ver matriz de rutas')
-            print('\t3) Calcular ruta de i a j')
-            print('\t4) Salir del método')
+            print('\t1) Ver matriz de costos original')
+            print('\t2) Ver matriz de costos final')
+            print('\t3) Ver matriz de rutas')
+            print('\t4) Calcular ruta de i a j')
+            print('\t5) Salir del método')
             opc = check_int(input('¿Qué desea hacer a continuación?: '))
-            if opc is not None and opc < 5:
+            if opc is not None and opc <= 5:
                 break
             else:
                 print('Por favor ingrese un número entero válido...')
@@ -41,12 +44,15 @@ class MetodoFloyd:
 
     def switcher(self, opc):
         if opc is 1:
-            print('La matriz de adyacencia con los pesos calculados es:')
-            print_m(self.matriz_pesos)
+            print('La matriz del problema original es:')
+            print_m(self.matriz_original, 1000)
         elif opc is 2:
+            print('La matriz de adyacencia con los pesos calculados es:')
+            print_m(self.matriz_pesos, 1000)
+        elif opc is 3:
             print('La matriz de de las rutas es:')
             print_m(self.matriz_rutas)
-        elif opc is 3:
+        elif opc is 4:
             while True:
                 i = get_param('i', 1, self.dim) - 1
                 j = get_param('j', 1, self.dim) - 1
@@ -72,7 +78,7 @@ class MetodoFloyd:
         while True:
             clear_screen()
             opc = self.get_opc()
-            if opc == 4:
+            if opc == 5:
                 print('Saliendo del método...')
                 break
             self.switcher(opc)

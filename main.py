@@ -18,7 +18,7 @@ def main():
 
 	input("Presione Enter para continuar...")
 
-	while opcion != 'q':
+	while True:
 
 		menus.menu_principal()
 		opcion = input("¿Que desea hacer?: ")
