@@ -5,9 +5,9 @@ from utils.Functions import confirmacion
 
 def main():
 	opcion = 'z'
-	print("******************************************************")
+	print("*************************************************************************")
 	print("*			Proyecto final optimizacion II		 	*")
-	print("******************************************************")
+	print("*************************************************************************")
 	print("Integrantes: ")
 	print("\n")
 	print("\tCabrejos Reyes Eliseo Aldair")
@@ -18,7 +18,7 @@ def main():
 
 	input("Presione Enter para continuar...")
 
-	while opcion != 'q':
+	while True:
 
 		menus.menu_principal()
 		opcion = input("¿Que desea hacer?: ")

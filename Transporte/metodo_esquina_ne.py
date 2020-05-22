@@ -3,10 +3,15 @@
 import numpy as np
 import Transporte.sol_problemas_opti as spo
 from classes.problemas_optimizacion import ProblemaTransporte
+from Transporte.balancear_transporte import balancear_transporte
 
 
 def metodo_esquina_NE(matriz_costos, oferta, demanda, nombres_origen, nombres_destino):
+    if np.sum(oferta) != np.sum(demanda):
+        matriz_costos, oferta, demanda, nombres_origen, nombres_destino = balancear_transporte(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
+        
     prob_transporte = ProblemaTransporte(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
+
     oferta_aux = prob_transporte.oferta.copy()
     demanda_aux = prob_transporte.demanda.copy()
     mat_variables_basicas = np.tile(False, (prob_transporte.n, prob_transporte.m))

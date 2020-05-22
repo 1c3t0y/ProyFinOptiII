@@ -4,9 +4,13 @@ import numpy as np
 import utils.fun_vec_mat as fvm
 from Transporte.sol_problemas_opti import solucion_problema_asignacion
 from classes.problemas_optimizacion import ProblemaAsignacion
+from Transporte.balancear_transporte import balancear_asignacion
 
 
 def metodo_hungaro(matriz_costos, nombres_origen, nombres_destino):
+    if matriz_costos.shape[0] != matriz_costos.shape[1]:
+        matriz_costos, nombres_origen, nombres_destino = balancear_asignacion(matriz_costos, nombres_origen, nombres_destino)
+
     prob_asignacion = ProblemaAsignacion(matriz_costos, nombres_origen, nombres_destino)
     
     """

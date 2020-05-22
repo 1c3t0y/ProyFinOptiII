@@ -11,6 +11,7 @@ from Transporte.metodo_costo_minimo import metodo_costo_minimo
 from Transporte.metodo_hungaro import metodo_hungaro
 
 from Redes.solucion_inicial_simplex import m_grande
+from Redes.solucion_inicial_simplex import solucion_inicial_manual
 
 from utils.switcher_métodos import switcher_metodos_redes, switcher_metodos_entera
 from Redes.arbolExpMin import inputMatrix, expansionMinima
@@ -115,45 +116,38 @@ def menu_sol_bas_fact_inicial_red():
 	if adyacencia is 0:
 		return
 	while True:
-			print(f'SOLUCIONAR RED POR SIMPLEX')
-			print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
-			print(f"1) Método de la M grande")
-			print(f"2) Dos fases")
-			print(f"3) Dar una solución básica factible")
-			print(f"o) Dar otro MCFP")
-			print("q) regresar al menú anterior.")
-			opcion = input('¿Qué desea hacer?: ')
-			if opcion == 'q':
-				break
-			elif opcion == '1':
-				prob_redes = m_grande(adyacencia, costos, capacidades, nombres)
-				ms.mostrar_problema(prob_redes)
+		clear_screen()
+		print(f'SOLUCIONAR RED POR SIMPLEX')
+		print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
+		print(f"1) Método de la M grande")
+		print(f"2) Dar una solución básica factible")
+		print(f"o) Dar otro MCFP")
+		print("q) regresar al menú anterior.")
+		opcion = input('¿Qué desea hacer?: ')
+		if opcion == 'q':
+			break
+		elif opcion == '1':
+			prob_redes = m_grande(adyacencia, costos, capacidades, nombres)
+			ms.mostrar_problema(prob_redes)
+			continue
+		elif opcion == '2':
+			prob_redes = solucion_inicial_manual(adyacencia, costos, capacidades, nombres)
+			if prob_redes is None:
 				continue
-			elif opcion == '2':
-				### TO DO
-				continue
-			elif opcion == '3':
-				###TO DO
-				'''
-				prob_redes = ProblemaRedes(adyacencia,costos,capacidades)
-				prob_redes.matriz_variables_decision = np.array([0,6,0,0,0,0,0,0,6,0,0,0,0,4,0,0,0,0,0,5,0,0,0,0,0])
-				prob_redes.matriz_variables_basicas = np.array([False,True,False,False,False,False,False,False,True,False,False,False,False,True,False,	False,False,False,False,True,False,False,False,False,False])
-				print(solucion_mcfp(prob_redes.z))
-				input("Presiona enter...")
-				'''
-				continue
-			elif opcion == 'o':
-				adyacencia_aux, costos_aux, capacidades_aux = menu_ingresar_red()
-				if not (adyacencia_aux is 0):
-					matriz_adyacencia = adyacencia_aux
-					matriz_costos = costos_aux
-					capacidades = capacidades_aux
-				continue
-			elif opcion == 'q':
-				break
 			else:
-				print('Ingrese una opción válida...')
-				input('Presione enter para continuar...')
+				ms.mostrar_problema(prob_redes)
+		elif opcion == 'o':
+			adyacencia_aux, costos_aux, capacidades_aux = menu_ingresar_red()
+			if not (adyacencia_aux is 0):
+				matriz_adyacencia = adyacencia_aux
+				matriz_costos = costos_aux
+				capacidades = capacidades_aux
+			continue
+		elif opcion == 'q':
+			break
+		else:
+			print('Ingrese una opción válida...')
+			input('Presione enter para continuar...')
 	return
 
 
@@ -171,6 +165,7 @@ def menu_transporte():
 		return
 
 	while True:
+		clear_screen()
 		print("METODOS PARA PROBLEMAS DE TRANSPORTE")
 		print("1) Esquina Noroeste")
 		print("2) Costo minimo")
@@ -213,12 +208,6 @@ def menu_transporte():
 				nombres_origen = nombres_origen_aux
 				nombres_destino = nombres_destino_aux
 			continue
-		elif opcion in ['1','2','3'] and not asignacion:
-			print("El problema que ingresó es de asignación, por lo que no es válido para éste método")
-			input('Presione enter para continuar...')
-		elif opcion in ['1','2','3'] and asignacion:
-			print("El problema que ingresó es de transporte, por lo que no es válido para éste método")
-			input('Presione enter para continuar...')
 		else:
 			print('Ingrese una opción válida...')
 			input('Presione enter para continuar...')
@@ -233,9 +222,9 @@ def menu_redes():
 		print("¿Qué método desea utilizar?:")
 		print("1) Camino más corto, Dijkstra")
 		print("2) Floyd-Warshal")
-		print("4) Método simplex para redes")
-		print("5) Árbol de Expansión Mínima")
-		print("6) Flujo Máximo ")
+		print("3) Árbol de Expansión Mínima")
+		print("4) Flujo Máximo ")
+		print("5) Método simplex para redes")
 		print("q) Regresar al menu anterior")
 
 		opc = input('¿Qué desea hacer?: ')
@@ -247,15 +236,15 @@ def menu_redes():
 			if matriz is not None and matriz is not 0:
 				switcher_metodos_redes[opc](matriz).menu()
 			continue
-		elif opc == '4':
+		elif opc == '5':
 			menu_sol_bas_fact_inicial_red()
 			continue
-		elif opc == '5':
+		elif opc == '3':
 			data = inputMatrix()
 			expansionMinima(data)
 			wait = input('\n Presiona cualquier tecla para continuar.')
 			continue
-		elif opc == '6':
+		elif opc == '4':
 			data = inputMatrix()
 			objectMFS = flujoMaximo(data)
 			objectMFS.solverFlujoMaximo()
