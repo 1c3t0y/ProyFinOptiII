@@ -55,6 +55,7 @@ def menu_ingresar_matriz_costos(msg: str = "TRANSPORTE", ppl: bool = False):
 		if matriz is not None:
 			return matriz
 
+
 def menu_ingresar_transporte(asignacion: bool = False):
 	if asignacion:
 		problema = "ASIGNACION"
@@ -81,12 +82,13 @@ def menu_ingresar_transporte(asignacion: bool = False):
 	elif opcion == '2'and asignacion:
 		matriz_costos, nombres_origen, nombres_destino = datos.ingresar_asignacion_csv()
 	elif opcion == 'q':
-		return 0,0,0,0,0
+		return None
 
 	if asignacion:
 		return matriz_costos, nombres_origen, nombres_destino
 	else: 
 		return matriz_costos, oferta, demanda, nombres_origen, nombres_destino
+
 
 def menu_ingresar_red():
 	print(f'PROBLEMA DE REDES POR SIMPLEX')
@@ -155,9 +157,15 @@ def menu_transporte():
 	clear_screen()
 	opcion = input("¿Desea ingresar un problema de asignacion?(S/n): ")
 	if opcion.lower() == 's':
-		matriz_costos, nombres_origen, nombres_destino = menu_ingresar_transporte(True)
+		problema_transporte = menu_ingresar_transporte(True)
+		if problema_transporte is None:
+			return
+		matriz_costos, nombres_origen, nombres_destino = problema_transporte
 		asignacion = True
 	else:
+		problema_transporte = menu_ingresar_transporte()
+		if problema_transporte is None:
+			return
 		matriz_costos, oferta, demanda, nombres_origen, nombres_destino = menu_ingresar_transporte()
 		asignacion = False
 	
