@@ -31,9 +31,9 @@ def main():
 			menus.menu_programacion_entera()
 
 		elif opcion == 'q':
-			if not confirmacion('Está saliendo del programa. ¿Está seguro?'):
-				continue
-			exit()
+			if confirmacion('Está saliendo del programa. ¿Está seguro?'):
+				exit()
+			continue
 
 
 if __name__ == "__main__":
