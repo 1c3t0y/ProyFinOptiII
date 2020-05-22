@@ -2,38 +2,49 @@ def inputMatrix():
     from csv import reader
     
     data = []
-    chc = input('Ingresar la matriz inicial: \n\n 1) Desde un csv \n 2) Desde terminal \n')
-    
-    if chc == '1':
-        nombre = input('nombre del archivo csv: ')
-        # read csv file as a list of lists
-        with open(nombre + '.csv', 'r') as read_obj:
-            # pass the file object to reader() to get the reader object
-            csv_reader = reader(read_obj)
-            # Pass reader object to list() to get a list of lists
-            data = list(csv_reader)
-        
-        for i in range(0, len(data[0])):
-            for j in range(0, len(data[0])):
-                if data[i][j] != 'x':
-                    data[i][j] = int(data[i][j])
+    while True:
+        chc = input('Ingresar la matriz inicial: \n\n 1) Desde un csv \n 2) Desde terminal \n')
+
+        if chc == '1':
+            nombre = input('nombre del archivo csv: ')
+            # read csv file as a list of lists
+            try:
+                with open(nombre, 'r') as read_obj:
+                    # pass the file object to reader() to get the reader object
+                    csv_reader = reader(read_obj)
+                    # Pass reader object to list() to get a list of lists
+                    data = list(csv_reader)
+            except IOError or OSError:
+                print('\t***Error: No se encontró el archivo...')
+                print('\tRegresando al menú anterior...')
+                input('\tPresione enter para continuar')
+                continue
+            except ValueError:
+                print('\t***Error: Todas las filas del archivo deben de tener la misma dimensión...')
+                print('\tRegresando al menú anterior...')
+                input('\tPresione enter para continuar')
+                continue
+            for i in range(0, len(data[0])):
+                for j in range(0, len(data[0])):
+                    if data[i][j] != 'x':
+                        data[i][j] = int(data[i][j])
             
-    elif chc == '2':
-        nod = int(input('\n Número de nodos en la red: '))
-            
-        for i in range(0, nod):
-            data.append([])
-            for j in range(0, nod):
-                if i == j:
-                    data[i].append('x')
-                else:
-                    print('Costo para ir del nodo ', i+1, ' al nodo ', j+1,'. Si no hay conexión esciba: x .')
-                    cst = input()
-                    if cst == 'x':
+        elif chc == '2':
+            nod = int(input('\n Número de nodos en la red: '))
+
+            for i in range(0, nod):
+                data.append([])
+                for j in range(0, nod):
+                    if i == j:
                         data[i].append('x')
                     else:
-                        data[i].append(int(cst))
-                        
+                        print('Costo para ir del nodo ', i+1, ' al nodo ', j+1,'. Si no hay conexión esciba: x .')
+                        cst = input()
+                        if cst == 'x':
+                            data[i].append('x')
+                        else:
+                            data[i].append(int(cst))
+        break
     return data
                    
     

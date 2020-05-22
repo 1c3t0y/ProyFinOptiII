@@ -565,6 +565,7 @@ imported by:
     <a href="#Redes.Dijkstra">Redes.Dijkstra</a>
  &#8226;   <a href="#Redes.FloydWarshal">Redes.FloydWarshal</a>
  &#8226;   <a href="#Redes.arbolExpMin">Redes.arbolExpMin</a>
+ &#8226;   <a href="#Redes.balance_redes">Redes.balance_redes</a>
  &#8226;   <a href="#Redes.flujoMax">Redes.flujoMax</a>
  &#8226;   <a href="#Redes.solucion_inicial_simplex">Redes.solucion_inicial_simplex</a>
  &#8226;   <a href="#Redes.solucion_redes_simplex">Redes.solucion_redes_simplex</a>
@@ -634,6 +635,23 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="Redes.balance_redes"></a>
+  <a target="code" href="///C:/Users/Lenovo%20T450/Documents/6toSemestre/Opti2/proyecto/Redes/balance_redes.py" type="text/plain"><tt>Redes.balance_redes</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Redes">Redes</a>
+ &#8226;   <a href="#numpy">numpy</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Redes.solucion_inicial_simplex">Redes.solucion_inicial_simplex</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="Redes.flujoMax"></a>
   <a target="code" href="///C:/Users/Lenovo%20T450/Documents/6toSemestre/Opti2/proyecto/Redes/flujoMax.py" type="text/plain"><tt>Redes.flujoMax</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -656,9 +674,11 @@ imported by:
 imports:
     <a href="#Redes">Redes</a>
  &#8226;   <a href="#Redes.FloydWarshal">Redes.FloydWarshal</a>
+ &#8226;   <a href="#Redes.balance_redes">Redes.balance_redes</a>
  &#8226;   <a href="#Redes.solucion_redes_simplex">Redes.solucion_redes_simplex</a>
  &#8226;   <a href="#classes.problemas_optimizacion">classes.problemas_optimizacion</a>
  &#8226;   <a href="#numpy">numpy</a>
+ &#8226;   <a href="#utils.Functions">utils.Functions</a>
  &#8226;   <a href="#utils.fun_vec_mat">utils.fun_vec_mat</a>
 
   </div>
@@ -712,11 +732,32 @@ imported by:
   <a target="code" href="-" type="text/plain"><tt>Transporte</tt></a>
 <span class="moduletype">NamespacePackage</span>  <div class="import">
 imported by:
-    <a href="#Transporte.metodo_costo_minimo">Transporte.metodo_costo_minimo</a>
+    <a href="#Transporte.balancear_transporte">Transporte.balancear_transporte</a>
+ &#8226;   <a href="#Transporte.metodo_costo_minimo">Transporte.metodo_costo_minimo</a>
  &#8226;   <a href="#Transporte.metodo_esquina_ne">Transporte.metodo_esquina_ne</a>
  &#8226;   <a href="#Transporte.metodo_hungaro">Transporte.metodo_hungaro</a>
  &#8226;   <a href="#Transporte.metodo_mav">Transporte.metodo_mav</a>
  &#8226;   <a href="#Transporte.sol_problemas_opti">Transporte.sol_problemas_opti</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Transporte.balancear_transporte"></a>
+  <a target="code" href="///C:/Users/Lenovo%20T450/Documents/6toSemestre/Opti2/proyecto/Transporte/balancear_transporte.py" type="text/plain"><tt>Transporte.balancear_transporte</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Transporte">Transporte</a>
+ &#8226;   <a href="#numpy">numpy</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Transporte.metodo_costo_minimo">Transporte.metodo_costo_minimo</a>
+ &#8226;   <a href="#Transporte.metodo_esquina_ne">Transporte.metodo_esquina_ne</a>
+ &#8226;   <a href="#Transporte.metodo_hungaro">Transporte.metodo_hungaro</a>
+ &#8226;   <a href="#Transporte.metodo_mav">Transporte.metodo_mav</a>
 
   </div>
 
@@ -728,6 +769,7 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#Transporte">Transporte</a>
+ &#8226;   <a href="#Transporte.balancear_transporte">Transporte.balancear_transporte</a>
  &#8226;   <a href="#Transporte.sol_problemas_opti">Transporte.sol_problemas_opti</a>
  &#8226;   <a href="#classes.problemas_optimizacion">classes.problemas_optimizacion</a>
  &#8226;   <a href="#numpy">numpy</a>
@@ -747,6 +789,7 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#Transporte">Transporte</a>
+ &#8226;   <a href="#Transporte.balancear_transporte">Transporte.balancear_transporte</a>
  &#8226;   <a href="#Transporte.sol_problemas_opti">Transporte.sol_problemas_opti</a>
  &#8226;   <a href="#classes.problemas_optimizacion">classes.problemas_optimizacion</a>
  &#8226;   <a href="#numpy">numpy</a>
@@ -766,6 +809,7 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#Transporte">Transporte</a>
+ &#8226;   <a href="#Transporte.balancear_transporte">Transporte.balancear_transporte</a>
  &#8226;   <a href="#Transporte.sol_problemas_opti">Transporte.sol_problemas_opti</a>
  &#8226;   <a href="#classes.problemas_optimizacion">classes.problemas_optimizacion</a>
  &#8226;   <a href="#numpy">numpy</a>
@@ -786,6 +830,7 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#Transporte">Transporte</a>
+ &#8226;   <a href="#Transporte.balancear_transporte">Transporte.balancear_transporte</a>
  &#8226;   <a href="#Transporte.sol_problemas_opti">Transporte.sol_problemas_opti</a>
  &#8226;   <a href="#classes.problemas_optimizacion">classes.problemas_optimizacion</a>
  &#8226;   <a href="#numpy">numpy</a>
@@ -10916,8 +10961,10 @@ imported by:
  &#8226;   <a href="#Entera.enumeracion_implicita">Entera.enumeracion_implicita</a>
  &#8226;   <a href="#Redes.Dijkstra">Redes.Dijkstra</a>
  &#8226;   <a href="#Redes.FloydWarshal">Redes.FloydWarshal</a>
+ &#8226;   <a href="#Redes.balance_redes">Redes.balance_redes</a>
  &#8226;   <a href="#Redes.solucion_inicial_simplex">Redes.solucion_inicial_simplex</a>
  &#8226;   <a href="#Redes.solucion_redes_simplex">Redes.solucion_redes_simplex</a>
+ &#8226;   <a href="#Transporte.balancear_transporte">Transporte.balancear_transporte</a>
  &#8226;   <a href="#Transporte.metodo_costo_minimo">Transporte.metodo_costo_minimo</a>
  &#8226;   <a href="#Transporte.metodo_esquina_ne">Transporte.metodo_esquina_ne</a>
  &#8226;   <a href="#Transporte.metodo_hungaro">Transporte.metodo_hungaro</a>
@@ -27109,10 +27156,14 @@ imported by:
  &#8226;   <a href="#Entera.enumeracion_implicita">Entera.enumeracion_implicita</a>
  &#8226;   <a href="#Redes.Dijkstra">Redes.Dijkstra</a>
  &#8226;   <a href="#Redes.FloydWarshal">Redes.FloydWarshal</a>
+ &#8226;   <a href="#Redes.solucion_inicial_simplex">Redes.solucion_inicial_simplex</a>
  &#8226;   <a href="#classes.problema_entera">classes.problema_entera</a>
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#menus">menus</a>
  &#8226;   <a href="#utils.ingresar_datos">utils.ingresar_datos</a>
+ &#8226;   <a href="#utils.mostrar_asignacion">utils.mostrar_asignacion</a>
+ &#8226;   <a href="#utils.mostrar_simplex">utils.mostrar_simplex</a>
+ &#8226;   <a href="#utils.mostrar_transporte">utils.mostrar_transporte</a>
 
   </div>
 
@@ -27167,6 +27218,7 @@ imported by:
 imports:
     <a href="#tabulate">tabulate</a>
  &#8226;   <a href="#utils">utils</a>
+ &#8226;   <a href="#utils.Functions">utils.Functions</a>
 
   </div>
   <div class="import">
@@ -27184,6 +27236,7 @@ imported by:
 imports:
     <a href="#tabulate">tabulate</a>
  &#8226;   <a href="#utils">utils</a>
+ &#8226;   <a href="#utils.Functions">utils.Functions</a>
 
   </div>
   <div class="import">
@@ -27201,6 +27254,7 @@ imported by:
 imports:
     <a href="#tabulate">tabulate</a>
  &#8226;   <a href="#utils">utils</a>
+ &#8226;   <a href="#utils.Functions">utils.Functions</a>
 
   </div>
   <div class="import">

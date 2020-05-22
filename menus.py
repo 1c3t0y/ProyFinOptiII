@@ -154,7 +154,7 @@ def menu_sol_bas_fact_inicial_red():
 def menu_transporte():
 	clear_screen()
 	opcion = input("¿Desea ingresar un problema de asignacion?(S/n): ")
-	if opcion == 'S' or opcion == 'S':
+	if opcion.lower() == 's':
 		matriz_costos, nombres_origen, nombres_destino = menu_ingresar_transporte(True)
 		asignacion = True
 	else:

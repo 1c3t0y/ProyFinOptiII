@@ -15,7 +15,8 @@ def imprimir_solucion(prob_asignacion):
 
 def imprimir_costos(prob_asignacion):
     clear_screen()
-    cabecera = prob_asignacion.nombres_demanda.copy()
+    cabecera = [nombre for nombre in prob_asignacion.nombres_demanda]
+    # cabecera = prob_asignacion.nombres_demanda.copy()
     cabecera.insert(0, " ")
     tabla =[]
     print("Mostrando la matriz de costos")
@@ -28,7 +29,7 @@ def imprimir_costos(prob_asignacion):
             else:
                 renglon_tab.append("-")
         tabla.append(renglon_tab)
-    print(tabulate(tabla, cabecera, tablefmt = "fancy_grid"))
+    print(tabulate(tabla, cabecera, tablefmt="fancy_grid"))
     input("\n\nPresione Enter para continuar...")
     return
 
