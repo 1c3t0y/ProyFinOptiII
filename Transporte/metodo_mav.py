@@ -3,9 +3,13 @@
 import numpy as np
 import Transporte.sol_problemas_opti as spo
 from classes.problemas_optimizacion import ProblemaTransporte
+from Transporte.balancear_transporte import balancear_transporte
 
 
 def metodo_MAV(matriz_costos, oferta, demanda, nombres_origen, nombres_destino):
+	if np.sum(oferta) != np.sum(demanda):
+		matriz_costos, oferta, demanda, nombres_origen, nombres_destino = balancear_transporte(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
+
 	prob_transporte = ProblemaTransporte(matriz_costos, oferta, demanda, nombres_origen, nombres_destino)
 	mat_variables_basicas = np.tile(False, (prob_transporte.n, prob_transporte.m))
 

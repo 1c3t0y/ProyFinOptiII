@@ -118,8 +118,7 @@ def menu_sol_bas_fact_inicial_red():
 			print(f'SOLUCIONAR RED POR SIMPLEX')
 			print("Opciones para SOLUCIÓN BÁSICA FACTIBLE INICIAL:")
 			print(f"1) Método de la M grande")
-			print(f"2) Dos fases")
-			print(f"3) Dar una solución básica factible")
+			print(f"2) Dar una solución básica factible")
 			print(f"o) Dar otro MCFP")
 			print("q) regresar al menú anterior.")
 			opcion = input('¿Qué desea hacer?: ')
@@ -130,9 +129,6 @@ def menu_sol_bas_fact_inicial_red():
 				ms.mostrar_problema(prob_redes)
 				continue
 			elif opcion == '2':
-				### TO DO
-				continue
-			elif opcion == '3':
 				###TO DO
 				'''
 				prob_redes = ProblemaRedes(adyacencia,costos,capacidades)
@@ -213,10 +209,10 @@ def menu_transporte():
 				nombres_origen = nombres_origen_aux
 				nombres_destino = nombres_destino_aux
 			continue
-		elif opcion in ['1','2','3'] and not asignacion:
+		elif opcion in ['1','2','3'] and asignacion:
 			print("El problema que ingresó es de asignación, por lo que no es válido para éste método")
 			input('Presione enter para continuar...')
-		elif opcion in ['1','2','3'] and asignacion:
+		elif opcion == '4' and not asignacion:
 			print("El problema que ingresó es de transporte, por lo que no es válido para éste método")
 			input('Presione enter para continuar...')
 		else:
