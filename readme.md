@@ -5,33 +5,33 @@ Para éste proyecto contemplamos los siguientes problemas:
 
 *Transporte
 
-   *Esquina Noroeste
+   -Esquina Noroeste
    
-   *Costo mínimo
+   -Costo mínimo
    
-   *Método de asignación de Voguel
+   -Método de asignación de Voguel
    
-   *Asignación
+   -Asignación
    
-   *Método Húngaro
+   -Método Húngaro
    
  *Redes
  
-  *Dijkstra
+  -Dijkstra
   
-  *Floyd-Warshall
+  -Floyd-Warshall
   
-  *Árbol de expansión mínima
+  -Árbol de expansión mínima
   
-  *Flujo máximo
+  -Flujo máximo
   
-  *Redes de costo mínimo (sin restricciones de flujo)
+  -Redes de costo mínimo (sin restricciones de flujo)
   
-  *Programación entera
+ *Programación entera
   
-  *Ramificación y acotamiento
+  -Ramificación y acotamiento
   
-  *Enumeración implícita
+  -Enumeración implícita
   
  El código de cada método se encuentra dentro de la carpeta al problema correspondiente.
 
