@@ -38,12 +38,14 @@ Para éste proyecto contemplamos los siguientes problemas:
 ## Calentando motores
 
 En caso de querer copiar peste proyecto en tu computadora basta con correr desde una terminal con *git*:
-'''console
-foo@bar:~$ git clone <link>
-'''
 
-El <link> se puede obtener en la parte superior derecha en **Clone or download**. Del mismo modo, si quisiera descargar el código y no se cuenta con git
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+```bash
+
+foo@bar:~$ git clone link
+
+```
+
+El **link** se puede obtener en la parte superior derecha en **Clone or download**. Del mismo modo, si quisiera descargar el código y no se cuenta con git, puede desde el mismo botón, descargar el proyecto en una carpeta .zip
 
 ### Prerequisitos
 
