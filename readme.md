@@ -14,8 +14,8 @@ Para éste proyecto contemplamos los siguientes problemas:
    - Asignación
    
    - Método Húngaro
-   
- * Redes
+ 
+* Redes
  
   - Dijkstra
   
@@ -27,7 +27,7 @@ Para éste proyecto contemplamos los siguientes problemas:
   
   - Redes de costo mínimo (sin restricciones de flujo)
   
- * Programación entera
+* Programación entera
   
   - Ramificación y acotamiento
   
