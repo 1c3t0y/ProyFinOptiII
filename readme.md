@@ -4,19 +4,33 @@ Proyecto final para la materia de optimización II, el cual incluye algoritmos v
 Para éste proyecto contemplamos los siguientes problemas:
 
 *Transporte
-  *Esquina Noroeste
-  *Costo mínimo
-  *Método de asignación de Voguel
- *Asignación
-  *Método Húngaro
+
+   *Esquina Noroeste
+   
+   *Costo mínimo
+   
+   *Método de asignación de Voguel
+   
+   *Asignación
+   
+   *Método Húngaro
+   
  *Redes
+ 
   *Dijkstra
+  
   *Floyd-Warshall
+  
   *Árbol de expansión mínima
+  
   *Flujo máximo
+  
   *Redes de costo mínimo (sin restricciones de flujo)
- *Programación entera
+  
+  *Programación entera
+  
   *Ramificación y acotamiento
+  
   *Enumeración implícita
   
  El código de cada método se encuentra dentro de la carpeta al problema correspondiente.
