@@ -15,7 +15,7 @@ Para éste proyecto contemplamos los siguientes problemas:
    
    - Método Húngaro
    
- *Redes
+ * Redes
  
   - Dijkstra
   
